@@ -25,15 +25,20 @@ namespace WindowsFormsApplication4
 
             
 
-            // create the new form and show
+            // create the a new instance of NewGame form and show
             newGame = new NewGame();
             newGame.ShowDialog();
 
             //minamise main form
             //this.WindowState = FormWindowState.Minimized;
 
-            //what the screw do we do?
+            //what the screw do we do? 
             
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
 
         }
     }
