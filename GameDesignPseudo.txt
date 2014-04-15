@@ -1,0 +1,152 @@
+Pseudo Code
+
+Initialise()
+new game()	:start from level 1	
+select level()	:start from selected level
+	load game()	:load saved game
+	quit game()	:close program
+	check local storage/folder for custom sound and picture setting
+
+NewGame()
+	set level to 1
+	set player position to level 1 start position
+	set minotaur position to level 1 start position
+	set turn to 0
+	set time to 0
+	set undo to 3
+	pass data to GameStart
+
+SelectGame()
+	set level to selected level
+	set player position to selected level start position
+	set minotaur position to selected level start position
+	set turn to 0
+	set time to 0
+	set undo to 3
+	pass data to GameStart
+
+LoadGame()
+	get level position from storage
+get player position from storage
+get minotaur position from storage
+get turn used from storage
+get time passed from storage
+get undo left from storage
+	pass data to GameStart
+
+SaveGame()
+	store level ID
+	store current player position
+	store current minotaur position
+	store turn passed
+	store undo left
+
+RestartGame()
+	set level to current level
+	set player position to current level start position
+	set minotaur position to current level start position
+	set turn to 0
+	set time to 0
+	set undo to 3
+	pass data to GameStart
+
+GameControl()
+	get data from NewGame, SelectGame,  LoadGame or GameClear.
+		get level
+set turn passed 
+		set time passed 
+		set undo time
+	create map
+	place player and minotaur
+	start timer
+start PlayerRound()
+
+PlayerRound()
+receive direction input from keyboard
+if input is received
+if IsWall() = 1
+play hit wall sound effect
+return to line 1, waiting direction input again
+if IsWall() =0
+save current X and Y to player previous position 
+move player to new position
+calculate and store x and y to current player position
+	run GameClear()
+
+GameClear()
+	If current player X and Y = Exit block X and Y
+		print Level Clear message
+store current level turn used to record
+store current level time used to record
+get next level’s data
+	set player position to next level start position
+	set minotaur position to next level start position
+	set turn passed to 0
+	set time passed to 0
+	set undo time to 3
+run GameConrtol()
+else run MinotaurRound()
+
+MinotaurRound()
+	store current minotaur position into previous minotaur position
+minotaur check Y axis with player
+	minotaur tries moving 1 unit  toward player
+	if IsWall() = 1
+		minotaur don't move in Y axis
+	else 
+		minotaur move toward player 1 unit in Y axis.
+	minotaur check X axis with player
+		minotaur tries moving 1 unit toward player
+	if IsWall() = 1
+		minotaur don't move in X axis
+	else 
+		minotaur move toward player 1 unit in X axis.
+	store new x and y for Minotaur
+	if minotaur reaches player
+		print game over
+		restart level
+turn passed +1
+run PlayerRound()
+
+Undo()
+if undo time < 0
+		set current player position to previous player position
+		set current Minotaur position to previous Minotaur position
+	set turn passed to turn passed -1
+	set undo time = undo time -1
+
+IsWall(direction)
+if moving left
+	get id of current block
+	if id =1 or 2
+		set IsWall = 1
+if moving right
+	get id of current block + 1
+	if id = 1 or 2
+		set IsWall = 1
+if moving up
+	get id of current 
+	if id = 2 or 3
+		set IsWall = 1
+if moving down
+	get id of current + map.width
+	if id = 2 or 3
+		set IsWall = 1
+
+PrevPlayerPosition()
+no method, contains PrePlayerX and PrePlayerY attribute to store previous player x and y axis position.	
+
+CurrPlayerPosition()
+no method, contains CurPlayerX and CurPlayerY attribute to store current player x and y axis position.	
+
+PrevMinotaurPosition()
+no method, contains PreMinoX and PreMinoY attribute to store previous minotaur x and y axis position.	
+
+CurrMinotaurPosition()
+no method, contains CurMinoX and CurMinoY attribute to store current minotaur x and y axis position.
+
+Pause()
+	if paused =0, set paused = 1
+		stop timer
+	elseif paused =1, set paused =0 
+		start timer
