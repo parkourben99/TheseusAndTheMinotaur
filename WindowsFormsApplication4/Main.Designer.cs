@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnNewGame = new System.Windows.Forms.Button();
-            this.btnLevel = new System.Windows.Forms.Button();
             this.btnLevelDesign = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblMain = new System.Windows.Forms.Label();
@@ -49,18 +48,9 @@
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnLevel
-            // 
-            this.btnLevel.Location = new System.Drawing.Point(50, 105);
-            this.btnLevel.Name = "btnLevel";
-            this.btnLevel.Size = new System.Drawing.Size(113, 38);
-            this.btnLevel.TabIndex = 1;
-            this.btnLevel.Text = "Level";
-            this.btnLevel.UseVisualStyleBackColor = true;
-            // 
             // btnLevelDesign
             // 
-            this.btnLevelDesign.Location = new System.Drawing.Point(50, 149);
+            this.btnLevelDesign.Location = new System.Drawing.Point(50, 105);
             this.btnLevelDesign.Name = "btnLevelDesign";
             this.btnLevelDesign.Size = new System.Drawing.Size(113, 35);
             this.btnLevelDesign.TabIndex = 2;
@@ -69,7 +59,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(50, 272);
+            this.btnExit.Location = new System.Drawing.Point(50, 228);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(113, 35);
             this.btnExit.TabIndex = 3;
@@ -96,7 +86,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(50, 231);
+            this.btnHelp.Location = new System.Drawing.Point(50, 187);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(113, 35);
             this.btnHelp.TabIndex = 6;
@@ -105,7 +95,7 @@
             // 
             // btnHighScores
             // 
-            this.btnHighScores.Location = new System.Drawing.Point(50, 190);
+            this.btnHighScores.Location = new System.Drawing.Point(50, 146);
             this.btnHighScores.Name = "btnHighScores";
             this.btnHighScores.Size = new System.Drawing.Size(113, 35);
             this.btnHighScores.TabIndex = 7;
@@ -123,7 +113,6 @@
             this.Controls.Add(this.lblMain);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLevelDesign);
-            this.Controls.Add(this.btnLevel);
             this.Controls.Add(this.btnNewGame);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmMain";
@@ -138,7 +127,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnNewGame;
-        private System.Windows.Forms.Button btnLevel;
         private System.Windows.Forms.Button btnLevelDesign;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblMain;

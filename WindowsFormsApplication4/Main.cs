@@ -12,7 +12,7 @@ namespace WindowsFormsApplication4
 {
     public partial class frmMain : Form
     {
-        // from2 as a var
+        // setting newGame as a var
         NewGame newGame;
 
         public frmMain()
