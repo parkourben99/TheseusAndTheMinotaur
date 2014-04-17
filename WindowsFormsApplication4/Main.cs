@@ -39,7 +39,10 @@ namespace WindowsFormsApplication4
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            login frmLogin;
 
+            frmLogin = new login();
+            frmLogin.ShowDialog();
         }
     }
 }

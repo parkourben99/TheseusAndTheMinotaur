@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(697, 527);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 0;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
             // 
             // NewGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.btnExit);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "NewGame";
             this.Text = "Form2";
@@ -56,6 +45,5 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnExit;
     }
 }
