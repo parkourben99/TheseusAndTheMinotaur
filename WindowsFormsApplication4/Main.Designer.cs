@@ -35,6 +35,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnHighScores = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,12 +60,13 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(50, 228);
+            this.btnExit.Location = new System.Drawing.Point(50, 269);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(113, 35);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblMain
             // 
@@ -86,7 +88,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(50, 187);
+            this.btnHelp.Location = new System.Drawing.Point(50, 228);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(113, 35);
             this.btnHelp.TabIndex = 6;
@@ -95,18 +97,29 @@
             // 
             // btnHighScores
             // 
-            this.btnHighScores.Location = new System.Drawing.Point(50, 146);
+            this.btnHighScores.Location = new System.Drawing.Point(50, 187);
             this.btnHighScores.Name = "btnHighScores";
             this.btnHighScores.Size = new System.Drawing.Size(113, 35);
             this.btnHighScores.TabIndex = 7;
             this.btnHighScores.Text = "High Scores";
             this.btnHighScores.UseVisualStyleBackColor = true;
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Location = new System.Drawing.Point(50, 146);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(113, 35);
+            this.btnLogin.TabIndex = 8;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnHighScores);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.pictureBox1);
@@ -133,6 +146,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnHighScores;
+        private System.Windows.Forms.Button btnLogin;
     }
 }
 

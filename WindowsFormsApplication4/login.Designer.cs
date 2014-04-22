@@ -93,6 +93,7 @@
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(100, 20);
             this.txbUserName.TabIndex = 5;
+            this.txbUserName.TextChanged += new System.EventHandler(this.txbUserName_TextChanged);
             // 
             // txbPassWord
             // 
@@ -141,6 +142,7 @@
             this.MinimizeBox = false;
             this.Name = "login";
             this.Text = "login";
+            this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

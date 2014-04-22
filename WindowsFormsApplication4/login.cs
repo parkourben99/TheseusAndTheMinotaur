@@ -24,19 +24,20 @@ namespace WindowsFormsApplication4
                 //sql query
                 string queryText = "SELECT Count(*) FROM Users " +
                                    "WHERE username = @Username AND password = @Password";
-                // starting the sql connection - SqlConnection needs to be written
-                using (SqlConnection cn = new SqlConnection("your_connection_string"))
-                // passing the sql query - SqlCommand needs to be written
-                using (SqlCommand cmd = new SqlCommand(queryText, cn)) {
+                // starting the sql connection
+                using (System.Data.SqlClient.SqlConnection cn = new System.Data.SqlClient.SqlConnection("Server=.\\SQLEXPRESS;Database=Thesus;Intergrted Security=true"))
+                // passing the sql query
+                using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(queryText, cn)) {
                     cn.Open();
                     cmd.Parameters.AddWithValue("@Username", txbUserName.Text); 
                     cmd.Parameters.AddWithValue("@Password", txbPassWord.Text);
                     int result = (int)cmd.ExecuteScalar();
                     // checking how many results are returned
-                    if (result > 0)
-                        MessageBox.Show("Loggen In!");
-                    else
+                    if (result > 0){
+                        MessageBox.Show("loggin in!");
+                    } else {
                         MessageBox.Show("User Not Found!");
+                    }
                 }
             } 
 
@@ -47,6 +48,16 @@ namespace WindowsFormsApplication4
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbUserName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
