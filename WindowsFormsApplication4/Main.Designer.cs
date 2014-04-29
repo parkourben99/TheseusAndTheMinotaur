@@ -127,6 +127,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLevelDesign);
             this.Controls.Add(this.btnNewGame);
+            this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmMain";
             this.Text = "Main";

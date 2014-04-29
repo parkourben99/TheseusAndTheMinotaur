@@ -29,5 +29,20 @@ namespace WindowsFormsApplication4
 
             this.WindowState = FormWindowState.Normal;
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Sorry no help here :( ", "Help");
+        }
+
+        private void pnlGame_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
