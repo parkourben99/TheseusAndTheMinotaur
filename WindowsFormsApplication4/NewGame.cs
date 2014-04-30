@@ -12,12 +12,8 @@ namespace WindowsFormsApplication4
 {
     public partial class NewGame : Form
     {
-
-       // frmMain frmMain4;
-
-        //minamise main form
-      //  frmMain.ControlCollectionl
             
+
 
         public NewGame()
         {
@@ -42,7 +38,15 @@ namespace WindowsFormsApplication4
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
+            
+        }
 
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            using (Graphics g = pnlGame.CreateGraphics())
+            {
+                g.DrawLine(new Pen(Color.Red, 3), new Point(234, 118), new Point(0, 123));
+            }
         }
     }
 }

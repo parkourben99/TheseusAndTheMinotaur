@@ -90,6 +90,7 @@
             this.btnLeft.TabIndex = 4;
             this.btnLeft.Text = "Left";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnUp
             // 
