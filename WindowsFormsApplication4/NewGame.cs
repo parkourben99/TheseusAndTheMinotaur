@@ -12,8 +12,6 @@ namespace WindowsFormsApplication4
 {
     public partial class NewGame : Form
     {
-            
-
 
         public NewGame()
         {
@@ -43,10 +41,34 @@ namespace WindowsFormsApplication4
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
+
+            
+
             using (Graphics g = pnlGame.CreateGraphics())
             {
-                g.DrawLine(new Pen(Color.Red, 3), new Point(234, 118), new Point(0, 123));
+                string wallHorizontalImg = @"C:\Users\Benjamin Ayles\Desktop\Project\TheseusAndTheMinotaur\WindowsFormsApplication4\Images\Walls\horizontal.png";
+                Image wallHorizontal = Image.FromFile(wallHorizontalImg);
+                g.DrawImage(wallHorizontal, new Point(0,0));
             }
+
+
+
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+
+            string levelTest = "233311244113441144413333";
+
+            buildLevel(levelTest);
+        }
+
+
+        protected void bulidLevel(string levelName)
+        {
+
+           //write the method to where to wall is placed
+
         }
     }
 }
