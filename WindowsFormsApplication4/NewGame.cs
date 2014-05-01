@@ -48,7 +48,7 @@ namespace WindowsFormsApplication4
         private void btnLoad_Click(object sender, EventArgs e)
         {
 
-            string wallTest = "233311244113441144413333";
+            string wallTest = "2333112441134411444133333";
 
             string thesusTest = "21";
 
@@ -56,13 +56,13 @@ namespace WindowsFormsApplication4
 
             string exitTest = "55";
 
-            buildLevel(wallTest, thesusTest, minotaurTest, exitTest);
+            build(wallTest, thesusTest, minotaurTest, exitTest);
 
         }
 
 
 
-        protected void buildLevel(string wallCreate, string thesusCreate, string minotaurCreate, string exitCreate)
+        protected void build(string wallCreate, string thesusCreate, string minotaurCreate, string exitCreate)
         {
 
             // change the string to a char array
@@ -84,10 +84,8 @@ namespace WindowsFormsApplication4
             buildMap(wallArray, gridSize);
 
             //place Thesus & Minotaur & Exit
-            buildCharacters(thesusArray, minotaurCreate, exitArray);
+            //buildCharacters(thesusArray, minotaurCreate, exitArray);
 
-
-            lblScore.Text = wallArray[1].ToString();
 
         }
 
@@ -115,11 +113,25 @@ namespace WindowsFormsApplication4
             string wallBottomRightImg = begingPath + @"Images\Walls\bottom_right.png";
             Image wallBottomRight = Image.FromFile(wallBottomRightImg);
 
+            // convert to double then square root and convert back to int
+            double gridSizeDouble = Convert.ToDouble(gridSize);
+            double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
+            int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
 
 
-            using (Graphics graphics = pnlGame.CreateGraphics())
+            lblScore.Text = gridSizeRoot.ToString();
+            if (gridSizeRoot == 5)
             {
-                graphics.DrawImage(wallHorizontal, new Point(0, 0));
+                using (Graphics graphics = pnlGame.CreateGraphics())
+                {
+                    graphics.DrawImage(wallTopLeft, new Point(0, 0));
+                    graphics.DrawImage(wallHorizontal, new Point(60, 0));
+                    graphics.DrawImage(wallHorizontal, new Point(104 + 60, 0));
+                    graphics.DrawImage(wallHorizontal, new Point(104 + 60 + 104, 0));
+                    graphics.DrawImage(wallTopRight, new Point(104 + 60 + 104 + 104, -12));
+
+
+                }
             }
 
         }
