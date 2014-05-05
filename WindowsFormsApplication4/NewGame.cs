@@ -124,15 +124,20 @@ namespace WindowsFormsApplication4
             {
                 using (Graphics graphics = pnlGame.CreateGraphics())
                 {
+
+
                     graphics.DrawImage(wallTopLeft, new Point(0, 0));
                     graphics.DrawImage(wallHorizontal, new Point(60, 0));
                     graphics.DrawImage(wallHorizontal, new Point(104 + 60, 0));
                     graphics.DrawImage(wallHorizontal, new Point(104 + 60 + 104, 0));
-                    graphics.DrawImage(wallTopRight, new Point(104 + 60 + 104 + 104, -12));
+                    graphics.DrawImage(wallTopRight, new Point(312 + 60, -12));
 
 
                 }
             }
+
+
+
 
         }
 

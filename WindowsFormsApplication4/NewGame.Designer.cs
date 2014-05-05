@@ -76,7 +76,7 @@
             // 
             // pnlGame
             // 
-            this.pnlGame.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGame.Location = new System.Drawing.Point(12, 32);
             this.pnlGame.Name = "pnlGame";
             this.pnlGame.Size = new System.Drawing.Size(700, 700);
