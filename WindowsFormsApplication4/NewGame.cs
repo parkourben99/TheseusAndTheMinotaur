@@ -50,7 +50,7 @@ namespace WindowsFormsApplication4
 
             string wallTest = "2333112441134411444133333";
 
-            string thesusTest = "21";
+            string thesusTest = "01";
 
             string minotaurTest = "41";
 
@@ -280,8 +280,8 @@ namespace WindowsFormsApplication4
                 {
 
                     graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
-                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], thesusArray[1]));
-                    graphics.DrawImage(exitImg, new Point(exitArray[0], thesusArray[1]));
+                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], minotaurArray[1]));
+                    graphics.DrawImage(exitImg, new Point(exitArray[0], exitArray[1]));
 
                 }
 
