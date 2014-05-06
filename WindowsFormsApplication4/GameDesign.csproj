@@ -71,13 +71,11 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="\\ADFSSTUD2\R-U\tjl96\WindowsSettings\Desktop\NewGame.cs">
+    <Compile Include="NewGame.cs">
       <SubType>Form</SubType>
-      <Link>NewGame.cs</Link>
     </Compile>
-    <Compile Include="\\ADFSSTUD2\R-U\tjl96\WindowsSettings\Desktop\NewGame.Designer.cs">
+    <Compile Include="NewGame.Designer.cs">
       <DependentUpon>NewGame.cs</DependentUpon>
-      <Link>NewGame.Designer.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,9 +85,8 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="\\ADFSSTUD2\R-U\tjl96\WindowsSettings\Desktop\NewGame.resx">
+    <EmbeddedResource Include="NewGame.resx">
       <DependentUpon>NewGame.cs</DependentUpon>
-      <Link>NewGame.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
