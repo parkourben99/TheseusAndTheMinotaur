@@ -84,7 +84,7 @@ namespace WindowsFormsApplication4
             buildMap(wallArray, gridSize);
 
             //place Thesus & Minotaur & Exit
-            //buildCharacters(thesusArray, minotaurCreate, exitArray);
+            buildCharacters(thesusArray, minotaurArray, exitArray);
 
 
         }
@@ -128,10 +128,10 @@ namespace WindowsFormsApplication4
             char[,] MultiArray = new char[gridSizeRoot, gridSizeRoot];
             
  
-             // looping the big array and spliting the first row
+             // looping - lenght on the string
              for (int i = 0; i < wallArray.Length; i++)
              {
-               
+                // checking if its to the grid size to splice to the next row
                 if(gridCount == gridSizeRoot)
                 {
                     gridCount = 0;
@@ -151,25 +151,24 @@ namespace WindowsFormsApplication4
                  {
                      for (int y = 0; y < gridSizeRoot; y++)
                      {
-                         int numberSwitch = MultiArray[x,y];
- 
-                         switch (numberSwitch)
+
+                         switch (MultiArray[x, y])
                          {
  
-                             case 1:
-                                 graphics.DrawImage(wallVertical, new Point(x * 40, y * 40));
+                             case '1':
+                                 graphics.DrawImage(wallVertical, new Point(x * 100, y * 100));
                                  break;
  
-                             case 2: 
-                                 graphics.DrawImage(wallTopLeft, new Point(x * 40, y * 40));
+                             case '2':
+                                 graphics.DrawImage(wallTopLeft, new Point(x * 100, y * 100));
                                  break;
  
-                              case 3:
-                                 graphics.DrawImage(wallHorizontal, new Point(x * 40, y * 40));
+                              case '3':
+                                 graphics.DrawImage(wallHorizontal, new Point(x * 100, y * 100));
                                  break;
  
-                              case 4:
-                             //    graphics.DrawImage(wallTopLeft, new Point(x, y));
+                              case '4':
+                                 // grass??
                                  break;
  
                          }
@@ -260,7 +259,36 @@ namespace WindowsFormsApplication4
         }
 
 
+        protected void buildCharacters(char[] thesusArray, char[] minotaurArray, char[] exitArray)
+        {
 
+            //change for diffrent computer -wip-
+            string begingPath = @"C:\Users\Benjamin Ayles\Desktop\Project\TheseusAndTheMinotaur\WindowsFormsApplication4\";
+
+            //set the images
+            string theseus = begingPath + @"Images\Players\Theseus.png";
+            Image thesusImg = Image.FromFile(theseus);
+
+            string minotaur = begingPath + @"Images\Players\Minotaur.png";
+            Image minotaurImg = Image.FromFile(minotaur);
+
+            string exit = begingPath + @"Images\Players\Exit.png";
+            Image exitImg = Image.FromFile(exit);
+
+
+                using (Graphics graphics = pnlGame.CreateGraphics())
+                {
+
+                    graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
+                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], thesusArray[1]));
+                    graphics.DrawImage(exitImg, new Point(exitArray[0], thesusArray[1]));
+
+                }
+
+
+
+
+        }
 
 
 
