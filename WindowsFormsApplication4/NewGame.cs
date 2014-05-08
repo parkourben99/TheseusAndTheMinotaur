@@ -13,7 +13,7 @@ namespace WindowsFormsApplication4
     public partial class NewGame : Form
     {
         // declare gloabal var
-        public static int coordinate = 40;
+        public static int coordinate = 48;
         public static char[,] theseusArray = new char[2, 2];
 
         public NewGame()
@@ -125,6 +125,7 @@ namespace WindowsFormsApplication4
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
 
+            drawFloor(gridSizeRoot);
             
             // setting the grid size
             int gridCount = 0;
@@ -182,7 +183,8 @@ namespace WindowsFormsApplication4
                      }
  
                  
-             }
+                }
+
 
 
              /*
@@ -206,11 +208,11 @@ namespace WindowsFormsApplication4
         protected void drawVertical(int y, int x)
         {
 
-            string wallVerticalImg = @"../../Images/Walls/vertical.png";
+            string wallVerticalImg = @"../../Images/VerticalWall.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
-            y = y * coordinate;
-            x = x * coordinate;
+            y = y * NewGame.coordinate;
+            x = x * NewGame.coordinate;
 
             draw(y, x, wallVertical);
 
@@ -219,27 +221,57 @@ namespace WindowsFormsApplication4
 
         protected void drawBoth(int y, int x)
         {
+            string wallHorizontalImg = @"../../Images/HorizontalWall.png";
+            Image wallHorizontal = Image.FromFile(wallHorizontalImg);
+            string wallVerticalImg = @"../../Images/VerticalWall.png";
+            Image wallVertical = Image.FromFile(wallVerticalImg);
 
-            string wallTopLeftImg = @"../../Images/Walls/top_left.png";
-            Image wallTopLeft = Image.FromFile(wallTopLeftImg);
+            y = y * NewGame.coordinate;
+            x = x * NewGame.coordinate;
 
-            y = y * coordinate;
-            x = x * coordinate;
-
-            draw(y, x, wallTopLeft);
+            draw(y, x, wallHorizontal);
+            draw(y, x, wallVertical);
+            
 
         }
 
         protected void drawHorizontal(int y, int x)
         {
 
-            string wallHorizontalImg = @"../../Images/Walls/horizontal.png";
+            string wallHorizontalImg = @"../../Images/HorizontalWall.png";
             Image wallHorizontal = Image.FromFile(wallHorizontalImg);
 
-            y = y * coordinate;
-            x = x * coordinate;
+            y = y * NewGame.coordinate;
+            x = x * NewGame.coordinate;
 
             draw(y, x, wallHorizontal);
+
+        }
+
+        protected void drawFloor(int gridSize)
+        {
+
+            string floor1 = @"../../Images/Ground1.png";
+            string floor2 = @"../../Images/Ground2.png";
+            Image floor1Image = Image.FromFile(floor1);
+            Image floor2Image = Image.FromFile(floor2);
+
+            int i = 0;
+            for (int x = 0; x < gridSize; x++)
+            {
+                for (int y = 0; y < gridSize; y++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        draw(y * NewGame.coordinate, x * NewGame.coordinate, floor1Image);
+                    }
+                    else
+                    {
+                        draw(y * NewGame.coordinate, x * NewGame.coordinate, floor2Image);
+                    }
+                    i++;
+                }
+            }
 
         }
 
@@ -337,8 +369,8 @@ namespace WindowsFormsApplication4
                 using (Graphics graphics = pnlGame.CreateGraphics())
                 {
 
-                    graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
-                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], minotaurArray[1]));
+                    //graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
+                    //graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], minotaurArray[1]));
                //     graphics.DrawImage(exitImg, new Point(exitArray[0], exitArray[1]));
 
                 }
