@@ -92,32 +92,31 @@ namespace WindowsFormsApplication4
         protected void buildMap(char[] wallArray, int gridSize)
         {
             //change for diffrent computer -wip-
-            string begingPath = @"C:\Users\Benjamin Ayles\Desktop\Project\TheseusAndTheMinotaur\WindowsFormsApplication4\";
+            string begingPath = @"../../";
             
             //set the images
-            string wallHorizontalImg = begingPath + @"Images\Walls\horizontal.png";
+            string wallHorizontalImg = begingPath + @"Images/Walls/horizontal.png";
             Image wallHorizontal = Image.FromFile(wallHorizontalImg);
 
-            string wallVerticalImg = begingPath + @"Images\Walls\vertical.png";
+            string wallVerticalImg = begingPath + @"Images/Walls/vertical.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
-            string wallTopLeftImg = begingPath + @"Images\Walls\top_left.png";
+            string wallTopLeftImg = begingPath + @"Images/Walls/top_left.png";
             Image wallTopLeft = Image.FromFile(wallTopLeftImg);
 
-            string wallTopRightImg = begingPath + @"Images\Walls\top_right.png";
+            string wallTopRightImg = begingPath + @"Images/Walls/top_right.png";
             Image wallTopRight = Image.FromFile(wallTopRightImg);
 
-            string wallBottomLeftImg = begingPath + @"Images\Walls\bottom_left.png";
+            string wallBottomLeftImg = begingPath + @"Images/Walls/bottom_left.png";
             Image wallBottomLeft = Image.FromFile(wallBottomLeftImg);
 
-            string wallBottomRightImg = begingPath + @"Images\Walls\bottom_right.png";
+            string wallBottomRightImg = begingPath + @"Images/Walls/bottom_right.png";
             Image wallBottomRight = Image.FromFile(wallBottomRightImg);
 
             // convert to double then square root and convert back to int
             double gridSizeDouble = Convert.ToDouble(gridSize);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
-
 
             
             // setting the grid size
@@ -156,15 +155,17 @@ namespace WindowsFormsApplication4
                          {
  
                              case '1':
-                                 graphics.DrawImage(wallVertical, new Point(x * 100, y * 100));
+
+                              //  int a = drawVertical(y,x);
+                                // graphics.DrawImage(wallVertical, new Point(y * 100, x * 100));
                                  break;
  
                              case '2':
-                                 graphics.DrawImage(wallTopLeft, new Point(x * 100, y * 100));
+                                 graphics.DrawImage(wallTopLeft, new Point(y * 100, x * 100));
                                  break;
  
                               case '3':
-                                 graphics.DrawImage(wallHorizontal, new Point(x * 100, y * 100));
+                                 graphics.DrawImage(wallHorizontal, new Point(y * 100, x * 100));
                                  break;
  
                               case '4':
@@ -195,6 +196,19 @@ namespace WindowsFormsApplication4
 
 
         }
+
+    //    protected int drawVertical(int y, int x)
+    //    {
+
+
+
+
+
+
+      //      return (x,y);
+
+
+   //     }
 
 
         protected int calcGridSize(int wallLength)
@@ -263,16 +277,16 @@ namespace WindowsFormsApplication4
         {
 
             //change for diffrent computer -wip-
-            string begingPath = @"C:\Users\Benjamin Ayles\Desktop\Project\TheseusAndTheMinotaur\WindowsFormsApplication4\";
+            string begingPath = @"../../";
 
             //set the images
-            string theseus = begingPath + @"Images\Players\Theseus.png";
+            string theseus = begingPath + @"Images/Players/Theseus.png";
             Image thesusImg = Image.FromFile(theseus);
 
-            string minotaur = begingPath + @"Images\Players\Minotaur.png";
+            string minotaur = begingPath + @"Images/Players/Minotaur.png";
             Image minotaurImg = Image.FromFile(minotaur);
 
-            string exit = begingPath + @"Images\Players\Exit.png";
+            string exit = begingPath + @"Images/Players/Exit.png";
             Image exitImg = Image.FromFile(exit);
 
 
@@ -281,7 +295,7 @@ namespace WindowsFormsApplication4
 
                     graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
                     graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], minotaurArray[1]));
-                    graphics.DrawImage(exitImg, new Point(exitArray[0], exitArray[1]));
+               //     graphics.DrawImage(exitImg, new Point(exitArray[0], exitArray[1]));
 
                 }
 
