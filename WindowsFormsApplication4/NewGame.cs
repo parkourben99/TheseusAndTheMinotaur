@@ -12,10 +12,16 @@ namespace WindowsFormsApplication4
 {
     public partial class NewGame : Form
     {
+        // declare gloabal var
+        public static int coordinate = 40;
+        public static char[,] theseusArray = new char[2, 2];
 
         public NewGame()
         {
             InitializeComponent();
+        //    this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewGame_KeyDown);
+            this.pnlGame.Focus();
+
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -56,8 +62,11 @@ namespace WindowsFormsApplication4
 
             string exitTest = "55";
 
-            build(wallTest, thesusTest, minotaurTest, exitTest);
+            char[] theseusArray = thesusTest.ToCharArray();
 
+            theseusIntitalise(theseusArray);
+
+            build(wallTest, thesusTest, minotaurTest, exitTest);
         }
 
 
@@ -95,11 +104,9 @@ namespace WindowsFormsApplication4
             string begingPath = @"../../";
             
             //set the images
-            string wallHorizontalImg = begingPath + @"Images/Walls/horizontal.png";
-            Image wallHorizontal = Image.FromFile(wallHorizontalImg);
+            
 
-            string wallVerticalImg = begingPath + @"Images/Walls/vertical.png";
-            Image wallVertical = Image.FromFile(wallVerticalImg);
+            
 
             string wallTopLeftImg = begingPath + @"Images/Walls/top_left.png";
             Image wallTopLeft = Image.FromFile(wallTopLeftImg);
@@ -144,8 +151,7 @@ namespace WindowsFormsApplication4
                  gridCount++;
              }
             
-             using (Graphics graphics = pnlGame.CreateGraphics())
-             {
+
                  for (int x = 0; x < gridSizeRoot; x++)                
                  {
                      for (int y = 0; y < gridSizeRoot; y++)
@@ -155,17 +161,16 @@ namespace WindowsFormsApplication4
                          {
  
                              case '1':
-
-                              //  int a = drawVertical(y,x);
+                                drawVertical(y,x);
                                 // graphics.DrawImage(wallVertical, new Point(y * 100, x * 100));
                                  break;
  
                              case '2':
-                                 graphics.DrawImage(wallTopLeft, new Point(y * 100, x * 100));
+                                 drawBoth(y, x);
                                  break;
  
                               case '3':
-                                 graphics.DrawImage(wallHorizontal, new Point(y * 100, x * 100));
+                                 drawHorizontal(y, x);
                                  break;
  
                               case '4':
@@ -176,7 +181,7 @@ namespace WindowsFormsApplication4
  
                      }
  
-                 }
+                 
              }
 
 
@@ -197,18 +202,57 @@ namespace WindowsFormsApplication4
 
         }
 
-    //    protected int drawVertical(int y, int x)
-    //    {
+
+        protected void drawVertical(int y, int x)
+        {
+
+            string wallVerticalImg = @"../../Images/Walls/vertical.png";
+            Image wallVertical = Image.FromFile(wallVerticalImg);
+
+            y = y * coordinate;
+            x = x * coordinate;
+
+            draw(y, x, wallVertical);
+
+        }
 
 
+        protected void drawBoth(int y, int x)
+        {
 
+            string wallTopLeftImg = @"../../Images/Walls/top_left.png";
+            Image wallTopLeft = Image.FromFile(wallTopLeftImg);
 
+            y = y * coordinate;
+            x = x * coordinate;
 
+            draw(y, x, wallTopLeft);
 
-      //      return (x,y);
+        }
 
+        protected void drawHorizontal(int y, int x)
+        {
 
-   //     }
+            string wallHorizontalImg = @"../../Images/Walls/horizontal.png";
+            Image wallHorizontal = Image.FromFile(wallHorizontalImg);
+
+            y = y * coordinate;
+            x = x * coordinate;
+
+            draw(y, x, wallHorizontal);
+
+        }
+
+        protected void draw(int y, int x, Image image)
+        {
+
+            using (Graphics graphics = pnlGame.CreateGraphics())
+            {
+
+                graphics.DrawImage(image, new Point(y, x));
+
+            }
+        }
 
 
         protected int calcGridSize(int wallLength)
@@ -305,6 +349,73 @@ namespace WindowsFormsApplication4
         }
 
 
+
+        protected void theseusIntitalise (char [] thesusMoveArray)
+        {
+            
+
+            int i = 0;
+
+                for(int o = 0; o < 2; o++)
+                {
+                    theseusArray[i,o] = thesusMoveArray[i];
+                    i++;
+                }
+                
+        }
+
+        protected void theseusMove (int move, string direction)
+        {
+
+            if(direction == "UP")
+            {
+
+                char charY = theseusArray[0,1];
+
+                int y = (int)Char.GetNumericValue(charY);
+
+                y = y * NewGame.coordinate;
+
+                
+
+               // drawPlayers(x,y);
+
+                MessageBox.Show("", y.ToString(), MessageBoxButtons.OKCancel);
+            }
+
+
+        //    MessageBox.Show(move.ToString(), direction, MessageBoxButtons.OKCancel);
+
+        }
+
+
+        private void NewGame_KeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+              
+            }
+
+            if (e.KeyCode == Keys.A)
+            {
+
+            }
+            if (e.KeyCode == Keys.S)
+            {
+
+            }
+            if (e.KeyCode == Keys.D)
+            {
+
+            }
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            int move = NewGame.coordinate;
+            string direction = "UP";
+            theseusMove(move, direction);
+        }
 
 
 

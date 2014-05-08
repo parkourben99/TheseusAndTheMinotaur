@@ -82,6 +82,7 @@
             this.pnlGame.Size = new System.Drawing.Size(700, 700);
             this.pnlGame.TabIndex = 3;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
+            this.pnlGame.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.NewGame_KeyDown);
             // 
             // btnLeft
             // 
@@ -101,6 +102,7 @@
             this.btnUp.TabIndex = 5;
             this.btnUp.Text = "Up";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnRight
             // 
