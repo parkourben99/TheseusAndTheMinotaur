@@ -97,7 +97,7 @@ namespace WindowsFormsApplication4
 
 
         }
-
+        
         protected void buildMap(char[] wallArray, int gridSize)
         {
             //change for diffrent computer -wip-
