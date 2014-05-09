@@ -14,7 +14,7 @@ namespace WindowsFormsApplication4
     {
         // declare gloabal var
         public static int coordinate = 40;
-        public static char[,] theseusArray = new char[2, 2];
+        public static int[,] theseusArray = new int[2, 2];
 
         public NewGame()
         {
@@ -62,9 +62,12 @@ namespace WindowsFormsApplication4
 
             string exitTest = "55";
 
-            char[] theseusArray = thesusTest.ToCharArray();
+            //char[] theseusArray = thesusTest.ToCharArray();
+            theseusArray[0, 0] = 4;//x
+            theseusArray[1, 0] = 1;//y
 
-            theseusIntitalise(theseusArray);
+
+            //theseusIntitalise(theseusArray);
 
             build(wallTest, thesusTest, minotaurTest, exitTest);
         }
@@ -381,8 +384,8 @@ namespace WindowsFormsApplication4
         }
 
 
-
-        protected void theseusIntitalise (char [] thesusMoveArray)
+/*
+        protected void theseusIntitalise (int [] thesusMoveArray)
         {
             
 
@@ -395,8 +398,9 @@ namespace WindowsFormsApplication4
                 }
                 
         }
+  */
 
-        protected void theseusMove (int move, string direction)
+        protected void theseusMove (string direction)
         {
 
             string theseus = "theseus";
@@ -404,15 +408,20 @@ namespace WindowsFormsApplication4
             if(direction == "UP")
             {
 
-                char charY = theseusArray[0,1];
+                int currentY = theseusArray[1,0];
+                int currentX = theseusArray[0,0];
 
-                int y = (int)Char.GetNumericValue(charY);
+                currentY++;
 
-                y++; 
-                    //NewGame.coordinate;
+                // setting the old values in the array
+                theseusArray[0, 1] = theseusArray[0, 0]; //x
+                theseusArray[1, 1] = theseusArray[1, 0]; //y
 
+                // new values
+                theseusArray[1, 0] = currentY;
+                theseusArray[0, 0] = currentX;
 
-                drawPlayers(theseusArray[0,0], y, theseus);
+                drawPlayers(theseus);
 
              //   MessageBox.Show(charY.ToString(), y.ToString(), MessageBoxButtons.OKCancel);
             }
@@ -422,23 +431,15 @@ namespace WindowsFormsApplication4
 
         }
 
-        protected void drawPlayers(int x, int y, string who)
+        protected void drawPlayers(string who)
         {
-            string theseus = @"../../Images/Players/Theseus.png";
+            string theseus = @"../../Images/Ground1.png";
             Image thesusImg = Image.FromFile(theseus);
             
             using (Graphics graphics = pnlGame.CreateGraphics())
             {
                 if (who == "theseus")
                 {
-
-                    // setting the old values in the array
-                    theseusArray[0, 1] = theseusArray[0, 0]; //x
-                    theseusArray[1, 1] = theseusArray[1, 0]; //y
-
-                    // new values
-                    theseusArray[1, 0] = (char)y;
-                    theseusArray[0, 0] = (char)x;
 
 
                     graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
@@ -475,9 +476,9 @@ namespace WindowsFormsApplication4
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            int move = NewGame.coordinate;
+
             string direction = "UP";
-            theseusMove(move, direction);
+            theseusMove(direction);
         }
 
 
