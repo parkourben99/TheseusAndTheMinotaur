@@ -13,7 +13,7 @@ namespace WindowsFormsApplication4
     public partial class NewGame : Form
     {
         // declare gloabal var
-        public static int coordinate = 48;
+        public static int coordinate = 40;
         public static char[,] theseusArray = new char[2, 2];
 
         public NewGame()
@@ -54,7 +54,7 @@ namespace WindowsFormsApplication4
         private void btnLoad_Click(object sender, EventArgs e)
         {
 
-            string wallTest = "2333112441134411444133333";
+            string wallTest = "2333112441134411444133334";
 
             string thesusTest = "01";
 
@@ -208,7 +208,7 @@ namespace WindowsFormsApplication4
         protected void drawVertical(int y, int x)
         {
 
-            string wallVerticalImg = @"../../Images/VerticalWall.png";
+            string wallVerticalImg = @"../../Images/Walls/VerticalWall.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
             y = y * NewGame.coordinate;
@@ -221,9 +221,9 @@ namespace WindowsFormsApplication4
 
         protected void drawBoth(int y, int x)
         {
-            string wallHorizontalImg = @"../../Images/HorizontalWall.png";
+            string wallHorizontalImg = @"../../Images/Walls/HorizontalWall.png";
             Image wallHorizontal = Image.FromFile(wallHorizontalImg);
-            string wallVerticalImg = @"../../Images/VerticalWall.png";
+            string wallVerticalImg = @"../../Images/Walls/VerticalWall.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
             y = y * NewGame.coordinate;
@@ -238,7 +238,7 @@ namespace WindowsFormsApplication4
         protected void drawHorizontal(int y, int x)
         {
 
-            string wallHorizontalImg = @"../../Images/HorizontalWall.png";
+            string wallHorizontalImg = @"../../Images/Walls/HorizontalWall.png";
             Image wallHorizontal = Image.FromFile(wallHorizontalImg);
 
             y = y * NewGame.coordinate;
@@ -257,9 +257,9 @@ namespace WindowsFormsApplication4
             Image floor2Image = Image.FromFile(floor2);
 
             int i = 0;
-            for (int x = 0; x < gridSize; x++)
+            for (int x = 0; x < (gridSize-1); x++)
             {
-                for (int y = 0; y < gridSize; y++)
+                for (int y = 0; y < (gridSize-1); y++)
                 {
                     if (i % 2 == 0)
                     {
