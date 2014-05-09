@@ -399,6 +399,8 @@ namespace WindowsFormsApplication4
         protected void theseusMove (int move, string direction)
         {
 
+            string theseus = "theseus";
+
             if(direction == "UP")
             {
 
@@ -406,13 +408,12 @@ namespace WindowsFormsApplication4
 
                 int y = (int)Char.GetNumericValue(charY);
 
-                y = y * NewGame.coordinate;
+                y = -y * NewGame.coordinate;
 
-                
 
-               // drawPlayers(x,y);
+                drawPlayers(theseusArray[1,1], y, theseus);
 
-                MessageBox.Show("", y.ToString(), MessageBoxButtons.OKCancel);
+                MessageBox.Show(charY.ToString(), y.ToString(), MessageBoxButtons.OKCancel);
             }
 
 
@@ -420,6 +421,27 @@ namespace WindowsFormsApplication4
 
         }
 
+        protected void drawPlayers(int x, int y, string who)
+        {
+            string theseus = @"../../Images/Players/Theseus.png";
+            Image thesusImg = Image.FromFile(theseus);
+            
+            using (Graphics graphics = pnlGame.CreateGraphics())
+            {
+                if (who == "theseus")
+                {
+                    graphics.DrawImage(thesusImg, new Point(x, y));
+
+
+
+                }
+                
+
+            }
+        
+
+        }
+        
 
         private void NewGame_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
