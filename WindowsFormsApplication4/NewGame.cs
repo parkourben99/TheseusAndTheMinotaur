@@ -408,12 +408,13 @@ namespace WindowsFormsApplication4
 
                 int y = (int)Char.GetNumericValue(charY);
 
-                y = -y * NewGame.coordinate;
+                y++; 
+                    //NewGame.coordinate;
 
 
-                drawPlayers(theseusArray[1,1], y, theseus);
+                drawPlayers(theseusArray[0,0], y, theseus);
 
-                MessageBox.Show(charY.ToString(), y.ToString(), MessageBoxButtons.OKCancel);
+             //   MessageBox.Show(charY.ToString(), y.ToString(), MessageBoxButtons.OKCancel);
             }
 
 
@@ -430,9 +431,17 @@ namespace WindowsFormsApplication4
             {
                 if (who == "theseus")
                 {
-                    graphics.DrawImage(thesusImg, new Point(x, y));
+
+                    // setting the old values in the array
+                    theseusArray[0, 1] = theseusArray[0, 0]; //x
+                    theseusArray[1, 1] = theseusArray[1, 0]; //y
+
+                    // new values
+                    theseusArray[1, 0] = (char)y;
+                    theseusArray[0, 0] = (char)x;
 
 
+                    graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
 
                 }
                 
