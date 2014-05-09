@@ -15,6 +15,9 @@ namespace WindowsFormsApplication4
         // declare gloabal var
         public static int coordinate = 40;
         public static int[,] theseusArray = new int[2, 2];
+        public static int[,] minotaurArray = new int[2, 2];
+        public static int[,] exitArray = new int[2, 2];
+        public static string walls = "";
 
         public NewGame()
         {
@@ -48,57 +51,54 @@ namespace WindowsFormsApplication4
         private void btnLoad_Click(object sender, EventArgs e)
         {
 
-            string wallTest = "2333112441134411444133334";
+            walls = "2333112441134411444133334";
 
-            string thesusTest = "01";
+            string thesusTest = "0,1";
 
-            string minotaurTest = "41";
+            string minotaurTest = "4,1";
 
-            string exitTest = "55";
+            string exitTest = "5,5";
 
-            //char[] theseusArray = thesusTest.ToCharArray();
-            theseusArray[0, 0] = 4;//x
-            theseusArray[1, 0] = 1;//y
-
-
-            //theseusIntitalise(theseusArray);
-
-            build(wallTest, thesusTest, minotaurTest, exitTest);
+            build(walls, thesusTest, minotaurTest, exitTest);
         }
 
+        
 
-
-        protected void build(string wallCreate, string thesusCreate, string minotaurCreate, string exitCreate)
+        private void build(string wallCreate, string thesusCreate, string minotaurCreate, string exitCreate)
         {
 
             // change the string to a char array
-            char[] wallArray = wallCreate.ToCharArray();
+            //char[] wallArray = wallCreate.ToCharArray();
             
-            // change the sting to a char array
-            char[] thesusArray = thesusCreate.ToCharArray();
+            // change the sting to a int array
+            theseusArray[0, 0] = 0;
+            theseusArray[1, 0] = 1;
 
-            // change the sting to a char array
-            char[] minotaurArray = minotaurCreate.ToCharArray();
+            // change the sting to a int array
+            minotaurArray[0, 0] = 4;
+            minotaurArray[1, 0] = 1;
 
-            // change the sting to a char array
-            char[] exitArray = exitCreate.ToCharArray();
-
-            // fining the grid size
-            int gridSize = calcGridSize(wallCreate.Length);
+            // change the sting to a int array
+            exitArray[0, 0] = 5;
+            exitArray[1, 0] = 5;
+            
 
             //build the map from the array
-            buildMap(wallArray, gridSize);
+            buildMap(walls);
 
             //place Thesus & Minotaur & Exit
-            //buildCharacters(thesusArray, minotaurArray, exitArray);
+            buildCharacters();
 
 
         }
         
-        protected void buildMap(char[] wallArray, int gridSize)
+        protected void buildMap(string wallCreate)
         {
+            char[] wallArray = wallCreate.ToCharArray();
+
+
             // convert to double then square root and convert back to int
-            double gridSizeDouble = Convert.ToDouble(gridSize);
+            double gridSizeDouble = Convert.ToDouble(wallArray.Length);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
 
@@ -140,7 +140,6 @@ namespace WindowsFormsApplication4
  
                              case '1':
                                 drawVertical(y,x);
-                                // graphics.DrawImage(wallVertical, new Point(y * 100, x * 100));
                                  break;
  
                              case '2':
@@ -161,9 +160,6 @@ namespace WindowsFormsApplication4
  
                  
                 }
-
-
-
         }
 
 
@@ -244,74 +240,12 @@ namespace WindowsFormsApplication4
             {
 
                 graphics.DrawImage(image, new Point(y, x));
-
             }
         }
 
 
-        protected int calcGridSize(int wallLength)
-        {
-            int gridSize = 0;
 
-            if (wallLength >= 9)
-            {
-                // set the grid size if 3x3
-                gridSize = 9;
-
-                if (wallLength >= 16)
-                {
-                    // set gird size if 4x4
-                    gridSize = 16;
-
-                    if (wallLength >= 25)
-                    {
-                        //set grid size if 5x5
-                        gridSize = 25;
-
-                        if (wallLength >= 36)
-                        {
-                            //set grid size if 6x6
-                            gridSize = 36;
-
-                            if (wallLength >= 49)
-                            {
-                                //set grid size if 7x7
-                                gridSize = 49;
-
-                                if (wallLength >= 64)
-                                {
-                                    //set grid size if 8x8
-                                    gridSize = 64;
-
-                                    if (wallLength >= 81)
-                                    {
-                                        //set grid size if 9x9
-                                        gridSize = 81;
-
-                                        if (wallLength >= 100)
-                                        {
-                                            //set grid size if 10x10
-                                            gridSize = 100;
-
-                                        }
-
-                                    }
-
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-
-            return gridSize;
-        }
-
-/*
-        protected void buildCharacters(char[] thesusArray, char[] minotaurArray, char[] exitArray)
+        protected void buildCharacters()
         {
 
             //change for diffrent computer -wip-
@@ -331,17 +265,13 @@ namespace WindowsFormsApplication4
                 using (Graphics graphics = pnlGame.CreateGraphics())
                 {
 
-                    //graphics.DrawImage(thesusImg, new Point(thesusArray[0], thesusArray[1]));
-                    //graphics.DrawImage(minotaurImg, new Point(minotaurArray[0], minotaurArray[1]));
-               //     graphics.DrawImage(exitImg, new Point(exitArray[0], exitArray[1]));
+                    graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
+                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0, 0] * NewGame.coordinate, minotaurArray[1, 0] * NewGame.coordinate));
+                    //graphics.DrawImage(exitImg, new Point(exitArray[0,0] * NewGame.coordinate, exitArray[1,0] * NewGame.coordinate));
 
                 }
-
-
-
-
         }
-*/
+
 
         protected void theseusMove (string direction)
         {
@@ -379,13 +309,15 @@ namespace WindowsFormsApplication4
 
         protected void drawPlayers(string who)
         {
-            string theseus = @"../../Images/Ground1.png";
+            string theseus = @"../../Images/Players/Theseus.png";
             Image thesusImg = Image.FromFile(theseus);
             
             using (Graphics graphics = pnlGame.CreateGraphics())
             {
                 if (who == "theseus")
                 {
+                    graphics.Clear(Color.White);
+                    buildMap(walls);
                     graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
                 }
             }
