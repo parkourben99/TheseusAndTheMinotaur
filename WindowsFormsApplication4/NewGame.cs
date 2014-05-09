@@ -45,12 +45,6 @@ namespace WindowsFormsApplication4
             
         }
 
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void btnLoad_Click(object sender, EventArgs e)
         {
 
@@ -96,33 +90,13 @@ namespace WindowsFormsApplication4
             buildMap(wallArray, gridSize);
 
             //place Thesus & Minotaur & Exit
-            buildCharacters(thesusArray, minotaurArray, exitArray);
+            //buildCharacters(thesusArray, minotaurArray, exitArray);
 
 
         }
         
         protected void buildMap(char[] wallArray, int gridSize)
         {
-            //change for diffrent computer -wip-
-            string begingPath = @"../../";
-            
-            //set the images
-            
-
-            
-
-            string wallTopLeftImg = begingPath + @"Images/Walls/top_left.png";
-            Image wallTopLeft = Image.FromFile(wallTopLeftImg);
-
-            string wallTopRightImg = begingPath + @"Images/Walls/top_right.png";
-            Image wallTopRight = Image.FromFile(wallTopRightImg);
-
-            string wallBottomLeftImg = begingPath + @"Images/Walls/bottom_left.png";
-            Image wallBottomLeft = Image.FromFile(wallBottomLeftImg);
-
-            string wallBottomRightImg = begingPath + @"Images/Walls/bottom_right.png";
-            Image wallBottomRight = Image.FromFile(wallBottomRightImg);
-
             // convert to double then square root and convert back to int
             double gridSizeDouble = Convert.ToDouble(gridSize);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
@@ -187,21 +161,6 @@ namespace WindowsFormsApplication4
  
                  
                 }
-
-
-
-             /*
-             for (int i = 0; i < gridSizeRoot; i++)
-             {
-                for (int z = 0; z < gridSizeRoot; z++)
-                {
- 
-                     MessageBox.Show(MultiArray[i, z].ToString(), i.ToString() + z.ToString(), MessageBoxButtons.OKCancel);
- 
-                 }
-             }
-              */
-
 
 
 
@@ -351,7 +310,7 @@ namespace WindowsFormsApplication4
             return gridSize;
         }
 
-
+/*
         protected void buildCharacters(char[] thesusArray, char[] minotaurArray, char[] exitArray)
         {
 
@@ -382,53 +341,40 @@ namespace WindowsFormsApplication4
 
 
         }
-
-
-/*
-        protected void theseusIntitalise (int [] thesusMoveArray)
-        {
-            
-
-            int i = 0;
-
-                for(int o = 0; o < 2; o++)
-                {
-                    theseusArray[i,o] = thesusMoveArray[i];
-                    i++;
-                }
-                
-        }
-  */
+*/
 
         protected void theseusMove (string direction)
         {
 
             string theseus = "theseus";
+            int currentY = theseusArray[1, 0];
+            int currentX = theseusArray[0, 0];
 
             if(direction == "UP")
             {
-
-                int currentY = theseusArray[1,0];
-                int currentX = theseusArray[0,0];
-
-                currentY++;
-
-                // setting the old values in the array
-                theseusArray[0, 1] = theseusArray[0, 0]; //x
-                theseusArray[1, 1] = theseusArray[1, 0]; //y
-
-                // new values
-                theseusArray[1, 0] = currentY;
-                theseusArray[0, 0] = currentX;
-
-                drawPlayers(theseus);
-
-             //   MessageBox.Show(charY.ToString(), y.ToString(), MessageBoxButtons.OKCancel);
+                currentY--;
             }
+            else if (direction == "DOWN")
+            {
+                currentY++;
+            }
+            else if (direction == "LEFT")
+            {
+                currentX--;
+            }
+            else if (direction == "RIGHT")
+            {
+                currentX++;
+            }
+            // setting the old values in the array
+            theseusArray[0, 1] = theseusArray[0, 0]; //x
+            theseusArray[1, 1] = theseusArray[1, 0]; //y
 
+            // new values
+            theseusArray[1, 0] = currentY;
+            theseusArray[0, 0] = currentX;
 
-        //    MessageBox.Show(move.ToString(), direction, MessageBoxButtons.OKCancel);
-
+            drawPlayers(theseus);
         }
 
         protected void drawPlayers(string who)
@@ -440,16 +386,9 @@ namespace WindowsFormsApplication4
             {
                 if (who == "theseus")
                 {
-
-
                     graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
-
                 }
-                
-
             }
-        
-
         }
         
 
@@ -476,10 +415,34 @@ namespace WindowsFormsApplication4
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-
             string direction = "UP";
             theseusMove(direction);
         }
+
+
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            string direction = "LEFT";
+            theseusMove(direction);
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            string direction = "RIGHT";
+            theseusMove(direction);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            string direction = "DOWN";
+            theseusMove(direction);
+        }
+
+
+
+
+
 
 
 

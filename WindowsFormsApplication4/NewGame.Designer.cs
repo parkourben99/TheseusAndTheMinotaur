@@ -112,6 +112,7 @@
             this.btnRight.TabIndex = 6;
             this.btnRight.Text = "Right";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnDown
             // 
@@ -121,6 +122,7 @@
             this.btnDown.TabIndex = 7;
             this.btnDown.Text = "Down";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnExit
             // 
