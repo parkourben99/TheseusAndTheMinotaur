@@ -13,11 +13,12 @@ namespace WindowsFormsApplication4
     public partial class NewGame : Form
     {
         // declare gloabal var
-        public static int coordinate = 40;
+        public static int coordinate = 50;
         public static int[,] theseusArray = new int[2, 2];
         public static int[,] minotaurArray = new int[2, 2];
         public static int[,] exitArray = new int[2, 2];
         public static string walls = "";
+
 
         public NewGame()
         {
@@ -91,6 +92,8 @@ namespace WindowsFormsApplication4
 
 
         }
+
+
         
         protected void buildMap(string wallCreate)
         {
@@ -214,18 +217,32 @@ namespace WindowsFormsApplication4
             Image floor1Image = Image.FromFile(floor1);
             Image floor2Image = Image.FromFile(floor2);
 
-            int i = 0;
+            int i = 0;  
             for (int x = 0; x < (gridSize-1); x++)
             {
+                i++;
                 for (int y = 0; y < (gridSize-1); y++)
                 {
+                    int y1 = y * NewGame.coordinate + 300;
+                    int x1 = x * NewGame.coordinate + 300;
+                    //ltbLevel.Items.Add(floor1Image.Size.ToString());
                     if (i % 2 == 0)
                     {
-                        draw(y * NewGame.coordinate, x * NewGame.coordinate, floor1Image);
+                        //draw(y1, x1, floor1Image);
+                        using (Graphics graphics = pnlGame.CreateGraphics())
+                        {
+                            Rectangle destRect = new Rectangle(x1, y1, 50, 50);
+                            graphics.DrawImage(floor1Image, destRect);
+                        }
                     }
                     else
                     {
-                        draw(y * NewGame.coordinate, x * NewGame.coordinate, floor2Image);
+                        //draw(y1, x1, floor2Image);
+                        using (Graphics graphics = pnlGame.CreateGraphics())
+                        {
+                            Rectangle destRect = new Rectangle(x1, y1, 50, 50);
+                            graphics.DrawImage(floor2Image, destRect);
+                        }
                     }
                     i++;
                 }
@@ -238,8 +255,7 @@ namespace WindowsFormsApplication4
 
             using (Graphics graphics = pnlGame.CreateGraphics())
             {
-
-                graphics.DrawImage(image, new Point(y, x));
+                graphics.DrawImage(image, new PointF(y, x));
             }
         }
 
@@ -316,13 +332,12 @@ namespace WindowsFormsApplication4
             {
                 if (who == "theseus")
                 {
-                    graphics.Clear(Color.White);
                     buildMap(walls);
                     graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
                 }
             }
         }
-        
+
 
         private void NewGame_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -343,6 +358,7 @@ namespace WindowsFormsApplication4
             {
 
             }
+            ltbLevel.Items.Add("a");
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -350,8 +366,6 @@ namespace WindowsFormsApplication4
             string direction = "UP";
             theseusMove(direction);
         }
-
-
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
@@ -370,13 +384,6 @@ namespace WindowsFormsApplication4
             string direction = "DOWN";
             theseusMove(direction);
         }
-
-
-
-
-
-
-
 
     }
 }

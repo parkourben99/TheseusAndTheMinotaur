@@ -229,6 +229,7 @@
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ltbLevel);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1020, 850);
             this.MinimumSize = new System.Drawing.Size(1020, 850);
