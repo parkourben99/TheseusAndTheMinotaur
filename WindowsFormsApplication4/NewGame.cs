@@ -279,22 +279,22 @@ namespace WindowsFormsApplication4
             int currentX = theseusArray[0, 0];
             bool canMove = false;
 
-            if(direction == "UP" && checkWallUp() != true)
+            if(direction == "UP" && checkWallUp(currentX,currentY) != true)
             {
                 currentY--;
                 canMove = true;
             }
-            else if (direction == "DOWN" && checkWallDown() != true)
+            else if (direction == "DOWN" && checkWallDown(currentX, currentY) != true)
             {
                 currentY++;
                 canMove = true;
             }
-            else if (direction == "LEFT" && checkWallLeft() != true)
+            else if (direction == "LEFT" && checkWallLeft(currentX, currentY) != true)
             {
                 currentX--;
                 canMove = true;
             }
-            else if (direction == "RIGHT" && checkWallRight() != true)
+            else if (direction == "RIGHT" && checkWallRight(currentX, currentY) != true)
             {
                 currentX++;
                 canMove = true;
@@ -309,19 +309,61 @@ namespace WindowsFormsApplication4
                 // new values
                 theseusArray[1, 0] = currentY;
                 theseusArray[0, 0] = currentX;
-
+                minotaurMove();
                 drawPlayers(theseus);
             }
         }
 
-        private bool checkWallLeft()
+        protected void minotaurMove()
         {
-            int x = theseusArray[0, 0];
-            int y = theseusArray[1, 0];
+            int minotaurX = minotaurArray[0, 0];
+            int minotaurY = minotaurArray[1, 0];
+            int theseusX = theseusArray[0, 0];
+            int theseusY = theseusArray[1, 0];
+
+            if ((theseusX - minotaurX) > 0)
+            {
+                if (checkWallRight(minotaurX, minotaurY) == false)
+                {
+                    minotaurArray[0, 0]++;
+                }
+            }
+
+            if ((theseusX - minotaurX) < 0)
+            {
+                if (checkWallLeft(minotaurX, minotaurY) == false)
+                {
+                    minotaurArray[0, 0]--;
+                }
+            }
+
+            minotaurX = minotaurArray[0, 0];
+            minotaurY = minotaurArray[1, 0];
+
+            if ((theseusY - minotaurY) > 0)
+            {
+                if (checkWallDown(minotaurX, minotaurY) == false)
+                {
+                    minotaurArray[1, 0]++;
+                }
+            }
+
+            if ((theseusY - minotaurY) < 0)
+            {
+                if (checkWallUp(minotaurX, minotaurY) == false)
+                {
+                    minotaurArray[1, 0]--;
+                }
+            }
+
+        }
+
+        private bool checkWallLeft(int x,int y)
+        {
             bool wallExists = false;
 
             char wallType = NewGame.MultiArray[y, x];
-            ltbLevel.Items.Add(wallType.ToString());
+
             if (wallType == '1' || wallType == '2')
             {
                 wallExists = true;
@@ -329,14 +371,12 @@ namespace WindowsFormsApplication4
             return wallExists;
         }
 
-        private bool checkWallDown()
+        private bool checkWallDown(int x, int y)
         {
-            int x = theseusArray[0, 0];
-            int y = theseusArray[1, 0];
             bool wallExists = false;
 
             char wallType = NewGame.MultiArray[y + 1, x];
-            ltbLevel.Items.Add(wallType.ToString());
+
             if (wallType == '2' || wallType == '3')
             {
                 wallExists = true;
@@ -344,14 +384,12 @@ namespace WindowsFormsApplication4
             return wallExists;
         }
 
-        private bool checkWallRight()
+        private bool checkWallRight(int x, int y)
         {
-            int x = theseusArray[0, 0];
-            int y = theseusArray[1, 0];
             bool wallExists = false;
 
             char wallType = NewGame.MultiArray[y, x + 1];
-            ltbLevel.Items.Add(wallType.ToString());
+
             if (wallType == '1' || wallType == '2')
             {
                 wallExists = true;
@@ -359,14 +397,12 @@ namespace WindowsFormsApplication4
             return wallExists;
         }
 
-        private bool checkWallUp()
+        private bool checkWallUp(int x, int y)
         {
-            int x = theseusArray[0, 0];
-            int y = theseusArray[1, 0];
             bool wallExists = false;
 
             char wallType = NewGame.MultiArray[y, x];
-            ltbLevel.Items.Add(wallType.ToString());
+
             if (wallType == '2' || wallType == '3')
             {
                 wallExists = true;
