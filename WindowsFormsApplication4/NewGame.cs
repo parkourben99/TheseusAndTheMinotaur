@@ -320,9 +320,29 @@ namespace WindowsFormsApplication4
                 else
                 {
                     minotaurMove();
+                    if (minotaurCatch() == true) 
+                    {
+                        MessageBox.Show("Game Over you Suck", "Theseus and the Minotaur", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+
+                    }
                     drawPlayers(theseus);
                 }
             }
+        }
+
+        private bool minotaurCatch()
+        {
+            bool isCaught = false;
+
+            if (theseusArray[0, 0] == minotaurArray[0, 0])
+            {
+                if (theseusArray[1, 0] == minotaurArray[1, 0])
+                {
+                    isCaught = true;
+                }
+            }
+
+            return isCaught;
         }
 
         protected void minotaurMove()
