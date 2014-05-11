@@ -339,28 +339,29 @@ namespace WindowsFormsApplication4
 
         private void NewGame_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (Char)Keys.W)
+            char upKey = 'w';
+            char downKey = 's';
+            char leftKey = 'a';
+            char rightKey = 'd';
+
+            if (e.KeyChar == upKey)
             {
                 string direction = "UP";
-                ltbLevel.Items.Add(e.KeyChar.ToString());
                 theseusMove(direction);
             }
-            else if (e.KeyChar == (Char)Keys.A)
+            else if (e.KeyChar == leftKey)
             {
                 string direction = "LEFT";
-                ltbLevel.Items.Add(e.KeyChar.ToString());
                 theseusMove(direction);
             }
-            else if (e.KeyChar == (Char)Keys.S)
+            else if (e.KeyChar == downKey)
             {
                 string direction = "DOWN";
-                ltbLevel.Items.Add(e.KeyChar.ToString());
                 theseusMove(direction);
             }
-            else if (e.KeyChar == (Char)Keys.D)
+            else if (e.KeyChar == rightKey)
             {
                 string direction = "RIGHT";
-                ltbLevel.Items.Add(e.KeyChar.ToString());
                 theseusMove(direction);
             }
             ltbLevel.Items.Add(e.KeyChar.ToString());
