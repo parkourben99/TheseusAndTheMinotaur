@@ -18,6 +18,11 @@ namespace WindowsFormsApplication4
         public static int[,] minotaurArray = new int[2, 2];
         public static int[,] exitArray = new int[2, 2];
         public static string walls = "";
+        public static int gridOffset = 100;
+        public static int gridSize = 0;
+        public static Image theseusImage = Image.FromFile(@"../../Images/Players/Theseus/Theseus.png");
+        public static Image minotaurImage = Image.FromFile(@"../../Images/Players/MinoTaur/Minotaur.png");
+        public static Image exitImage = Image.FromFile(@"../../Images/Stairs.png");
 
 
         public NewGame()
@@ -58,7 +63,7 @@ namespace WindowsFormsApplication4
 
             string minotaurTest = "4,1";
 
-            string exitTest = "5,5";
+            string exitTest = "3,3";
 
             build(walls, thesusTest, minotaurTest, exitTest);
         }
@@ -76,21 +81,16 @@ namespace WindowsFormsApplication4
             theseusArray[1, 0] = 1;
 
             // change the sting to a int array
-            minotaurArray[0, 0] = 4;
+            minotaurArray[0, 0] = 3;
             minotaurArray[1, 0] = 1;
 
             // change the sting to a int array
-            exitArray[0, 0] = 5;
-            exitArray[1, 0] = 5;
+            exitArray[0, 0] = 3;
+            exitArray[1, 0] = 3;
             
 
             //build the map from the array
             buildMap(walls);
-
-            //place Thesus & Minotaur & Exit
-            buildCharacters();
-
-
         }
 
 
@@ -104,8 +104,9 @@ namespace WindowsFormsApplication4
             double gridSizeDouble = Convert.ToDouble(wallArray.Length);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
-
+            NewGame.gridSize = gridSizeRoot;
             drawFloor(gridSizeRoot);
+            drawExitTile(gridSizeRoot);
             
             // setting the grid size
             int gridCount = 0;
@@ -124,11 +125,8 @@ namespace WindowsFormsApplication4
                     gridCount = 0;
                     whichRow++;                 
                 }
- 
                  // adding into the mulidimentional array
                  MultiArray[whichRow, gridCount] = wallArray[i];
-
-
                  gridCount++;
              }
             
@@ -137,10 +135,8 @@ namespace WindowsFormsApplication4
                  {
                      for (int y = 0; y < gridSizeRoot; y++)
                      {
-
                          switch (MultiArray[x, y])
                          {
- 
                              case '1':
                                 drawVertical(y,x);
                                  break;
@@ -156,26 +152,31 @@ namespace WindowsFormsApplication4
                               case '4':
                                  // grass??
                                  break;
- 
                          }
- 
                      }
- 
-                 
                 }
+                 drawTheseus();
+                 drawMinotaur();
+        }
+
+        protected void drawExitTile(int gridSize)
+        {
+            int x = exitArray[0,0] * NewGame.coordinate + gridOffset;
+            int y = exitArray[1,0] * NewGame.coordinate + gridOffset;
+            drawRec(x, y, NewGame.coordinate, NewGame.coordinate, exitImage);
         }
 
 
-        protected void drawVertical(int y, int x)
+        protected void drawVertical(int x, int y)
         {
 
             string wallVerticalImg = @"../../Images/Walls/VerticalWall.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
-            y = y * NewGame.coordinate;
-            x = x * NewGame.coordinate;
+            y = y * NewGame.coordinate + gridOffset;
+            x = x * NewGame.coordinate + gridOffset;
 
-            draw(y, x, wallVertical);
+            drawRec(x, y-5, 8, 60, wallVertical);
 
         }
 
@@ -187,26 +188,23 @@ namespace WindowsFormsApplication4
             string wallVerticalImg = @"../../Images/Walls/VerticalWall.png";
             Image wallVertical = Image.FromFile(wallVerticalImg);
 
-            y = y * NewGame.coordinate;
-            x = x * NewGame.coordinate;
+            y = y * NewGame.coordinate + gridOffset;
+            x = x * NewGame.coordinate + gridOffset;
 
-            draw(y, x, wallHorizontal);
-            draw(y, x, wallVertical);
-            
-
+            drawRec(x, y - 5, 55, 10, wallHorizontal);
+            drawRec(x, y-5, 8, 60, wallVertical);
         }
 
-        protected void drawHorizontal(int y, int x)
+        protected void drawHorizontal(int x, int y)
         {
 
             string wallHorizontalImg = @"../../Images/Walls/HorizontalWall.png";
             Image wallHorizontal = Image.FromFile(wallHorizontalImg);
 
-            y = y * NewGame.coordinate;
-            x = x * NewGame.coordinate;
+            y = y * NewGame.coordinate + gridOffset - 5;
+            x = x * NewGame.coordinate + gridOffset;
 
-            draw(y, x, wallHorizontal);
-
+            drawRec(x, y, 55, 10, wallHorizontal);
         }
 
         protected void drawFloor(int gridSize)
@@ -223,31 +221,30 @@ namespace WindowsFormsApplication4
                 i++;
                 for (int y = 0; y < (gridSize-1); y++)
                 {
-                    int y1 = y * NewGame.coordinate + 300;
-                    int x1 = x * NewGame.coordinate + 300;
+                    int y1 = y * NewGame.coordinate + gridOffset;
+                    int x1 = x * NewGame.coordinate + gridOffset;
                     //ltbLevel.Items.Add(floor1Image.Size.ToString());
                     if (i % 2 == 0)
                     {
-                        //draw(y1, x1, floor1Image);
-                        using (Graphics graphics = pnlGame.CreateGraphics())
-                        {
-                            Rectangle destRect = new Rectangle(x1, y1, 50, 50);
-                            graphics.DrawImage(floor1Image, destRect);
-                        }
+                        drawRec(x1, y1, NewGame.coordinate, NewGame.coordinate, floor1Image);
                     }
                     else
                     {
-                        //draw(y1, x1, floor2Image);
-                        using (Graphics graphics = pnlGame.CreateGraphics())
-                        {
-                            Rectangle destRect = new Rectangle(x1, y1, 50, 50);
-                            graphics.DrawImage(floor2Image, destRect);
-                        }
+                        drawRec(x1, y1, NewGame.coordinate, NewGame.coordinate, floor2Image);
                     }
                     i++;
                 }
             }
 
+        }
+
+        protected void drawRec(int x, int y, int xSize,int ySize, Image image)
+        {
+            using (Graphics graphics = pnlGame.CreateGraphics())
+            {
+                Rectangle rect = new Rectangle(x, y, xSize, ySize);
+                graphics.DrawImage(image, rect);
+            }
         }
 
         protected void draw(int y, int x, Image image)
@@ -259,35 +256,20 @@ namespace WindowsFormsApplication4
             }
         }
 
-
-
-        protected void buildCharacters()
+        protected void drawTheseus()
         {
+            int x = theseusArray[0, 0] * NewGame.coordinate + gridOffset;
+            int y = theseusArray[1, 0] * NewGame.coordinate + gridOffset;
 
-            //change for diffrent computer -wip-
-            string begingPath = @"../../";
-
-            //set the images
-            string theseus = begingPath + @"Images/Players/Theseus.png";
-            Image thesusImg = Image.FromFile(theseus);
-
-            string minotaur = begingPath + @"Images/Players/Minotaur.png";
-            Image minotaurImg = Image.FromFile(minotaur);
-
-            string exit = begingPath + @"Images/Players/Exit.png";
-            Image exitImg = Image.FromFile(exit);
-
-
-                using (Graphics graphics = pnlGame.CreateGraphics())
-                {
-
-                    graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
-                    graphics.DrawImage(minotaurImg, new Point(minotaurArray[0, 0] * NewGame.coordinate, minotaurArray[1, 0] * NewGame.coordinate));
-                    //graphics.DrawImage(exitImg, new Point(exitArray[0,0] * NewGame.coordinate, exitArray[1,0] * NewGame.coordinate));
-
-                }
+            drawRec(x, y, NewGame.coordinate, NewGame.coordinate, NewGame.theseusImage);
         }
 
+        protected void drawMinotaur()
+        {
+            int x = minotaurArray[0, 0] * NewGame.coordinate + gridOffset;
+            int y = minotaurArray[1, 0] * NewGame.coordinate + gridOffset;
+            drawRec(x, y, NewGame.coordinate, NewGame.coordinate, minotaurImage);
+        }
 
         protected void theseusMove (string direction)
         {
@@ -325,17 +307,10 @@ namespace WindowsFormsApplication4
 
         protected void drawPlayers(string who)
         {
-            string theseus = @"../../Images/Players/Theseus.png";
-            Image thesusImg = Image.FromFile(theseus);
-            
-            using (Graphics graphics = pnlGame.CreateGraphics())
-            {
                 if (who == "theseus")
                 {
                     buildMap(walls);
-                    graphics.DrawImage(thesusImg, new Point(theseusArray[0, 0] * NewGame.coordinate, theseusArray[1, 0] * NewGame.coordinate));
                 }
-            }
         }
 
 
@@ -358,7 +333,6 @@ namespace WindowsFormsApplication4
             {
 
             }
-            ltbLevel.Items.Add("a");
         }
 
         private void btnUp_Click(object sender, EventArgs e)
