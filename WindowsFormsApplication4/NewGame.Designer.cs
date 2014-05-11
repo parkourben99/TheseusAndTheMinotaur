@@ -82,7 +82,6 @@
             this.pnlGame.Size = new System.Drawing.Size(700, 700);
             this.pnlGame.TabIndex = 3;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
-            this.pnlGame.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.NewGame_KeyDown);
             // 
             // btnLeft
             // 
@@ -236,6 +235,7 @@
             this.Name = "NewGame";
             this.Text = "New Game";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NewGame_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

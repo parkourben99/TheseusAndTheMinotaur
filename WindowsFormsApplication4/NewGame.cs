@@ -313,28 +313,6 @@ namespace WindowsFormsApplication4
                 }
         }
 
-
-        private void NewGame_KeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Up)
-            {
-              
-            }
-
-            if (e.KeyCode == Keys.A)
-            {
-
-            }
-            if (e.KeyCode == Keys.S)
-            {
-
-            }
-            if (e.KeyCode == Keys.D)
-            {
-
-            }
-        }
-
         private void btnUp_Click(object sender, EventArgs e)
         {
             string direction = "UP";
@@ -358,6 +336,37 @@ namespace WindowsFormsApplication4
             string direction = "DOWN";
             theseusMove(direction);
         }
+
+        private void NewGame_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.W)
+            {
+                string direction = "UP";
+                ltbLevel.Items.Add(e.KeyChar.ToString());
+                theseusMove(direction);
+            }
+            else if (e.KeyChar == (Char)Keys.A)
+            {
+                string direction = "LEFT";
+                ltbLevel.Items.Add(e.KeyChar.ToString());
+                theseusMove(direction);
+            }
+            else if (e.KeyChar == (Char)Keys.S)
+            {
+                string direction = "DOWN";
+                ltbLevel.Items.Add(e.KeyChar.ToString());
+                theseusMove(direction);
+            }
+            else if (e.KeyChar == (Char)Keys.D)
+            {
+                string direction = "RIGHT";
+                ltbLevel.Items.Add(e.KeyChar.ToString());
+                theseusMove(direction);
+            }
+            ltbLevel.Items.Add(e.KeyChar.ToString());
+        }
+
+
 
     }
 }
