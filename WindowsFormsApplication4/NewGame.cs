@@ -309,8 +309,19 @@ namespace WindowsFormsApplication4
                 // new values
                 theseusArray[1, 0] = currentY;
                 theseusArray[0, 0] = currentX;
-                minotaurMove();
-                drawPlayers(theseus);
+
+                if (isExit() == true)
+                {
+                    //Winning stuff
+                    MessageBox.Show("You win took you long enough", "Theseus and the Minotaur", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+           
+                    drawPlayers(theseus);
+                }
+                else
+                {
+                    minotaurMove();
+                    drawPlayers(theseus);
+                }
             }
         }
 
@@ -470,6 +481,19 @@ namespace WindowsFormsApplication4
                 theseusMove(direction);
             }
             
+        }
+
+        private bool isExit()
+        {
+            bool exitCheck = false;
+            if (theseusArray[0, 0] == exitArray[0, 0])
+            {
+                if (theseusArray[1, 0] == exitArray[1, 0])
+                {
+                    exitCheck = true;
+                }
+            }
+            return exitCheck;
         }
 
 
