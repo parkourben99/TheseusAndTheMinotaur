@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ltbLevel = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.bntMenu = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblMoves = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ltbLevel
@@ -178,6 +180,7 @@
             this.btnUndo.TabIndex = 14;
             this.btnUndo.Text = "Undo";
             this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // bntMenu
             // 
@@ -187,6 +190,7 @@
             this.bntMenu.TabIndex = 15;
             this.bntMenu.Text = "Menu";
             this.bntMenu.UseVisualStyleBackColor = true;
+            this.bntMenu.Click += new System.EventHandler(this.bntMenu_Click);
             // 
             // lblTime
             // 
@@ -205,6 +209,12 @@
             this.lblMoves.Size = new System.Drawing.Size(49, 13);
             this.lblMoves.TabIndex = 17;
             this.lblMoves.Text = "lblMoves";
+            this.lblMoves.Click += new System.EventHandler(this.lblMoves_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // NewGame
             // 
@@ -260,6 +270,7 @@
         private System.Windows.Forms.Button bntMenu;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblMoves;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }

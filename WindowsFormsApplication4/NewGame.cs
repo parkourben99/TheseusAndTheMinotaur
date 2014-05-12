@@ -18,7 +18,9 @@ namespace WindowsFormsApplication4
         public static int[,] minotaurArray = new int[2, 2];
         public static int[,] exitArray = new int[2, 2];
         public static string walls = "";
+        public static int movesCount = 0;
         public static int gridOffset = 100;
+        public static int timeCount = 0;
         public static int gridSize = 0;
         public static Image theseusImage = Image.FromFile(@"../../Images/Players/Theseus/Theseus.png");
         public static Image minotaurImage = Image.FromFile(@"../../Images/Players/MinoTaur/Minotaur.png");
@@ -38,6 +40,11 @@ namespace WindowsFormsApplication4
         {
 
             this.WindowState = FormWindowState.Normal;
+
+            lblMoves.Text = "Moves: " + movesCount.ToString();
+            lblTime.Text = "Time: " + timeCount.ToString();
+            lblScore.Text = "Score: " + (timeCount * movesCount).ToString();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -60,13 +67,14 @@ namespace WindowsFormsApplication4
 
             walls = "2333112441134411444133334";
 
-            string thesusTest = "0,1";
+            string thesusTest = "01";
 
-            string minotaurTest = "4,1";
+            string minotaurTest = "31";
 
-            string exitTest = "3,3";
+            string exitTest = "33";
 
             build(walls, thesusTest, minotaurTest, exitTest);
+
         }
 
         
@@ -76,22 +84,23 @@ namespace WindowsFormsApplication4
 
             // change the string to a char array
             //char[] wallArray = wallCreate.ToCharArray();
-            
-            // change the sting to a int array
-            theseusArray[0, 0] = 0;
-            theseusArray[1, 0] = 1;
 
-            // change the sting to a int array
-            minotaurArray[0, 0] = 3;
-            minotaurArray[1, 0] = 1;
+            theseusArray[0, 0] = Convert.ToInt32(thesusCreate.Substring(0, 1));
+            theseusArray[1, 0] = Convert.ToInt32(thesusCreate.Substring(1, 1));
 
-            // change the sting to a int array
-            exitArray[0, 0] = 3;
-            exitArray[1, 0] = 3;
+            // change the string to a int array
+            minotaurArray[0, 0] = Convert.ToInt32(minotaurCreate.Substring(0, 1));
+            minotaurArray[1, 0] = Convert.ToInt32(minotaurCreate.Substring(1, 1));
+
+            // change the string to a int array
+            exitArray[0, 0] = Convert.ToInt32(exitCreate.Substring(0, 1));
+            exitArray[1, 0] = Convert.ToInt32(exitCreate.Substring(1, 1));
             
 
             //build the map from the array
             buildMap(walls);
+
+            
         }
 
 
@@ -105,6 +114,7 @@ namespace WindowsFormsApplication4
             double gridSizeDouble = Convert.ToDouble(wallArray.Length);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
+
             NewGame.gridSize = gridSizeRoot;
             drawFloor(gridSizeRoot);
             drawExitTile(gridSizeRoot);
@@ -131,7 +141,7 @@ namespace WindowsFormsApplication4
                  gridCount++;
              }
             
-
+                // for each number in the array draw the corsponding image x,y
                  for (int x = 0; x < gridSizeRoot; x++)                
                  {
                      for (int y = 0; y < gridSizeRoot; y++)
@@ -149,15 +159,17 @@ namespace WindowsFormsApplication4
                               case '3':
                                  drawHorizontal(y, x);
                                  break;
- 
-                              case '4':
-                                 // grass??
-                                 break;
                          }
                      }
                 }
                  drawTheseus();
                  drawMinotaur();
+
+                 lblMoves.Text = "Moves: " + movesCount.ToString();
+                 lblTime.Text = "Time: " + timeCount.ToString();
+                 lblScore.Text = "Score: " + (timeCount * movesCount).ToString();
+
+                 
         }
 
         protected void drawExitTile(int gridSize)
@@ -223,7 +235,7 @@ namespace WindowsFormsApplication4
                 {
                     int y1 = y * NewGame.coordinate + gridOffset;
                     int x1 = x * NewGame.coordinate + gridOffset;
-                    //ltbLevel.Items.Add(floor1Image.Size.ToString());
+                    
                     if (i % 2 == 0)
                     {
                         drawRec(x1, y1, NewGame.coordinate, NewGame.coordinate, floor1Image);
@@ -352,41 +364,66 @@ namespace WindowsFormsApplication4
             int theseusX = theseusArray[0, 0];
             int theseusY = theseusArray[1, 0];
 
-            if ((theseusX - minotaurX) > 0)
+            minotaurArray[0, 1] = minotaurArray[0, 0];
+            minotaurArray[1, 1] = minotaurArray[1, 0];
+
+            int theseusCount = 0;
+
+            while (theseusCount < 2)
             {
-                if (checkWallRight(minotaurX, minotaurY) == false)
+
+                if ((theseusX - minotaurX) > 0)
                 {
-                    minotaurArray[0, 0]++;
+                    if (checkWallRight(minotaurX, minotaurY) == false)
+                    {
+                        if (theseusCount <= 1)
+                        {
+                            minotaurArray[0, 0]++;
+                            theseusCount++;
+                        }
+                    }
                 }
-            }
 
-            if ((theseusX - minotaurX) < 0)
-            {
-                if (checkWallLeft(minotaurX, minotaurY) == false)
+                if ((theseusX - minotaurX) < 0)
                 {
-                    minotaurArray[0, 0]--;
+                    if (checkWallLeft(minotaurX, minotaurY) == false)
+                    {
+                        if (theseusCount <= 1)
+                        {
+                            minotaurArray[0, 0]--;
+                            theseusCount++;
+                        }
+                    }
                 }
-            }
 
-            minotaurX = minotaurArray[0, 0];
-            minotaurY = minotaurArray[1, 0];
+                minotaurX = minotaurArray[0, 0];
+                minotaurY = minotaurArray[1, 0];
 
-            if ((theseusY - minotaurY) > 0)
-            {
-                if (checkWallDown(minotaurX, minotaurY) == false)
+                if ((theseusY - minotaurY) > 0)
                 {
-                    minotaurArray[1, 0]++;
+                    if (checkWallDown(minotaurX, minotaurY) == false)
+                    {
+                        if (theseusCount <= 1)
+                        {
+                            minotaurArray[1, 0]++;
+                            theseusCount++;
+                        }
+                    }
                 }
-            }
 
-            if ((theseusY - minotaurY) < 0)
-            {
-                if (checkWallUp(minotaurX, minotaurY) == false)
+                if ((theseusY - minotaurY) < 0)
                 {
-                    minotaurArray[1, 0]--;
+                    if (checkWallUp(minotaurX, minotaurY) == false)
+                    {                      
+                        if (theseusCount <= 1)
+                        {
+                            minotaurArray[1, 0]--;
+                            theseusCount++;
+                        }
+                    }
                 }
-            }
 
+            }
         }
 
         private bool checkWallLeft(int x,int y)
@@ -452,24 +489,28 @@ namespace WindowsFormsApplication4
         private void btnUp_Click(object sender, EventArgs e)
         {
             string direction = "UP";
+            movesCount++;
             theseusMove(direction);
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
             string direction = "LEFT";
+            movesCount++;
             theseusMove(direction);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
             string direction = "RIGHT";
+            movesCount++;
             theseusMove(direction);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
             string direction = "DOWN";
+            movesCount++;
             theseusMove(direction);
         }
 
@@ -479,26 +520,36 @@ namespace WindowsFormsApplication4
             char downKey = 's';
             char leftKey = 'a';
             char rightKey = 'd';
+            pnlGame.Focus();
 
             if (e.KeyChar == upKey)
             {
                 string direction = "UP";
+                movesCount++;
                 theseusMove(direction);
             }
             else if (e.KeyChar == leftKey)
             {
                 string direction = "LEFT";
+                movesCount++;
                 theseusMove(direction);
             }
             else if (e.KeyChar == downKey)
             {
                 string direction = "DOWN";
+                movesCount++;
                 theseusMove(direction);
             }
             else if (e.KeyChar == rightKey)
             {
                 string direction = "RIGHT";
+                movesCount++;
                 theseusMove(direction);
+            }
+            else if (e.KeyChar == (Char)Keys.Space)
+            {
+                minotaurMove();
+                buildMap(walls);
             }
             
         }
@@ -514,6 +565,36 @@ namespace WindowsFormsApplication4
                 }
             }
             return exitCheck;
+        }
+
+        private void lblMoves_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            theseusArray[0, 0] = theseusArray[0, 1];
+            theseusArray[1, 0] = theseusArray[1, 1];
+
+            minotaurArray[0, 0] = minotaurArray[0, 1];
+            minotaurArray[1, 0] = minotaurArray[1, 1];
+
+            movesCount++;
+            movesCount++;
+            movesCount++;
+
+            buildMap(walls);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void bntMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 
