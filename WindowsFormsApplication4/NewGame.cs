@@ -100,7 +100,6 @@ namespace WindowsFormsApplication4
             //build the map from the array
             buildMap(walls);
 
-            
         }
 
 
