@@ -110,7 +110,7 @@ namespace WindowsFormsApplication4
             char[] wallArray = wallCreate.ToCharArray();
 
 
-            // convert to double then square root and convert back to int
+            // convert to double then square root and convert back to intg
             double gridSizeDouble = Convert.ToDouble(wallArray.Length);
             double gridSizeRootDouble = Math.Sqrt(gridSizeDouble);
             int gridSizeRoot = Convert.ToInt32(gridSizeRootDouble);
