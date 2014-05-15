@@ -92,7 +92,6 @@ namespace GamePlayer.game
             minotaurLocation = myLevel.MinotaurLocation;
             buildCells();
             GameController.CurrentGame.Timer.Start();
-            GameController.CurrentGame.updatePlayer();
         }
 
         public void moveTheseus(string direction)

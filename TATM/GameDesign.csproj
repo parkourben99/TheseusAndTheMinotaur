@@ -63,33 +63,73 @@
     <Compile Include="game\GameInstance.cs" />
     <Compile Include="game\Reigndear.cs" />
     <Compile Include="game\SpriteBatch.cs" />
-    <Compile Include="login.cs">
+    <Compile Include="LevelDesigner\CustomControl\CustomControl_Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LevelDesigner\LevelDesign.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="login.Designer.cs">
+    <Compile Include="LevelDesigner\LevelDesign.Designer.cs">
+      <DependentUpon>LevelDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LevelDesigner\LevelSave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LevelDesigner\LevelSave.Designer.cs">
+      <DependentUpon>LevelSave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LevelDesigner\LevelSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LevelDesigner\LevelSelect.Designer.cs">
+      <DependentUpon>LevelSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LevelDesigner\Model\Cell.cs" />
+    <Compile Include="LevelDesigner\Model\Character.cs" />
+    <Compile Include="LevelDesigner\Model\Level.cs" />
+    <Compile Include="LevelDesigner\Model\LevelDesigner.cs" />
+    <Compile Include="LevelDesigner\Model\Minotaur.cs" />
+    <Compile Include="LevelDesigner\Model\Theseus.cs" />
+    <Compile Include="LevelDesigner\StorageManagement\Connector.cs" />
+    <Compile Include="LevelDesigner\StorageManagement\Filer.cs" />
+    <Compile Include="LevelDesigner\StorageManagement\SerialDict.cs" />
+    <Compile Include="LevelDesigner\StorageManagement\StorageManagement.cs" />
+    <Compile Include="Forms\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="GamePlayer.cs">
+    <Compile Include="Forms\GamePlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GamePlayer.Designer.cs">
+    <Compile Include="Forms\GamePlayer.Designer.cs">
       <DependentUpon>GamePlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="login.resx">
+    <EmbeddedResource Include="LevelDesigner\LevelDesign.resx">
+      <DependentUpon>LevelDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelDesigner\LevelSave.resx">
+      <DependentUpon>LevelSave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelDesigner\LevelSelect.resx">
+      <DependentUpon>LevelSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GamePlayer.resx">
+    <EmbeddedResource Include="Forms\GamePlayer.resx">
       <DependentUpon>GamePlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -136,11 +176,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\C# Assignment\WindowsFormsApplication1\LevelDesigner.csproj">
-      <Project>{99a03b59-63ca-4999-b2b8-73c4dbdeeac3}</Project>
-      <Name>LevelDesigner</Name>
-    </ProjectReference>
+    <Content Include="LevelDesigner\Img\blank.png" />
+    <Content Include="LevelDesigner\Img\left.png" />
+    <Content Include="LevelDesigner\Img\leftUp.png" />
+    <Content Include="LevelDesigner\Img\Theseus.png" />
+    <Content Include="LevelDesigner\Img\up.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
