@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication4
+namespace GamePlayer
 {
     public partial class login : Form
     {

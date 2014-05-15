@@ -74,7 +74,6 @@ namespace WindowsFormsApplication4
             string exitTest = "33";
 
             build(walls, thesusTest, minotaurTest, exitTest);
-
         }
 
         
@@ -595,8 +594,5 @@ namespace WindowsFormsApplication4
         {
             this.Close();
         }
-
-
-
     }
 }

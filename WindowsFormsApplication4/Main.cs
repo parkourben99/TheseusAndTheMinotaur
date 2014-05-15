@@ -7,17 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace WindowsFormsApplication4
+using GamePlayer.game;
+namespace GamePlayer
 {
-    public partial class frmMain : Form
+    public partial class MainForm : Form
     {
         // setting newGame as a var
-        NewGame newGame;
-
-        public frmMain()
+        public MainForm()
         {
             InitializeComponent();
+            StorageManagement.StorageManagement.initLevels();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,8 +25,14 @@ namespace WindowsFormsApplication4
             
 
             // create the a new instance of NewGame form and show
-            newGame = new NewGame();
-            newGame.ShowDialog();
+            using (GameController.CurrentGame = new GamePlayerForm() )
+            {
+                GameController.CurrentGame.ShowDialog();
+                while (GameController.CurrentGame.getPanel().Focused)
+                {
+                    GameController.CurrentGame.updatePlayer();
+                }
+            }
 
             //minamise main form
             //this.WindowState = FormWindowState.Minimized;
@@ -54,6 +59,12 @@ namespace WindowsFormsApplication4
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLevelDesign_Click(object sender, EventArgs e)
+        {
+            var levelDesigner = new LevelDesign.LevelDesign();
+            levelDesigner.ShowDialog();
         }
     }
 }

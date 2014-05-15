@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication4
+﻿namespace GamePlayer
 {
-    partial class frmMain
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -57,6 +57,7 @@
             this.btnLevelDesign.TabIndex = 2;
             this.btnLevelDesign.Text = "Create Level";
             this.btnLevelDesign.UseVisualStyleBackColor = true;
+            this.btnLevelDesign.Click += new System.EventHandler(this.btnLevelDesign_Click);
             // 
             // btnExit
             // 
@@ -79,7 +80,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::WindowsFormsApplication4.Properties.Resources.bcy5ABocL;
+            this.pictureBox1.Image = global::GamePlayer.Properties.Resources.bcy5ABocL;
             this.pictureBox1.Location = new System.Drawing.Point(350, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(422, 449);
@@ -114,7 +115,7 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // frmMain
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,7 +130,7 @@
             this.Controls.Add(this.btnNewGame);
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "frmMain";
+            this.Name = "MainForm";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
