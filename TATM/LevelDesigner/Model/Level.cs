@@ -35,12 +35,14 @@ namespace LevelDesign.Model
 
         public int ExitLocation
         {
+            //Set the exit for this map
             get { return _ExitLocation; }
             set { _ExitLocation = value; }
         }
 
         public int LevelSize
         {
+            //Set the level size for this map
             get { return _LevelSize; }
             set { _LevelSize = value; }
         }
@@ -220,10 +222,10 @@ namespace LevelDesign.Model
         public List<Cell> CreateCells(List<int> cellData)
         {
             List<Cell> cellCollection = new List<Cell>();
-            //creating columns
+            //creating columns by _Hight
             for (int y = 0; y < this._Height; y++)
             {
-                //creating rows
+                //creating rows by _Width
                 for (int x = 0; x < this._Width; x++)
                 {
                     cellCollection.Add(new Cell((CellType)cellData[x]));
@@ -264,10 +266,11 @@ namespace LevelDesign.Model
 
         public void SetTheseus(int x, int y )
         {
-            //update start graphic
+            //update start graphic of Theseus
             this.SetStart(x, y);
         }
 
+        //Set Minotaur to (x,y)
         public void SetMinotaur(int x, int y)
         {
 
@@ -276,6 +279,7 @@ namespace LevelDesign.Model
         public void SetStart(int x, int y)
         {
             //check for existing start
+            //if a start already exist, remove previous start.
             for (int a = 0; a < this._LevelSize; a++)
             {
                 if (this._CellCollection[a].IsStart)
@@ -306,6 +310,8 @@ namespace LevelDesign.Model
 
         public int CoordinateToList(int x, int y)
         {
+            //give index number to every cell
+            //index start from 0 at (0,0) and incease 1 by along x axis
             int listIndex = 0;
             listIndex = (y - 1) * this._Width;
             listIndex += (x -1);

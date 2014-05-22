@@ -9,9 +9,11 @@ namespace LevelDesign.Model
 {
     public static class LevelDesigner
     {
+        //Define attribute MyLevel 
         private static Level _MyLevel;
         public static Level MyLevel
         {
+            //Get/Set my level
             get { return _MyLevel; }
             set { _MyLevel = value; }
         }
