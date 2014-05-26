@@ -46,7 +46,7 @@
             this.bntMenu = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblMoves = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ltbLevel
@@ -200,6 +200,7 @@
             this.lblTime.Size = new System.Drawing.Size(40, 13);
             this.lblTime.TabIndex = 16;
             this.lblTime.Text = "lblTime";
+            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // lblMoves
             // 
@@ -211,10 +212,10 @@
             this.lblMoves.Text = "lblMoves";
             this.lblMoves.Click += new System.EventHandler(this.lblMoves_Click);
             // 
-            // timer1
+            // gameTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.gameTimer.Interval = 1000;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // GamePlayerForm
             // 
@@ -269,7 +270,7 @@
         private System.Windows.Forms.Button bntMenu;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblMoves;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer gameTimer;
 
     }
 }

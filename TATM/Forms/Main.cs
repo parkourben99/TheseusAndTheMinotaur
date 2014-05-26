@@ -18,18 +18,19 @@ namespace GamePlayer
             InitializeComponent();
             StorageManagement.StorageManagement.initLevels();
         }
-
+        //new game button
         private void button1_Click(object sender, EventArgs e)
         {
 
             
 
-            // create the a new instance of NewGame form and show
+            // create the a new instance of gameplayer form and show
             using (GameController.CurrentGame = new GamePlayerForm() )
             {
                 GameController.CurrentGame.ShowDialog();
                 while (GameController.CurrentGame.getPanel().Focused)
                 {
+                    //while the game is focused update the game player
                     GameController.CurrentGame.updatePlayer();
                 }
             }

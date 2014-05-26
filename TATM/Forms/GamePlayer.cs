@@ -16,15 +16,10 @@ namespace GamePlayer
 {
     public partial class GamePlayerForm : Form
     {
+        // instance of game used by the form
         GameInstance currentGameInstance;
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        public System.Windows.Forms.Timer Timer
-        {
-            get { return timer; }
-            set { timer = value; }
-        }
-
+        // the game renderer
         Reigndear renderer = new Reigndear();
         public Reigndear Renderer
         {
@@ -43,18 +38,17 @@ namespace GamePlayer
         //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewGame_KeyDown);
             this.pnlGame.Focus();
         }
-
+        // on load maximise the game screen
         private void Form2_Load(object sender, EventArgs e)
         {
-
             this.WindowState = FormWindowState.Maximized;         
         }
-
+        // exit the game player
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        // show game help i.e. controls
         private void btnHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Sorry no help here :( ", "Help");
@@ -64,15 +58,19 @@ namespace GamePlayer
         {
             
         }
-
+        // loads a new game
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            // create a new game instance
             currentGameInstance = new GameInstance();
+            // set the panel as graphics location
             renderer.initialiseGraphics(getPanel().CreateGraphics());
+            // set game instance level
             currentGameInstance.newLevel(GameController.loadLevel());
+            gameTimer.Start();
           
         }
-       
+       // game control buttons
         private void btnUp_Click(object sender, EventArgs e)
         {
             this.currentGameInstance.moveTheseus("up");
@@ -92,19 +90,20 @@ namespace GamePlayer
         {
             this.currentGameInstance.moveTheseus("down");
         }
-
+        // keys to control game
         public enum keys 
         {
             up = 'w', down = 's', left = 'a', right = 'd'
         }
-
+        // acts on key press
         private void NewGame_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // set the game area as focus
             pnlGame.Focus();
-
+            // which key was pressed
             switch (e.KeyChar)
             {
-
+                    // move theseus in relation to key pressed
                 case (char)keys.up:
                     this.currentGameInstance.moveTheseus("up");
                     break;
@@ -131,24 +130,24 @@ namespace GamePlayer
             
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
         
-        }
-
         private void bntMenu_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // returns the panel / game area
         public System.Windows.Forms.Panel getPanel()
         {
             System.Windows.Forms.Panel panel = pnlGame;
             return panel;
         }
 
+        // what happens on a win or lose
         public void winLose(string state)
         {
+            // stop the timer
+            gameTimer.Stop();
             switch (state)
             {
                 case "win":
@@ -161,13 +160,30 @@ namespace GamePlayer
                     break;
             }
         }
+        
         public void updatePlayer()
         {
-            while (timer.Enabled) {
+            // add one to current time
+            currentGameInstance.CurrentTime += 1;
+            // calculate score
+            currentGameInstance.CurrentScore -= currentGameInstance.CurrentTime * currentGameInstance.CurrentMoves;
+            // show score
             lblScore.Text = currentGameInstance.CurrentScore.ToString();
+            // show moves
             lblMoves.Text = currentGameInstance.CurrentMoves.ToString();
-            lblTime.Text = timer.ToString();
-                }
+            // show time
+            lblTime.Text = (currentGameInstance.CurrentTime / 60).ToString() + "." + (currentGameInstance.CurrentTime % 60).ToString() ;
+        }
+
+        private void lblTime_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            // every tick update -- tick == 1000ms
+            updatePlayer();
         }
         
     }
