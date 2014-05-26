@@ -187,6 +187,11 @@ namespace GamePlayer
             // every tick update -- tick == 1000ms
             updatePlayer();
         }
+
+        private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
+        {
+            currentGameInstance.buildCells();
+        }
         
     }
 }

@@ -51,6 +51,7 @@
             // 
             // ltbLevel
             // 
+            this.ltbLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ltbLevel.FormattingEnabled = true;
             this.ltbLevel.Location = new System.Drawing.Point(829, 32);
             this.ltbLevel.Name = "ltbLevel";
@@ -59,6 +60,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(829, 279);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 23);
@@ -68,6 +70,7 @@
             // 
             // btnLoad
             // 
+            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoad.Location = new System.Drawing.Point(829, 250);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(160, 23);
@@ -78,6 +81,9 @@
             // 
             // pnlGame
             // 
+            this.pnlGame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGame.Location = new System.Drawing.Point(12, 32);
             this.pnlGame.Name = "pnlGame";
@@ -87,6 +93,7 @@
             // 
             // btnLeft
             // 
+            this.btnLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLeft.Location = new System.Drawing.Point(833, 458);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 37);
@@ -97,6 +104,7 @@
             // 
             // btnUp
             // 
+            this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUp.Location = new System.Drawing.Point(872, 415);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 37);
@@ -107,6 +115,7 @@
             // 
             // btnRight
             // 
+            this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRight.Location = new System.Drawing.Point(914, 458);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 37);
@@ -117,6 +126,7 @@
             // 
             // btnDown
             // 
+            this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDown.Location = new System.Drawing.Point(872, 501);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 37);
@@ -127,6 +137,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Location = new System.Drawing.Point(828, 775);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(161, 23);
@@ -137,6 +148,7 @@
             // 
             // btnHelp
             // 
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelp.Location = new System.Drawing.Point(829, 746);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(160, 23);
@@ -171,6 +183,7 @@
             // 
             // btnUndo
             // 
+            this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUndo.Location = new System.Drawing.Point(828, 308);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(160, 23);
@@ -181,6 +194,7 @@
             // 
             // bntMenu
             // 
+            this.bntMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bntMenu.Location = new System.Drawing.Point(828, 717);
             this.bntMenu.Name = "bntMenu";
             this.bntMenu.Size = new System.Drawing.Size(160, 23);
@@ -240,6 +254,7 @@
             this.Name = "GamePlayerForm";
             this.Text = "New Game";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.ResizeEnd += new System.EventHandler(this.GamePlayerForm_ResizeEnd);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NewGame_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();

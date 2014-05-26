@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dictionary>
+<item>
+    <key>
+      <string>Theseus</string>
+    </key>
+    <value>
+      <string>Images/dynamic/theseus.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Minotaur</string>
+    </key>
+    <value>
+      <string>Images/dynamic/minotaur.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Exit</string>
+    </key>
+    <value>
+      <string>Images/static/stairs.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Up</string>
+    </key>
+    <value>
+      <string>Images/static/walls/up.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Left</string>
+    </key>
+    <value>
+      <string>Images/static/walls/left.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>LeftUP</string>
+    </key>
+    <value>
+      <string>Images/static/walls/upleft.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Blank</string>
+    </key>
+    <value>
+      <string>Images/static/blank.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>tile2</string>
+    </key>
+    <value>
+      <string>Images/static/ground2.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>tile3</string>
+    </key>
+    <value>
+      <string>Images/theseus.png</string>
+    </value>
+  </item>
+</dictionary>
