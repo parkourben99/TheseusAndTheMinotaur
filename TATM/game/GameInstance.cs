@@ -25,6 +25,13 @@ namespace GamePlayer.game
         private int currentScore = 10000;
         private int currentMoves;
         private int currentTime;
+        private bool gameState;
+
+        public bool GameState
+        {
+            get { return gameState; }
+            set { gameState = value; }
+        }
 
         public int CurrentTime
         {
@@ -94,7 +101,7 @@ namespace GamePlayer.game
             toRender.runBatch();
         }
         // update location of theseus and the minotaur
-        public void updateCharacters()
+        public bool updateCharacters()
         {
             // create new sprite batch
             toRender = new SpriteBatch();
@@ -112,7 +119,11 @@ namespace GamePlayer.game
             // draw spritebatch to screen
             toRender.runBatch();
             // check weither game is won or lost
-            winLose();
+            if (winLose())
+            {
+                return true;
+            }
+            return false;
         }
         // set a new level
         public void newLevel(Level level)
@@ -126,53 +137,55 @@ namespace GamePlayer.game
             minotaurLocation = myLevel.MinotaurLocation;
             // build base game board
             buildCells();
+            gameState = true;
         }
         // move theseus
         public void moveTheseus(string direction)
-        { 
-            // set theseus' last location as location before move
-            theseusLast = theseusLocation;
-            // which direction is moved in?
-            switch (direction)
+        {
+            if (gameState)
             {
+                // set theseus' last location as location before move
+                theseusLast = theseusLocation;
+                // which direction is moved in?
+                switch (direction)
+                {
                     // for each case alter theseus' location appropriately
-                case "up":
-                    if (isSpace(direction, true))
-                    {
-                        theseusLocation -= myLevel.Width;
-                        moveMinotaur(2);
-                        currentMoves += 1;
+                    case "up":
+                        if (isSpace(direction, true))
+                        {
+                            theseusLocation -= myLevel.Width;
+                            moveMinotaur(2);
+                            currentMoves += 1;
 
-                    }
-                    break;
-                case "down":
-                    if (isSpace(direction, true))
-                    {
-                        theseusLocation += myLevel.Width;
-                        moveMinotaur(2);
-                        currentMoves += 1;
-                    }
-                    break;
-                case "left":
-                    if (isSpace(direction, true)) 
-                    {
-                        theseusLocation -= 1;
-                        moveMinotaur(2);
-                        currentMoves += 1;
-                    }
-                    break;
-                case "right":
-                    if (isSpace(direction, true))
-                    {
-                        
-                        theseusLocation += 1;
-                        moveMinotaur(2);
-                        currentMoves += 1;
-                    }
-                    break;
-             }
-            // update graphical locations
-            updateCharacters();
+                        }
+                        break;
+                    case "down":
+                        if (isSpace(direction, true))
+                        {
+                            theseusLocation += myLevel.Width;
+                            moveMinotaur(2);
+                            currentMoves += 1;
+                        }
+                        break;
+                    case "left":
+                        if (isSpace(direction, true))
+                        {
+                            theseusLocation -= 1;
+                            moveMinotaur(2);
+                            currentMoves += 1;
+                        }
+                        break;
+                    case "right":
+                        if (isSpace(direction, true))
+                        {
+
+                            theseusLocation += 1;
+                            moveMinotaur(2);
+                            currentMoves += 1;
+                        }
+                        break;
+                }
+            }
         }
         // check if there is space to move for theseus and/or the minotaur
         public bool isSpace(string direction, bool isTheseus)
@@ -278,7 +291,10 @@ namespace GamePlayer.game
                     // set amount minotaur has moved to plus 1
                     count += 1;
                     // update graphical locations
-                    updateCharacters();
+                    if (updateCharacters())
+                    {
+                        break;
+                    }
                 }
                 // if the minotaurs x location is greater than theseus' x, and there is space
                 else if ((minotaurCoords[0] > theseusCoords[0]) && (isSpace("left", false)))
@@ -286,7 +302,10 @@ namespace GamePlayer.game
                     // move minotaur left one
                     minotaurLocation -= 1;
                     count += 1;
-                    updateCharacters();
+                    if (updateCharacters())
+                    {
+                        break;
+                    }
                 }
                 // if the minotaurs y location is greater than theseus' y, and there is space
                 else if ((minotaurCoords[1] > theseusCoords[1]) && (isSpace("up", false)))
@@ -294,7 +313,10 @@ namespace GamePlayer.game
                     // move minotaur up
                     minotaurLocation -= myLevel.Width;
                     count += 1;
-                    updateCharacters();
+                    if (updateCharacters())
+                    {
+                        break;
+                    }
 
                 }
                 // if the minotaurs y location is less than theseus' y, and there is space
@@ -303,7 +325,10 @@ namespace GamePlayer.game
                     // move minotaur down
                     minotaurLocation += myLevel.Width;
                     count += 1;
-                    updateCharacters();
+                    if (updateCharacters())
+                    {
+                        break;
+                    }
 
                 }
                 else
@@ -314,19 +339,21 @@ namespace GamePlayer.game
             }
         }
         // check if game is won or lost
-        public void winLose()
+        public bool winLose()
         {
             // if theseus is caught by minotaur the you lose
             if (theseusLocation == minotaurLocation) 
             {
                 GameController.CurrentGame.winLose("lose");
-                
+                return true;
             }
             // if theseus reaches exit location then you win
             else if (theseusLocation == myLevel.ExitLocation)
             {
                 GameController.CurrentGame.winLose("win");
+                return true;
             }
+            return false;
         }
 
 

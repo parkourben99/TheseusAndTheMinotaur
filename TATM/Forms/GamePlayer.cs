@@ -68,6 +68,7 @@ namespace GamePlayer
             // set game instance level
             currentGameInstance.newLevel(GameController.loadLevel());
             gameTimer.Start();
+            lblLevelName.Text = currentGameInstance.MyLevel.LevelName;
           
         }
        // game control buttons
@@ -148,6 +149,7 @@ namespace GamePlayer
         {
             // stop the timer
             gameTimer.Stop();
+            currentGameInstance.GameState = false;
             switch (state)
             {
                 case "win":

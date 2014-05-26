@@ -150,27 +150,24 @@
             this.lblLevelName.AutoSize = true;
             this.lblLevelName.Location = new System.Drawing.Point(825, 9);
             this.lblLevelName.Name = "lblLevelName";
-            this.lblLevelName.Size = new System.Drawing.Size(71, 13);
+            this.lblLevelName.Size = new System.Drawing.Size(0, 13);
             this.lblLevelName.TabIndex = 11;
-            this.lblLevelName.Text = "lblLevelName";
             // 
             // lblScore
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Location = new System.Drawing.Point(408, 9);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(45, 13);
+            this.lblScore.Size = new System.Drawing.Size(0, 13);
             this.lblScore.TabIndex = 12;
-            this.lblScore.Text = "lblScore";
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Location = new System.Drawing.Point(12, 9);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(67, 13);
+            this.lblUserName.Size = new System.Drawing.Size(0, 13);
             this.lblUserName.TabIndex = 13;
-            this.lblUserName.Text = "lblUserName";
             // 
             // btnUndo
             // 
@@ -197,9 +194,8 @@
             this.lblTime.AutoSize = true;
             this.lblTime.Location = new System.Drawing.Point(579, 9);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(40, 13);
+            this.lblTime.Size = new System.Drawing.Size(0, 13);
             this.lblTime.TabIndex = 16;
-            this.lblTime.Text = "lblTime";
             this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // lblMoves
@@ -207,9 +203,8 @@
             this.lblMoves.AutoSize = true;
             this.lblMoves.Location = new System.Drawing.Point(711, 9);
             this.lblMoves.Name = "lblMoves";
-            this.lblMoves.Size = new System.Drawing.Size(49, 13);
+            this.lblMoves.Size = new System.Drawing.Size(0, 13);
             this.lblMoves.TabIndex = 17;
-            this.lblMoves.Text = "lblMoves";
             this.lblMoves.Click += new System.EventHandler(this.lblMoves_Click);
             // 
             // gameTimer
