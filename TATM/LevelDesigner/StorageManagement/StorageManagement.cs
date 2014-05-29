@@ -9,17 +9,6 @@ using System.Xml.Serialization;
             private static System.Xml.Serialization.XmlSerializer serialiser = new System.Xml.Serialization.XmlSerializer(typeof(SerialDict<string, string>));
             private static SerialDict<string, Level> levels;
 
-            public static SerialDict<string, string> loadBaseData()
-            {
-                SerialDict<string, string> tileSet = new SerialDict<string, string>();
-                tileSet.Add("Theseus","../../Img/theseus.png");
-                tileSet.Add("blank", "../../Img/blank.png");
-                tileSet.Add("left", "../../Img/left.png");
-                tileSet.Add("up", "../../Img/up.png");
-                tileSet.Add("leftup", "../../Img/leftup.png");
-                return tileSet;
-            }
-
             public static void initLevels()
             {
                 levels = (SerialDict<string, Level>)Filer.loadFromFile(typeof(SerialDict<string, Level>), "levels");
@@ -27,15 +16,16 @@ using System.Xml.Serialization;
 
             public static Level loadLevel(string levelName)
             {
-                return levels[levelName];
+                Level level = (Level)Filer.loadFromFile(typeof(Level), levelName);
+                return level;
             }
 
             public static List<string> getLevelList()
             {
                 List<string> levelList = new List<string>();
-                foreach (string key in levels.Keys)
+                foreach (var file in System.IO.Directory.EnumerateFiles("../../Levels/"))
                 {
-                    levelList.Add(key);
+                    levelList.Add(file);
                 }
                 return levelList;
             }
@@ -52,27 +42,11 @@ using System.Xml.Serialization;
             } */
 
 
-            public static void savePlayProgress(Level level, string save)
-            {
-                Filer.saveToFile(level, save);
-            }
-
-            public static void loadPlayProgress(string save)
-            {
-                Filer.loadFromFile(typeof(Level), save);
-            }
 
             public static void saveLevel(Level level)
             {
-                if (!levels.ContainsValue(level))
-                {
-                    levels.Add(level.LevelName, level);
-                }
-                else
-                {
-                    levels[level.LevelName] = level;
-                }
-                Filer.saveToFile(levels, "levels");
+               
+                Filer.saveToFile(level, "../../Levels/" + level.LevelName);
             }
 
             public static void publishLevel(Level level)
@@ -80,13 +54,6 @@ using System.Xml.Serialization;
                // Connector.sendToServer(levels);
             }
 
-            public static void doesDirExist(string path)
-            {
-                if (!System.IO.Directory.Exists(path))
-                {
-                    System.IO.Directory.CreateDirectory(path);
-                }
-            }
 
             public static void saveTileset(SerialDict<string, string> tileSet, string file)
             {

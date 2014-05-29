@@ -356,6 +356,14 @@ namespace GamePlayer.game
             return false;
         }
 
+        public List<string> getInstance()
+        {
+            List<string> data = new List<string>();
+            data.Add(myLevel.LevelName);
+            data.Add(theseusLocation.ToString());
+            data.Add(minotaurLocation.ToString());
+            return data;
+        }
 
     }
 }

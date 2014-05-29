@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using StorageManagement;
 using GamePlayer.game;
 using System.Timers;
+using GamePlayer.Forms;
 
 
 namespace GamePlayer
@@ -186,6 +187,19 @@ namespace GamePlayer
         {
             // every tick update -- tick == 1000ms
             updatePlayer();
+        }
+
+        private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
+        {
+            currentGameInstance.buildCells();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (Form SaveGameForm = new SaveGame())
+            {
+                SaveGameForm.ShowDialog(this);
+            }
         }
         
     }

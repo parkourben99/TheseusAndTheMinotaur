@@ -221,8 +221,15 @@ namespace LevelDesign
                 LevelDesigner.MyLevel.LevelName = levelSave.levelName;
                 LevelDesigner.MyLevel.LevelPublisher = levelSave.publisherName;
             }
-            StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
-            MessageBox.Show("Level is \"Saved\"");
+            if (!String.IsNullOrWhiteSpace(LevelDesigner.MyLevel.LevelName))
+            {
+                StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
+                MessageBox.Show("Level is \"Saved\"");
+            }
+            else
+            {
+                MessageBox.Show("Please give a name for the Level");
+            }
 
         }
 

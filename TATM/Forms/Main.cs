@@ -16,7 +16,7 @@ namespace GamePlayer
         public MainForm()
         {
             InitializeComponent();
-            StorageManagement.StorageManagement.initLevels();
+          //  StorageManagement.StorageManagement.initLevels();
         }
         //new game button
         private void button1_Click(object sender, EventArgs e)

@@ -20,6 +20,7 @@ namespace LevelDesign.Model
         private string _LevelName;
         private string _LevelPublisher;
         private int _Rating;
+        private string _Theme;
         private decimal _AvgTime;
         private SerialDict<string, string> _TileSet;
         private string _SoundLocation;
@@ -122,15 +123,16 @@ namespace LevelDesign.Model
             _Width = width;
             _Height = height;
             _LevelSize = width * height;
-            _TileSet = StorageManagement.StorageManagement.getTileset("Default");
+            _TileSet = StorageManagement.StorageManagement.getTileset(_Theme);
             LevelName = "";
             LevelPublisher = "";
             SoundLocation = "";
             MusicLocation = "";
+            _Theme = "default";
             LocalHighScore = new SerialDict<string, int>();
         }
 
-        public Level(string newLevelName, string newPublisher, int newRating, decimal newAvgTime, SerialDict<string, string> newTileSet, string newSounds, string newMusic, List<int> newCells, int newWidth, int newHeight, int newHighscore, SerialDict<string,int> newLocalHighscore, int newTheseusLocation, int newMinotaurLocation, int newExitLocation)
+        public Level(string newLevelName, string newPublisher, int newRating, decimal newAvgTime, SerialDict<string, string> newTileSet, string newSounds, string newMusic, List<int> newCells, int newWidth, int newHeight, int newHighscore, SerialDict<string,int> newLocalHighscore, int newTheseusLocation, int newMinotaurLocation, int newExitLocation, string newTheme)
         {
             LevelName = newLevelName;
             LevelPublisher = newPublisher;
@@ -140,6 +142,7 @@ namespace LevelDesign.Model
             SoundLocation = newSounds;
             MusicLocation = newMusic;
             CellCollection = this.CreateCells(newCells);
+            _Theme = newTheme;
             Width = newWidth;
             Height = newHeight;
             LocalHighScore = newLocalHighscore;
