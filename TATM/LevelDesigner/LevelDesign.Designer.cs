@@ -87,6 +87,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_Load);
             this.splitContainer1.Panel2.Controls.Add(this.btn_TileUp);
             this.splitContainer1.Panel2.Controls.Add(this.btn_TileLeftUp);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(974, 708);
             this.splitContainer1.SplitterDistance = 690;
             this.splitContainer1.TabIndex = 4;
@@ -231,13 +232,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 788);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // Form1
+            // LevelDesign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 812);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "LevelDesign";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

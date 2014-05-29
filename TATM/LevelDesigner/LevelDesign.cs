@@ -169,7 +169,8 @@ namespace LevelDesign
                             break;
                         case "btn_TileBlank":
                             //Set the type of the instance to CellType.Blank
-                            cell.Type = CellType.Blank;
+                            //add correct flor tile
+                            cell.Type = CellType.Ground2;
                             break;
                         case "btn_TileLeftUp":
                             //Set the type of the instance to CellType.LeftUp
@@ -193,7 +194,7 @@ namespace LevelDesign
             //get the button of the context btton 
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
             //create a cell object with apporiate wall
-            Cell cell = new Cell() { Type = CellType.Blank };
+            Cell cell = new Cell() { Type = CellType.Ground1 };
             //assign the cell instance to the button
             theButton.ChildCell = cell;
         }
@@ -267,7 +268,7 @@ namespace LevelDesign
 
         private void btn_Menu_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btn_Tile3_Click(object sender, EventArgs e)
@@ -288,7 +289,7 @@ namespace LevelDesign
         protected Cell CreateOuterwall(string btnname)
         {
             Cell c = new Cell();
-            c.Type = CellType.Blank;
+            c.Type = CellType.Ground1;
             if (btnname == "b1")
             {
                 //create a cell
@@ -305,6 +306,11 @@ namespace LevelDesign
             var b = sender as Button;
             //nominating the clicked button
             this.TheClickedButton = b;
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

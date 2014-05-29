@@ -21,7 +21,9 @@ namespace StorageManagement
         public static object loadFromFile(Type type, string file)
         {
             System.Xml.Serialization.XmlSerializer serialiser = new System.Xml.Serialization.XmlSerializer(type);
-            System.IO.StreamReader reader = new System.IO.StreamReader(file);          
+
+            System.IO.StreamReader reader = new System.IO.StreamReader("../../Resources/Xml/" + file + ".xml");          
+
             return serialiser.Deserialize(reader);
         }
     }

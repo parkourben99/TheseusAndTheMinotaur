@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dictionary>
+<item>
+    <key>
+      <string>Theseus</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Players/Theseus.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Minotaur</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Players/Minotaur.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Exit</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/exit.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Up</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/up.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Left</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/left.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>LeftUP</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/upleft.png</string>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Ground1</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/Ground1.png</string>
+    </value>
+  </item>
+<item>
+    <key>
+      <string>Ground2</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/Ground2.png</string>
+    </value>
+  </item>
+</dictionary>

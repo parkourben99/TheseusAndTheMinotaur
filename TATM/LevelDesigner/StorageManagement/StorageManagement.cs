@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
             public static void initLevels()
             {
-                levels = (SerialDict<string, Level>)Filer.loadFromFile(typeof(SerialDict<string, Level>), "levels");
+                levels = (SerialDict<string, Level>)Filer.loadFromFile(typeof(SerialDict<string, Level>), "Levels");
             }
 
             public static Level loadLevel(string levelName)
@@ -65,7 +65,6 @@ using System.Xml.Serialization;
                 SerialDict<string, string> tileset = new SerialDict<string, string>();
                 tileset = (SerialDict<string, string>)Filer.loadFromFile(tileset.GetType(), name);
                 return tileset;
-
             }
         }
 

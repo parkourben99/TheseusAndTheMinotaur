@@ -83,7 +83,7 @@ namespace GamePlayer.game
             for (int i = 0; i < myLevel.LevelSize; i += 1)
             {
                 // add a blank(tiled) background to the sprite batch
-                toRender.addSprite(myLevel.TileSet["Blank"], (i % myLevel.Width) * 40, (i / myLevel.Height)  * 40, 40, 40);
+                toRender.addSprite(myLevel.TileSet["Ground1"], (i % myLevel.Width) * 40, (i / myLevel.Height)  * 40, 40, 40);
             }
             // for every cell in the level
             foreach (Cell cell in myLevel.CellCollection)
