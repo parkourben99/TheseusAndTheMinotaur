@@ -9,20 +9,10 @@ using System.Xml.Serialization;
             private static System.Xml.Serialization.XmlSerializer serialiser = new System.Xml.Serialization.XmlSerializer(typeof(SerialDict<string, string>));
             private static SerialDict<string, Level> levels;
 
-            public static SerialDict<string, string> loadBaseData()
-            {
-                SerialDict<string, string> tileSet = new SerialDict<string, string>();
-                tileSet.Add("Theseus","../../Img/theseus.png");
-                tileSet.Add("blank", "../../Img/blank.png");
-                tileSet.Add("left", "../../Img/left.png");
-                tileSet.Add("up", "../../Img/up.png");
-                tileSet.Add("leftup", "../../Img/leftup.png");
-                return tileSet;
-            }
 
             public static void initLevels()
             {
-                levels = (SerialDict<string, Level>)Filer.loadFromFile(typeof(SerialDict<string, Level>), "levels");
+                levels = (SerialDict<string, Level>)Filer.loadFromFile(typeof(SerialDict<string, Level>), "Levels");
             }
 
             public static Level loadLevel(string levelName)
@@ -98,7 +88,6 @@ using System.Xml.Serialization;
                 SerialDict<string, string> tileset = new SerialDict<string, string>();
                 tileset = (SerialDict<string, string>)Filer.loadFromFile(tileset.GetType(), name);
                 return tileset;
-
             }
         }
 

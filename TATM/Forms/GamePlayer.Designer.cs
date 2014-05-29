@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.ltbLevel = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.pnlGame = new System.Windows.Forms.Panel();
@@ -48,12 +49,21 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
+            // ltbLevel
+            // 
+            this.ltbLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ltbLevel.FormattingEnabled = true;
+            this.ltbLevel.Location = new System.Drawing.Point(829, 32);
+            this.ltbLevel.Name = "ltbLevel";
+            this.ltbLevel.Size = new System.Drawing.Size(160, 212);
+            this.ltbLevel.TabIndex = 0;
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(718, 107);
+            this.btnSave.Location = new System.Drawing.Point(829, 279);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(270, 69);
+            this.btnSave.Size = new System.Drawing.Size(160, 23);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -61,9 +71,9 @@
             // btnLoad
             // 
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoad.Location = new System.Drawing.Point(718, 32);
+            this.btnLoad.Location = new System.Drawing.Point(829, 250);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(270, 69);
+            this.btnLoad.Size = new System.Drawing.Size(160, 23);
             this.btnLoad.TabIndex = 2;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -84,7 +94,7 @@
             // btnLeft
             // 
             this.btnLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLeft.Location = new System.Drawing.Point(789, 378);
+            this.btnLeft.Location = new System.Drawing.Point(833, 458);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 37);
             this.btnLeft.TabIndex = 4;
@@ -95,7 +105,7 @@
             // btnUp
             // 
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUp.Location = new System.Drawing.Point(828, 335);
+            this.btnUp.Location = new System.Drawing.Point(872, 415);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 37);
             this.btnUp.TabIndex = 5;
@@ -106,7 +116,7 @@
             // btnRight
             // 
             this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRight.Location = new System.Drawing.Point(870, 378);
+            this.btnRight.Location = new System.Drawing.Point(914, 458);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 37);
             this.btnRight.TabIndex = 6;
@@ -117,7 +127,7 @@
             // btnDown
             // 
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDown.Location = new System.Drawing.Point(828, 421);
+            this.btnDown.Location = new System.Drawing.Point(872, 501);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 37);
             this.btnDown.TabIndex = 7;
@@ -174,9 +184,9 @@
             // btnUndo
             // 
             this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUndo.Location = new System.Drawing.Point(718, 464);
+            this.btnUndo.Location = new System.Drawing.Point(828, 308);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(270, 69);
+            this.btnUndo.Size = new System.Drawing.Size(160, 23);
             this.btnUndo.TabIndex = 14;
             this.btnUndo.Text = "Undo";
             this.btnUndo.UseVisualStyleBackColor = true;
@@ -237,13 +247,14 @@
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.ltbLevel);
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1020, 850);
             this.Name = "GamePlayerForm";
             this.Text = "New Game";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResizeEnd += new System.EventHandler(this.GamePlayerForm_ResizeEnd);
-            this.SizeChanged += new System.EventHandler(this.GamePlayerForm_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NewGame_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -252,6 +263,7 @@
 
         #endregion
 
+        private System.Windows.Forms.ListBox ltbLevel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Panel pnlGame;

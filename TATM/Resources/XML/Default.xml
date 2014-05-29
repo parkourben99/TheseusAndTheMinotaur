@@ -5,7 +5,7 @@
       <string>Theseus</string>
     </key>
     <value>
-      <string>Images/dynamic/theseus.png</string>
+      <string>../../Resources/Images/Players/Theseus.png</string>
     </value>
   </item>
 <item>
@@ -13,7 +13,7 @@
       <string>Minotaur</string>
     </key>
     <value>
-      <string>Images/dynamic/minotaur.png</string>
+      <string>../../Resources/Images/Players/Minotaur.png</string>
     </value>
   </item>
 <item>
@@ -21,7 +21,7 @@
       <string>Exit</string>
     </key>
     <value>
-      <string>Images/static/stairs.png</string>
+      <string>../../Resources/Images/Tiles/exit.png</string>
     </value>
   </item>
 <item>
@@ -29,7 +29,7 @@
       <string>Up</string>
     </key>
     <value>
-      <string>Images/static/walls/up.png</string>
+      <string>../../Resources/Images/Tiles/up.png</string>
     </value>
   </item>
 <item>
@@ -37,7 +37,7 @@
       <string>Left</string>
     </key>
     <value>
-      <string>Images/static/walls/left.png</string>
+      <string>../../Resources/Images/Tiles/left.png</string>
     </value>
   </item>
 <item>
@@ -45,31 +45,23 @@
       <string>LeftUP</string>
     </key>
     <value>
-      <string>Images/static/walls/upleft.png</string>
+      <string>../../Resources/Images/Tiles/upleft.png</string>
+    </value>
+  </item>
+  <item>
+    <key>
+      <string>Ground1</string>
+    </key>
+    <value>
+      <string>../../Resources/Images/Tiles/Ground1.png</string>
     </value>
   </item>
 <item>
     <key>
-      <string>Blank</string>
+      <string>Ground2</string>
     </key>
     <value>
-      <string>Images/static/blank.png</string>
-    </value>
-  </item>
-<item>
-    <key>
-      <string>tile2</string>
-    </key>
-    <value>
-      <string>Images/static/ground2.png</string>
-    </value>
-  </item>
-<item>
-    <key>
-      <string>tile3</string>
-    </key>
-    <value>
-      <string>Images/theseus.png</string>
+      <string>../../Resources/Images/Tiles/Ground2.png</string>
     </value>
   </item>
 </dictionary>

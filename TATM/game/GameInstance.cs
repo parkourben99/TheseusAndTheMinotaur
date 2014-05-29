@@ -26,7 +26,6 @@ namespace GamePlayer.game
         private int currentMoves;
         private int currentTime;
         private bool gameState;
-        private int spacing;
 
         public bool GameState
         {
@@ -57,7 +56,6 @@ namespace GamePlayer.game
         {
             get { return myLevel; }
             set { myLevel = value;
-            
             }
         }
       //  private int currentScore;
@@ -77,35 +75,28 @@ namespace GamePlayer.game
         // draw the original level
         public void buildCells()
         {
-            GameController.CurrentGame.sizePanel();
-            GameController.CurrentGame.setRatio();
-            spacing = GameController.CurrentGame.Renderer.Ratio;
             // create a new sprite batch
             toRender = new SpriteBatch();
-            int levelSize = ((myLevel.Width - 1) * (myLevel.Height - 1));
             // clear current game board
             GameController.CurrentGame.Renderer.clearAll();
             // for the size of the level
-            for (int i = 0; i < ((myLevel.Width -1) * (myLevel.Height - 1)); i += 1)
+            for (int i = 0; i < myLevel.LevelSize; i += 1)
             {
                 // add a blank(tiled) background to the sprite batch
-                toRender.addSprite(myLevel.TileSet["Blank"], (i % (myLevel.Width - 1)), (i / (myLevel.Height -1)), 40, 40);
+                toRender.addSprite(myLevel.TileSet["Ground1"], (i % myLevel.Width) * 40, (i / myLevel.Height)  * 40, 40, 40);
             }
-            toRender.addSprite(myLevel.TileSet["Exit"], (myLevel.ExitLocation % myLevel.Width), (myLevel.ExitLocation / myLevel.Height), 40, 40);
             // for every cell in the level
             foreach (Cell cell in myLevel.CellCollection)
             {
-                // the cell type as a string for finding textures in tileset dictionary\
-                if (!(myLevel.CellCollection.IndexOf(cell) == myLevel.LevelSize))
-                {
-                    string cellType = cell.Type.ToString();
-                    // add the image for each cell into the sprite batch
-                    toRender.addSprite(myLevel.TileSet[cellType], getCoords(cell)[0], getCoords(cell)[1], 40, 40);
-                }
+                // the cell type as a string for finding textures in tileset dictionary
+                string cellType = cell.Type.ToString();
+                // add the image for each cell into the sprite batch
+                toRender.addSprite(myLevel.TileSet[cellType], getCoords(cell)[0] * 40, getCoords(cell)[1] * 40, 40, 40);
             }
             // add theseus, minotaur and exit locations to the sprite batch
-            toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height), 40, 40);
-            toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width), (minotaurLocation / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width) * 40, (theseusLocation / myLevel.Height) * 40, 40, 40);
+            toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width) * 40, (minotaurLocation / myLevel.Height) * 40, 40, 40);
+            toRender.addSprite(myLevel.TileSet["Exit"], (myLevel.ExitLocation % myLevel.Width) * 40, (myLevel.ExitLocation / myLevel.Height) * 40, 40, 40);
             // draw all the sprites to the screen
             toRender.runBatch();
         }
@@ -115,16 +106,16 @@ namespace GamePlayer.game
             // create new sprite batch
             toRender = new SpriteBatch();
             // add a blank tile at theseus' last location to wipe other image
-            toRender.addSprite(myLevel.TileSet["Blank"], (theseusLast % myLevel.Width), (theseusLast / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet["Blank"], (theseusLast % myLevel.Width) * 40, (theseusLast / myLevel.Height) * 40, 40, 40);
             // add the tile at theseus' last location over the blank tile i.e. return it to normal
-            toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[theseusLast].Type.ToString()], (theseusLast % myLevel.Width), (theseusLast / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[theseusLast].Type.ToString()], (theseusLast % myLevel.Width) * 40, (theseusLast / myLevel.Height) * 40, 40, 40);
             // place theseus at new location
-            toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width) * 40, (theseusLocation / myLevel.Height) * 40, 40, 40);
             // replace minotaurs last location
-            toRender.addSprite(myLevel.TileSet["Blank"], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height), 40, 40);
-            toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast].Type.ToString()], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet["Blank"], (minotaurLast % myLevel.Width) * 40, (minotaurLast / myLevel.Height) * 40, 40, 40);
+            toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast].Type.ToString()], (minotaurLast % myLevel.Width) * 40, (minotaurLast / myLevel.Height) * 40, 40, 40);
             // place minotaur at new location
-            toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width), (minotaurLocation / myLevel.Height), 40, 40);
+            toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width) * 40, (minotaurLocation / myLevel.Height) * 40, 40, 40);
             // draw spritebatch to screen
             toRender.runBatch();
             // check weither game is won or lost

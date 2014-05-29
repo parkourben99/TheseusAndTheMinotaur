@@ -31,16 +31,7 @@ namespace GamePlayer
             get { return currentGameInstance; }
             set { currentGameInstance = value; }
         }
-        public void sizePanel()
-        {
-            pnlGame.Width = pnlGame.Height;
-        }
-
-        public void setRatio()
-        {          
-            int ratio = (pnlGame.Height / (currentGameInstance.MyLevel.Height - 1));
-            renderer.Ratio = ratio;
-        }
+       
         public GamePlayerForm()
         {
             InitializeComponent();
@@ -183,7 +174,7 @@ namespace GamePlayer
             // show moves
             lblMoves.Text = currentGameInstance.CurrentMoves.ToString();
             // show time
-            lblTime.Text = (currentGameInstance.CurrentTime / 60).ToString() + " : " + (currentGameInstance.CurrentTime % 60).ToString() ;
+            lblTime.Text = (currentGameInstance.CurrentTime / 60).ToString() + "." + (currentGameInstance.CurrentTime % 60).ToString() ;
         }
 
         private void lblTime_Click(object sender, EventArgs e)
@@ -199,12 +190,6 @@ namespace GamePlayer
 
         private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
         {
-            
-        }
-
-        private void GamePlayerForm_SizeChanged(object sender, EventArgs e)
-        {
-
             currentGameInstance.buildCells();
         }
         

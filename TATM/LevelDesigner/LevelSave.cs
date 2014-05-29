@@ -25,7 +25,7 @@ namespace LevelDesign
         private void btnSave_Click(object sender, EventArgs e)
         {
             // check for null text in levels name
-            if ((txtLevelName.Text != null) && (txtLevelName.Text != ""))
+            if (txtLevelName.Text != null)
             {
                 // set level name as level name text
                 levelName = txtLevelName.Text;

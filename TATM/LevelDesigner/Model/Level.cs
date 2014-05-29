@@ -216,7 +216,7 @@ namespace LevelDesign.Model
                 this.updateCell(d, CellType.Up);
             }
             //create bottom right hand corner 
-            this.updateCell((this._LevelSize - 1), CellType.Blank);
+            this.updateCell((this._LevelSize - 1), CellType.Ground1);
         }
 
         public List<Cell> CreateCells(List<int> cellData)
@@ -253,7 +253,7 @@ namespace LevelDesign.Model
                 this.updateCell(d, CellType.Up);
             } */
             //create bottom right hand corner 
-            this.updateCell((this._LevelSize - 1), CellType.Blank);
+            this.updateCell((this._LevelSize - 1), CellType.Ground1);
             return cellCollection;
         }
              
