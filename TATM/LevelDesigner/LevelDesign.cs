@@ -242,7 +242,9 @@ namespace LevelDesign
                 levelSelect.ShowDialog();
                 if (levelSelect.selectedLevelName != null)
                 {
+                    if (StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName) != null){
                     LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
+                    }
                 }
             }
 

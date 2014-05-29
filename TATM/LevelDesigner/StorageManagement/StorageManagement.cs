@@ -16,8 +16,20 @@ using System.Xml.Serialization;
 
             public static Level loadLevel(string levelName)
             {
+<<<<<<< HEAD
+                if (levelName != null)
+                {
+                    return levels[levelName];
+                }
+                else 
+                {
+                    return null;
+                }
+
+=======
                 Level level = (Level)Filer.loadFromFile(typeof(Level), levelName);
                 return level;
+>>>>>>> 9cb6819959ed2b69fb0ee6cd105f679e6bc6fb8b
             }
 
             public static List<string> getLevelList()

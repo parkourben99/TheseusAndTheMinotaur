@@ -71,6 +71,7 @@
             this.Controls.Add(this.lBoxLevels);
             this.Name = "LevelSelect";
             this.Text = "LevelSelect";
+            this.Load += new System.EventHandler(this.LevelSelect_Load);
             this.ResumeLayout(false);
 
         }
