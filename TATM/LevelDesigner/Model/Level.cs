@@ -123,12 +123,13 @@ namespace LevelDesign.Model
             _Width = width;
             _Height = height;
             _LevelSize = width * height;
+            _Theme = "default";
             _TileSet = StorageManagement.StorageManagement.getTileset(_Theme);
             LevelName = "";
             LevelPublisher = "";
             SoundLocation = "";
             MusicLocation = "";
-            _Theme = "default";
+            
             LocalHighScore = new SerialDict<string, int>();
         }
 
