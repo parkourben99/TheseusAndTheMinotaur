@@ -193,7 +193,7 @@ namespace GamePlayer
         {
             currentGameInstance.buildCells();
         }
-<<<<<<< HEAD
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -202,8 +202,7 @@ namespace GamePlayer
                 SaveGameForm.ShowDialog(this);
             }
         }
-=======
->>>>>>> 002a6e8e2c22f5353fdae850d6f39fabc2cccb72
+
         
     }
 }
