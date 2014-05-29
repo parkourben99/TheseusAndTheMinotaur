@@ -199,6 +199,12 @@ namespace GamePlayer
 
         private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
         {
+            
+        }
+
+        private void GamePlayerForm_SizeChanged(object sender, EventArgs e)
+        {
+
             currentGameInstance.buildCells();
         }
         
