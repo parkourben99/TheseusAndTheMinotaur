@@ -60,7 +60,7 @@ namespace LevelDesign.CustomControl
                             string UpWallImg = LevelDesigner.MyLevel.TileSet["Up"];
                             this.BackgroundImage = Image.FromFile(UpWallImg);
                             break;
-                        case CellType.Ground1:
+                        case CellType.Ground:
                             string Ground1 = LevelDesigner.MyLevel.TileSet["Ground1"];
                             this.BackgroundImage = Image.FromFile(Ground1);
                             break;

@@ -7,10 +7,11 @@ using System.Xml.Serialization;
         public static class StorageManagement
         {
             private static System.Xml.Serialization.XmlSerializer serialiser = new System.Xml.Serialization.XmlSerializer(typeof(SerialDict<string, string>));
+            private static string storageLocation = "../../Resources/";
             public static Level loadLevel(string levelName)
             {
 
-                Level level = (Level)Filer.loadFromFile(typeof(Level), levelName);
+                Level level = (Level)Filer.loadFromFile(typeof(Level), storageLocation + "xml/levels/" + levelName);
                 return level;
 
             }
@@ -18,9 +19,12 @@ using System.Xml.Serialization;
             public static List<string> getLevelList()
             {
                 List<string> levelList = new List<string>();
-                foreach (var file in System.IO.Directory.EnumerateFiles("../../Levels/"))
+                foreach (var file in System.IO.Directory.EnumerateFiles(storageLocation + "XML/Levels/"))
                 {
-                    levelList.Add(file);
+                    string[] fileArray = file.Split('/');
+                    string filename = (string)fileArray.GetValue(fileArray.Length - 1);
+                    filename = filename.Remove(filename.Length - 4);
+                    levelList.Add(filename);
                 }
                 return levelList;
             }
@@ -41,7 +45,7 @@ using System.Xml.Serialization;
             public static void saveLevel(Level level)
             {
                
-                Filer.saveToFile(level, "../../Levels/" + level.LevelName);
+                Filer.saveToFile(level, storageLocation + "xml/Levels/" + level.LevelName);
             }
 
             public static void publishLevel(Level level)
@@ -58,7 +62,7 @@ using System.Xml.Serialization;
             public static SerialDict<string, string> getTileset(string name)
             {
                 SerialDict<string, string> tileset = new SerialDict<string, string>();
-                tileset = (SerialDict<string, string>)Filer.loadFromFile(tileset.GetType(), "../../Resources/XML/Tilesets/" + name);
+                tileset = (SerialDict<string, string>)Filer.loadFromFile(tileset.GetType(), storageLocation + "XML/Tilesets/" + name);
                 return tileset;
             }
         }

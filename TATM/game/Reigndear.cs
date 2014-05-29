@@ -13,18 +13,25 @@ namespace GamePlayer.game
     {
         // the graphics to draw to
         private Graphics graphics;
+        private int ratio;
 
+        public int Ratio
+        {
+            get { return ratio; }
+            set { ratio = value; }
+        }
         public Reigndear()
         {
+
         }
         
         // draw image from image data to location
-        public void drawRect(Tuple<string, int, int, int, int> sprite)
+        public void drawRect(Tuple<string, int, int> sprite)
         {
             // set the image
             Image img = Image.FromFile(sprite.Item1);
             // set the draw shape
-            Rectangle rect = new Rectangle(sprite.Item2, sprite.Item3, sprite.Item4, sprite.Item5);
+            Rectangle rect = new Rectangle(ratio * sprite.Item2, ratio * sprite.Item3,ratio, ratio);
             // tell graphics to draw
             graphics.DrawImage(img, rect);
         }
@@ -32,7 +39,7 @@ namespace GamePlayer.game
         public void clearAll()
         {
             // clears graphics with blue color
-            graphics.Clear(Color.Blue);
+            graphics.Clear(Color.Black);
         }
         public void initialiseGraphics(Graphics newGraphics)
         {

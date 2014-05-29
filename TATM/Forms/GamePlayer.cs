@@ -42,7 +42,7 @@ namespace GamePlayer
         // on load maximise the game screen
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;         
+         
         }
         // exit the game player
         private void btnExit_Click(object sender, EventArgs e)
@@ -68,6 +68,7 @@ namespace GamePlayer
             renderer.initialiseGraphics(getPanel().CreateGraphics());
             // set game instance level
             currentGameInstance.newLevel(GameController.loadLevel());
+            setRatio();
             gameTimer.Start();
             lblLevelName.Text = currentGameInstance.MyLevel.LevelName;
           
@@ -189,9 +190,20 @@ namespace GamePlayer
             updatePlayer();
         }
 
+        public void setRatio()
+        {
+            pnlGame.Width = pnlGame.Height;
+            int pnlHeight = pnlGame.Height;
+            int ratio = pnlHeight / (currentGameInstance.MyLevel.Height - 2);
+            ratio -= (ratio / 13);
+            renderer.Ratio = ratio;
+            currentGameInstance.buildCells();
+
+        }
+
         private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
         {
-            currentGameInstance.buildCells();
+            setRatio();
         }
 
 

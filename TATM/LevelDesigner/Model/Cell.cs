@@ -10,7 +10,7 @@ namespace LevelDesign.Model
     //The direction indictes where the wall is
     //Example: Left => wall on left
     public enum CellType {
-        Left = 1, LeftUP = 2, Up = 3, Ground1 = 4, Ground2 = 5
+        Left = 1, LeftUP = 2, Up = 3, Ground = 4
     }
     public class Cell
     {
@@ -66,7 +66,7 @@ namespace LevelDesign.Model
         #endregion
         public Cell()
         {
-            this._Type = CellType.Ground1;
+            this._Type = CellType.Ground;
         }
         public Cell(CellType type)
         {
