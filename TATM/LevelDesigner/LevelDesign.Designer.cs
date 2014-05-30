@@ -32,7 +32,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GameBoard = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.btn_Start = new System.Windows.Forms.Button();
             this.btn_Minotaur = new System.Windows.Forms.Button();
             this.btn_Theseus = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
@@ -77,7 +76,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btn_Exit);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_Start);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Minotaur);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Theseus);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Save);
@@ -109,34 +107,27 @@
             // 
             // btn_Exit
             // 
-            this.btn_Exit.Location = new System.Drawing.Point(75, 668);
+            this.btn_Exit.Location = new System.Drawing.Point(75, 497);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(139, 37);
             this.btn_Exit.TabIndex = 10;
-            this.btn_Exit.Text = "FinishTile";
+            this.btn_Exit.Text = "ExitTile";
             this.btn_Exit.UseVisualStyleBackColor = true;
-            // 
-            // btn_Start
-            // 
-            this.btn_Start.Location = new System.Drawing.Point(75, 607);
-            this.btn_Start.Name = "btn_Start";
-            this.btn_Start.Size = new System.Drawing.Size(139, 37);
-            this.btn_Start.TabIndex = 9;
-            this.btn_Start.Text = "StartTile";
-            this.btn_Start.UseVisualStyleBackColor = true;
+            this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // btn_Minotaur
             // 
-            this.btn_Minotaur.Location = new System.Drawing.Point(75, 538);
+            this.btn_Minotaur.Location = new System.Drawing.Point(75, 454);
             this.btn_Minotaur.Name = "btn_Minotaur";
             this.btn_Minotaur.Size = new System.Drawing.Size(139, 37);
             this.btn_Minotaur.TabIndex = 8;
             this.btn_Minotaur.Text = "Minotaur";
             this.btn_Minotaur.UseVisualStyleBackColor = true;
+            this.btn_Minotaur.Click += new System.EventHandler(this.btn_Minotaur_Click);
             // 
             // btn_Theseus
             // 
-            this.btn_Theseus.Location = new System.Drawing.Point(75, 476);
+            this.btn_Theseus.Location = new System.Drawing.Point(75, 411);
             this.btn_Theseus.Name = "btn_Theseus";
             this.btn_Theseus.Size = new System.Drawing.Size(139, 37);
             this.btn_Theseus.TabIndex = 7;
@@ -147,7 +138,7 @@
             // btn_Save
             // 
             this.btn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_Save.Location = new System.Drawing.Point(75, 15);
+            this.btn_Save.Location = new System.Drawing.Point(75, 101);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(139, 37);
             this.btn_Save.TabIndex = 0;
@@ -157,7 +148,7 @@
             // 
             // btn_TileBlank
             // 
-            this.btn_TileBlank.Location = new System.Drawing.Point(75, 342);
+            this.btn_TileBlank.Location = new System.Drawing.Point(75, 325);
             this.btn_TileBlank.Name = "btn_TileBlank";
             this.btn_TileBlank.Size = new System.Drawing.Size(139, 37);
             this.btn_TileBlank.TabIndex = 6;
@@ -167,7 +158,7 @@
             // 
             // btn_TileLeft
             // 
-            this.btn_TileLeft.Location = new System.Drawing.Point(75, 212);
+            this.btn_TileLeft.Location = new System.Drawing.Point(75, 239);
             this.btn_TileLeft.Name = "btn_TileLeft";
             this.btn_TileLeft.Size = new System.Drawing.Size(139, 37);
             this.btn_TileLeft.TabIndex = 3;
@@ -177,7 +168,7 @@
             // 
             // btn_Menu
             // 
-            this.btn_Menu.Location = new System.Drawing.Point(75, 144);
+            this.btn_Menu.Location = new System.Drawing.Point(75, 15);
             this.btn_Menu.Name = "btn_Menu";
             this.btn_Menu.Size = new System.Drawing.Size(139, 37);
             this.btn_Menu.TabIndex = 2;
@@ -187,7 +178,7 @@
             // 
             // btn_Load
             // 
-            this.btn_Load.Location = new System.Drawing.Point(75, 77);
+            this.btn_Load.Location = new System.Drawing.Point(75, 58);
             this.btn_Load.Name = "btn_Load";
             this.btn_Load.Size = new System.Drawing.Size(139, 37);
             this.btn_Load.TabIndex = 1;
@@ -197,7 +188,7 @@
             // 
             // btn_TileUp
             // 
-            this.btn_TileUp.Location = new System.Drawing.Point(75, 272);
+            this.btn_TileUp.Location = new System.Drawing.Point(75, 282);
             this.btn_TileUp.Name = "btn_TileUp";
             this.btn_TileUp.Size = new System.Drawing.Size(139, 37);
             this.btn_TileUp.TabIndex = 5;
@@ -207,7 +198,7 @@
             // 
             // btn_TileLeftUp
             // 
-            this.btn_TileLeftUp.Location = new System.Drawing.Point(75, 409);
+            this.btn_TileLeftUp.Location = new System.Drawing.Point(75, 368);
             this.btn_TileLeftUp.Name = "btn_TileLeftUp";
             this.btn_TileLeftUp.Size = new System.Drawing.Size(139, 37);
             this.btn_TileLeftUp.TabIndex = 4;
@@ -265,7 +256,6 @@
         private System.Windows.Forms.Button btn_TileLeft;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btn_Exit;
-        private System.Windows.Forms.Button btn_Start;
         private System.Windows.Forms.Button btn_Minotaur;
         private System.Windows.Forms.Button btn_Theseus;
     }

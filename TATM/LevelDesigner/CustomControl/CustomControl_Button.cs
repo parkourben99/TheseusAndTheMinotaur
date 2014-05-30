@@ -38,8 +38,14 @@ namespace LevelDesign.CustomControl
                 if (value is Theseus)
                 {
                     string TheseusImg = LevelDesigner.MyLevel.TileSet["Theseus"];
-                    var TheseusImage = Image.FromFile(TheseusImg);//LD.MyLevel.TileSet["Theseus"];
+                    var TheseusImage = Image.FromFile(TheseusImg);
                     this.BackgroundImage = MergeImages(this.BackgroundImage, TheseusImage);
+                }
+                if (value is Minotaur)
+                {
+                    string MinotaurImg = LevelDesigner.MyLevel.TileSet["Minotaur"];
+                    var MinotaurImage = Image.FromFile(MinotaurImg);
+                    this.BackgroundImage = MergeImages(this.BackgroundImage, MinotaurImage);
                 }
                 _ChildCharacter = value; 
             }
@@ -67,6 +73,10 @@ namespace LevelDesign.CustomControl
                         case CellType.LeftUP:
                             string LeftUpWallImg = LevelDesigner.MyLevel.TileSet["LeftUP"];
                             this.BackgroundImage = Image.FromFile(LeftUpWallImg);
+                            break;
+                        case CellType.Exit:
+                            string Exit = LevelDesigner.MyLevel.TileSet["Exit"];
+                            this.BackgroundImage = Image.FromFile(Exit);
                             break;
                     }
                     _ChildCell = value;
@@ -111,14 +121,6 @@ namespace LevelDesign.CustomControl
             _ChildCharacter = null;
             this._ChildCell = this._PreviousCell;
         }
-        //public CustomControl_Button(Cell cell)
-        //{
-        //    if (cell.Type == CellType.Left)
-        //    {
-        //        string LeftWallImg = @"\\Adfsstud1\f-i\haw363\Documents\Visual Studio 2012\Projects\WindowsFormsApplication1\WindowsFormsApplication1\Img\Koala.jpg";
-        //        this.BackgroundImage = Image.FromFile(LeftWallImg);
-        //    }
-        //    this.ChildCell = cell;
-        //}
+
     }
 }

@@ -22,6 +22,8 @@ namespace LevelDesign
         private int count = 0;
         private Button TheClickedButton;
         private CustomControl_Button OldButton;
+        bool theseusSet;
+        bool minotaurSet;
         public LevelDesign()
         {
             InitializeComponent();
@@ -39,9 +41,11 @@ namespace LevelDesign
             GameBoard.Controls.Clear();
             GameBoard.ColumnStyles.Clear();
             GameBoard.RowStyles.Clear();
+
             //Now we will generate the table, setting up the row and column counts first
             GameBoard.ColumnCount = columns;
             GameBoard.RowCount = rows;
+
             //creating rows
             for (int y = 0; y < LevelDesigner.MyLevel.Height; y++)
             {
@@ -52,35 +56,34 @@ namespace LevelDesign
                 for (int x = 0; x < LevelDesigner.MyLevel.Width; x++)
                 {
                     //create the grid
-                    //Panel p = new Panel();
-                    //create the control - button
-                    // *** to be named as " " if we are to continue using buttons ***
                     CustomControl_Button btn_Cell = new CustomControl_Button() { Name = count.ToString() };
+
                     //adding the cells from cell collection to the btn
                     btn_Cell.ChildCell = LevelDesigner.MyLevel.CellCollection[count];
+
                     //setting the button size  
                     btn_Cell.Size = new Size(40, 40);
                     btn_Cell.Padding = new Padding(0);
                     btn_Cell.Margin = new Padding(0);
-                    //p.Size = new Size(40, 40);
-                    //p.Padding = new Padding(0);
-                    //p.Margin = new Padding(0);
-                    //add onClick Event to each Button
                     btn_Cell.Click += Button_OnClick_For_Cell;
-                    //create context menu items eventHandler
-                    //btn_Cell.ChildCell = CreateOuterwall(btn_Cell.Name);
+
                     MenuItem m1 = new MenuItem("LeftTile", new EventHandler(ContextMenu_OnClick_For_TileLeft));
                     MenuItem m2 = new MenuItem("UpTile", new EventHandler(ContextMenu_OnClick_For_TileUp));
                     MenuItem m3 = new MenuItem("BlankTile", new EventHandler(ContextMenu_OnClick_For_TileBlank));
                     MenuItem m4 = new MenuItem("LeftUpTile", new EventHandler(ContextMenu_OnClick_For_TileLeftUp));
-                    MenuItem m5 = new MenuItem("Theseus", new EventHandler(ContextMenu_OnClick_For_Theseus));
+                    MenuItem m5 = new MenuItem("Exit", new EventHandler(ContextMenu_OnClick_For_TileExit));
+                    MenuItem m6 = new MenuItem("Theseus", new EventHandler(ContextMenu_OnClick_For_Theseus));
+                    MenuItem m7 = new MenuItem("Minotaur", new EventHandler(ContextMenu_OnClick_For_Minotaur));
+
                     btn_Cell.ContextMenu = new System.Windows.Forms.ContextMenu();
                     btn_Cell.ContextMenu.MenuItems.Add(m1);
                     btn_Cell.ContextMenu.MenuItems.Add(m2);
                     btn_Cell.ContextMenu.MenuItems.Add(m3);
                     btn_Cell.ContextMenu.MenuItems.Add(m4);
                     btn_Cell.ContextMenu.MenuItems.Add(m5);
-                    //p.Controls.Add(btn_Cell);
+                    btn_Cell.ContextMenu.MenuItems.Add(m6);
+                    btn_Cell.ContextMenu.MenuItems.Add(m7);
+
                     //Finally, add the control to the correct location in the table
                     GameBoard.Controls.Add(btn_Cell, x, y);
                     count += 1;
@@ -90,7 +93,8 @@ namespace LevelDesign
             theseus = new Theseus();
             minotaur = new Minotaur();
 
-
+            theseusSet = false;
+            minotaurSet = false;
         }
         protected void ContextMenu_OnClick_For_Theseus(object sender, object e)
         {
@@ -106,6 +110,22 @@ namespace LevelDesign
             }
             OldButton = theButton;
             theButton.ChildCharacter = theseus;
+        }
+        
+        protected void ContextMenu_OnClick_For_Minotaur(object sender, object e)
+        {
+            var mnu = sender as MenuItem;
+            //getting the right click menu(contextmenu) of the option that was clicked(MenuItem)
+            ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
+            //get the button of the context btton 
+            var theButton = MyContextMenu.SourceControl as CustomControl_Button;
+            //initiating an instance of Cell class
+            if (OldButton != null)
+            {
+                OldButton.ClearCharacters();
+            }
+            OldButton = theButton;
+            theButton.ChildCharacter = minotaur;
         }
         // this method puts an item into, and allows it to be selected, from the right click context menu
         // left
@@ -137,6 +157,7 @@ namespace LevelDesign
             //assign the cell instance to the button
             theButton.ChildCell = cell;
         }
+
         // OnClick function for Cell Buttons
         protected void Button_OnClick_For_Cell(object sender, object e)
         {
@@ -146,13 +167,31 @@ namespace LevelDesign
                 //initiating an instance of Cell class
                 if (this.TheClickedButton.Name == "btn_Theseus")
                 {
-                    if (OldButton != null)
+                    if (theseusSet != true)
                     {
-                        OldButton.ClearCharacters();
-                        OldButton = null;
+                        if (OldButton != null)
+                        {
+                            OldButton.ClearCharacters();
+                            OldButton = null;
+                        }
+                        OldButton = theButton;
+                        theButton.ChildCharacter = theseus;
+                        theseusSet = true;
                     }
-                    OldButton = theButton;
-                    theButton.ChildCharacter = theseus;
+                }
+                else if (this.TheClickedButton.Name == "btn_Minotaur")
+                {
+                    if (minotaurSet == false)
+                    {
+                        if (OldButton != null)
+                        {
+                            OldButton.ClearCharacters();
+                            OldButton = null;
+                        }
+                        OldButton = theButton;
+                        theButton.ChildCharacter = minotaur;
+                        minotaurSet = true;
+                    }
                 }
                 else
                 {
@@ -176,9 +215,12 @@ namespace LevelDesign
                             //Set the type of the instance to CellType.LeftUp
                             cell.Type = CellType.LeftUP;
                             break;
+                        case "btn_TileExit":
+                            //Set the type of the instance to CellType.Exit
+                            cell.Type = CellType.Exit;
+                            break;
                     }
-                   // int CellIndex = LevelDesigner.MyLevel.CoordinateToList(theButton.X, theButton.Y);
-                   // LevelDesigner.MyLevel.CellCollection[CellIndex] = theButton.ChildCell;
+                    //sets the button
                     theButton.ChildCell = cell;
                 }
             }
@@ -210,6 +252,20 @@ namespace LevelDesign
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
             //create a cell object with apporiate wall
             Cell cell = new Cell() { Type = CellType.LeftUP };
+            //assign the cell instance to the button
+            theButton.ChildCell = cell;
+        }
+
+        protected void ContextMenu_OnClick_For_TileExit(object sender, object e)
+        {
+            //Converting the button object into menuitem
+            var mnu = sender as MenuItem;
+            //getting the right click menu(contextmenu) of the option that was clicked(MenuItem)
+            ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
+            //get the button of the context btton 
+            var theButton = MyContextMenu.SourceControl as CustomControl_Button;
+            //create a cell object with apporiate wall
+            Cell cell = new Cell() { Type = CellType.Exit };
             //assign the cell instance to the button
             theButton.ChildCell = cell;
         }
@@ -308,9 +364,23 @@ namespace LevelDesign
             var b = sender as Button;
             //nominating the clicked button
             this.TheClickedButton = b;
+            theseusSet = true;
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            //converting the clicked button in the menu
+            var b = sender as Button;
+            //nominating the clicked button
+            this.TheClickedButton = b;
+        }
+
+        private void btn_Minotaur_Click(object sender, EventArgs e)
         {
 
         }
