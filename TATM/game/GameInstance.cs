@@ -196,7 +196,10 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation -= myLevel.Width;
-                            updateCharacters();
+                            if (updateCharacters())
+                            {
+                                break;
+                            }
                             moveMinotaur(2);
                             currentMoves += 1;
 
@@ -206,7 +209,10 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation += myLevel.Width;
-                            updateCharacters();
+                            if (updateCharacters())
+                            {
+                                break;
+                            }
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
@@ -215,7 +221,10 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation -= 1;
-                            updateCharacters();
+                            if (updateCharacters())
+                            {
+                                break;
+                            }
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
@@ -225,12 +234,16 @@ namespace GamePlayer.game
                         {
 
                             theseusLocation += 1;
-                            updateCharacters();
+                            if (updateCharacters())
+                            {
+                                break;
+                            }
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
                         break;
                 }
+
             }
         }
         // check if there is space to move for theseus and/or the minotaur
