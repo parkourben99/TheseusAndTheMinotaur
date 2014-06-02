@@ -16,11 +16,24 @@ namespace GamePlayer.game
         private Level myLevel;
         // theseus' location
         private int theseusLocation;
+        public int TheseusLocation
+        {
+            set { theseusLocation = value; }
+        }
+        private bool canUndo;
+        public bool CanUndo
+        {
+            set { canUndo = value; }
+        }
         // minotaurs location
         private int minotaurLocation;
+        public int MinotaurLocation
+        {
+            set { minotaurLocation = value; }
+        }
         // theseus and minotaurs last location
         private int theseusLast;
-        private int minotaurLast;
+        private int[] minotaurLast = new int[2];
         // score & moves
         private int currentScore = 10000;
         private int currentMoves;
@@ -63,16 +76,28 @@ namespace GamePlayer.game
         public GameInstance(Level level)
         {
             myLevel = level;
-            buildCells();
-           // currentScore = 0;
-            
-            //build level
+
         }
         public GameInstance()
         {
             
         }
         // draw the original level
+        public void undo()
+        {
+            if (canUndo)
+            {
+                theseusLocation = theseusLast;
+                minotaurLocation = minotaurLast[1];
+                buildCells();
+                currentMoves += 1;
+            }
+            else
+            {
+                
+            }
+            canUndo = false;
+        }
         public void buildCells()
         {
             // create a new sprite batch
@@ -125,10 +150,10 @@ namespace GamePlayer.game
             // place theseus at new location
             toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height));
             // replace minotaurs last location
-            toRender.addSprite(myLevel.TileSet["Ground" + ((minotaurLast % 2) + 1)], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height));
-            if (myLevel.CellCollection[minotaurLast].Type != CellType.Ground)
+            toRender.addSprite(myLevel.TileSet["Ground" + ((minotaurLast[0] % 2) + 1)], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
+            if (myLevel.CellCollection[minotaurLast[0]].Type != CellType.Ground)
             {
-                toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast].Type.ToString()], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height));
+                toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast[0]].Type.ToString()], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
             }           
             // place minotaur at new location
             toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width), (minotaurLocation / myLevel.Height));
@@ -154,6 +179,7 @@ namespace GamePlayer.game
             // build base game board
             buildCells();
             gameState = true;
+            canUndo = true;
         }
         // move theseus
         public void moveTheseus(string direction)
@@ -170,6 +196,7 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation -= myLevel.Width;
+                            updateCharacters();
                             moveMinotaur(2);
                             currentMoves += 1;
 
@@ -179,6 +206,7 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation += myLevel.Width;
+                            updateCharacters();
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
@@ -187,6 +215,7 @@ namespace GamePlayer.game
                         if (isSpace(direction, true))
                         {
                             theseusLocation -= 1;
+                            updateCharacters();
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
@@ -196,6 +225,7 @@ namespace GamePlayer.game
                         {
 
                             theseusLocation += 1;
+                            updateCharacters();
                             moveMinotaur(2);
                             currentMoves += 1;
                         }
@@ -290,6 +320,7 @@ namespace GamePlayer.game
         // moves the minotaur by amount of times
         public void moveMinotaur(int times)
         {
+            minotaurLast[1] = minotaurLocation;
             // set the moved count to 0
             int count = 0;
             // while the minotaur hasn't moved twice
@@ -299,7 +330,7 @@ namespace GamePlayer.game
                 int[] theseusCoords = getCoords(myLevel.CellCollection[theseusLocation]);
                 int[] minotaurCoords = getCoords(myLevel.CellCollection[minotaurLocation]);
                 // set minotaurs last location to current location
-                minotaurLast = minotaurLocation;
+                minotaurLast[0] = minotaurLocation;
                 // if the minotaurs x location is less than theseus' x, and there is space
                 if ((minotaurCoords[0] < theseusCoords[0]) && (isSpace("right", false)))
                 {
@@ -379,6 +410,9 @@ namespace GamePlayer.game
             data.Add(myLevel.LevelName);
             data.Add(theseusLocation.ToString());
             data.Add(minotaurLocation.ToString());
+            data.Add(currentMoves.ToString());
+            data.Add(currentTime.ToString());
+            data.Add(canUndo.ToString());
             return data;
         }
 
