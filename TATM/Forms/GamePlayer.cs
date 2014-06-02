@@ -250,21 +250,28 @@ namespace GamePlayer
 
         private void btnLoadSave_Click(object sender, EventArgs e)
         {
-            List<string> instance = (List<string>)StorageManagement.Filer.loadFromFile(typeof(List<string>), "../../Resources/XML/saves/" + selectedSave);
-            // create a new game instance
-            currentGameInstance = new GameInstance();
-            // set the panel as graphics location
-            renderer.initialiseGraphics(getPanel().CreateGraphics());
-            currentGameInstance.MyLevel = StorageManagement.StorageManagement.loadLevel(instance[0]);
-            currentGameInstance.TheseusLocation = Convert.ToInt32(instance[1]);
-            currentGameInstance.MinotaurLocation = Convert.ToInt32(instance[2]);
-            currentGameInstance.CurrentMoves = Convert.ToInt32(instance[3]);
-            currentGameInstance.CurrentTime = Convert.ToInt32(instance[4]);
-            currentGameInstance.CanUndo = Convert.ToBoolean(instance[5]);
-            gameTimer.Start();
-            lblLevelName.Text = currentGameInstance.MyLevel.LevelName;
-            setRatio();
-            currentGameInstance.GameState = true;
+            if (selectedSave != null)
+            {
+                List<string> instance = (List<string>)StorageManagement.Filer.loadFromFile(typeof(List<string>), "../../Resources/XML/saves/" + selectedSave);
+                // create a new game instance
+                currentGameInstance = new GameInstance();
+                // set the panel as graphics location
+                renderer.initialiseGraphics(getPanel().CreateGraphics());
+                currentGameInstance.MyLevel = StorageManagement.StorageManagement.loadLevel(instance[0]);
+                currentGameInstance.TheseusLocation = Convert.ToInt32(instance[1]);
+                currentGameInstance.MinotaurLocation = Convert.ToInt32(instance[2]);
+                currentGameInstance.CurrentMoves = Convert.ToInt32(instance[3]);
+                currentGameInstance.CurrentTime = Convert.ToInt32(instance[4]);
+                currentGameInstance.CanUndo = Convert.ToBoolean(instance[5]);
+                gameTimer.Start();
+                lblLevelName.Text = currentGameInstance.MyLevel.LevelName;
+                setRatio();
+                currentGameInstance.GameState = true;
+            }
+            else
+            { 
+                MessageBox.Show("Please select a level");
+            }
         }
         
     }
