@@ -88,7 +88,7 @@
             this.pnlGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGame.Location = new System.Drawing.Point(12, 32);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(700, 700);
+            this.pnlGame.Size = new System.Drawing.Size(700, 621);
             this.pnlGame.TabIndex = 3;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
             // 
@@ -231,7 +231,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 812);
+            this.ClientSize = new System.Drawing.Size(1004, 733);
             this.Controls.Add(this.lblMoves);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.bntMenu);
@@ -251,7 +251,7 @@
             this.Controls.Add(this.ltbLevel);
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1020, 850);
+            this.MinimumSize = new System.Drawing.Size(1020, 726);
             this.Name = "GamePlayerForm";
             this.Text = "New Game";
             this.Load += new System.EventHandler(this.Form2_Load);

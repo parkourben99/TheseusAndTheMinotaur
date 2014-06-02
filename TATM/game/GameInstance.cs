@@ -216,6 +216,7 @@ namespace GamePlayer.game
                 {
                     cellInt = minotaurLocation;
                 }   
+            
             // find the cell at cell number
             Cell cell = myLevel.CellCollection[cellInt];
             // cell for checking down

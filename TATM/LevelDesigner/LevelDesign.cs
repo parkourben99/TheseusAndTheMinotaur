@@ -21,7 +21,9 @@ namespace LevelDesign
         private Minotaur minotaur;
         private int count = 0;
         private Button TheClickedButton;
-        private CustomControl_Button OldButton;
+        private CustomControl_Button OldTheseusButton;
+        private CustomControl_Button OldMinotaurButton;
+        private CustomControl_Button OldExitButton;
         public LevelDesign()
         {
             InitializeComponent();
@@ -104,12 +106,14 @@ namespace LevelDesign
             //get the button of the context btton 
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
             //initiating an instance of Cell class
-            if (OldButton != null)
+            if (OldTheseusButton != null)
             {
-                OldButton.ClearCharacters();
+                OldTheseusButton.ClearCharacters();
             }
-            OldButton = theButton;
+            OldTheseusButton = theButton;
             theButton.ChildCharacter = theseus;
+
+            LevelDesigner.MyLevel.TheseusLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
         }
         
         protected void ContextMenu_OnClick_For_Minotaur(object sender, object e)
@@ -120,12 +124,15 @@ namespace LevelDesign
             //get the button of the context btton 
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
             //initiating an instance of Cell class
-            if (OldButton != null)
+            if (OldMinotaurButton != null)
             {
-                OldButton.ClearCharacters();
+                OldMinotaurButton.ClearCharacters();
             }
-            OldButton = theButton;
+            OldMinotaurButton = theButton;
             theButton.ChildCharacter = minotaur;
+
+            LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+
         }
         // this method puts an item into, and allows it to be selected, from the right click context menu
         // left
@@ -169,12 +176,12 @@ namespace LevelDesign
                 {
 
                     
-                        if (OldButton != null)
+                        if (OldTheseusButton != null)
                         {
-                            OldButton.ClearCharacters();
-                            OldButton = null;
+                            OldTheseusButton.ClearCharacters();
+                            OldTheseusButton = null;
                         }
-                        OldButton = theButton;
+                        OldTheseusButton = theButton;
                         theButton.ChildCharacter = theseus;
 
                     
@@ -182,12 +189,12 @@ namespace LevelDesign
                 else if (this.TheClickedButton.Name == "btn_Minotaur")
                 {
 
-                        if (OldButton != null)
+                        if (OldTheseusButton != null)
                         {
-                            OldButton.ClearCharacters();
-                            OldButton = null;
+                            OldTheseusButton.ClearCharacters();
+                            OldTheseusButton = null;
                         }
-                        OldButton = theButton;
+                        OldTheseusButton = theButton;
                         theButton.ChildCharacter = minotaur;
 
                 }
@@ -208,6 +215,7 @@ namespace LevelDesign
                             //Set the type of the instance to CellType.Blank
                             //add correct flor tile
                             cell.Type = CellType.Ground;
+
                             break;
                         case "btn_TileLeftUp":
                             //Set the type of the instance to CellType.LeftUp
@@ -262,10 +270,22 @@ namespace LevelDesign
             ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
             //get the button of the context btton 
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
+
+            if (OldExitButton != null)
+            {
+                OldExitButton.DrawBackgroundImage(OldExitButton._PreviousCell.Type);
+            }
+            OldExitButton = theButton;
+            OldExitButton._PreviousCell = OldExitButton.ChildCell;
+            
             //create a cell object with apporiate wall
             Cell cell = new Cell() { Type = CellType.Exit };
             //assign the cell instance to the button
             theButton.ChildCell = cell;
+       //     theButton.ChildCell.Type = CellType.Exit;
+
+            LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldExitButton._PreviousCell);
+          
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -278,6 +298,7 @@ namespace LevelDesign
             }
             if (!String.IsNullOrWhiteSpace(LevelDesigner.MyLevel.LevelName))
             {
+                
                 StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
                 MessageBox.Show("Level is \"Saved\"");
             }

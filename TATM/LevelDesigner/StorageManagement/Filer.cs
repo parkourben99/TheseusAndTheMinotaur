@@ -13,8 +13,14 @@ namespace StorageManagement
         public static void saveToFile<t>(t toSave, string file)
         {
             System.Xml.Serialization.XmlSerializer serialiser = new System.Xml.Serialization.XmlSerializer(toSave.GetType());
-            System.IO.StreamWriter writer = new System.IO.StreamWriter(file + ".xml");
-            serialiser.Serialize(writer, toSave);
+            using ( System.IO.StreamWriter writer = new System.IO.StreamWriter(file + ".xml") )
+            {
+                
+                serialiser.Serialize(writer, toSave);
+            }
+           
+            
+
         }
 
         //creates stuff from XML
