@@ -125,6 +125,7 @@
             this.btn_Exit.TabIndex = 10;
             this.btn_Exit.Text = "ExitTile";
             this.btn_Exit.UseVisualStyleBackColor = true;
+            this.btn_Exit.Visible = false;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // btn_Minotaur
@@ -135,6 +136,7 @@
             this.btn_Minotaur.TabIndex = 8;
             this.btn_Minotaur.Text = "Minotaur";
             this.btn_Minotaur.UseVisualStyleBackColor = true;
+            this.btn_Minotaur.Visible = false;
             this.btn_Minotaur.Click += new System.EventHandler(this.btn_Minotaur_Click);
             // 
             // btn_Theseus
@@ -145,6 +147,7 @@
             this.btn_Theseus.TabIndex = 7;
             this.btn_Theseus.Text = "Theseus";
             this.btn_Theseus.UseVisualStyleBackColor = true;
+            this.btn_Theseus.Visible = false;
             this.btn_Theseus.Click += new System.EventHandler(this.btn_Theseus_Click);
             // 
             // btn_Save
@@ -166,6 +169,7 @@
             this.btn_TileBlank.TabIndex = 6;
             this.btn_TileBlank.Text = "TileBlank";
             this.btn_TileBlank.UseVisualStyleBackColor = true;
+            this.btn_TileBlank.Visible = false;
             this.btn_TileBlank.Click += new System.EventHandler(this.btn_Tile3_Click);
             // 
             // btn_TileLeft
@@ -176,6 +180,7 @@
             this.btn_TileLeft.TabIndex = 3;
             this.btn_TileLeft.Text = "TileLeft";
             this.btn_TileLeft.UseVisualStyleBackColor = true;
+            this.btn_TileLeft.Visible = false;
             this.btn_TileLeft.Click += new System.EventHandler(this.btn_Tile1_Click);
             // 
             // btn_Menu
@@ -206,6 +211,7 @@
             this.btn_TileUp.TabIndex = 5;
             this.btn_TileUp.Text = "TileUp";
             this.btn_TileUp.UseVisualStyleBackColor = true;
+            this.btn_TileUp.Visible = false;
             this.btn_TileUp.Click += new System.EventHandler(this.btn_Tile2_Click);
             // 
             // btn_TileLeftUp
@@ -216,6 +222,7 @@
             this.btn_TileLeftUp.TabIndex = 4;
             this.btn_TileLeftUp.Text = "TileLeftUp";
             this.btn_TileLeftUp.UseVisualStyleBackColor = true;
+            this.btn_TileLeftUp.Visible = false;
             this.btn_TileLeftUp.Click += new System.EventHandler(this.btn_Tile4_Click);
             // 
             // tableLayoutPanel1

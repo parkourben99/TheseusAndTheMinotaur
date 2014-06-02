@@ -27,21 +27,29 @@ namespace LevelDesign
         public LevelDesign()
         {
             InitializeComponent();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.Add("15 x 15");
+            comboBox1.Items.Add("14 x 14");
+            comboBox1.Items.Add("13 x 13");
+            comboBox1.Items.Add("12 x 12");
+            comboBox1.Items.Add("11 x 11");
             comboBox1.Items.Add("10 x 10");
+            comboBox1.Items.Add("9 x 9");
+            comboBox1.Items.Add("8 x 8");
+            comboBox1.Items.Add("7 x 7");
+            comboBox1.Items.Add("6 x 6");
+            comboBox1.Items.Add("5 x 5");
 
-            int x = 15;
-            int y = 15;
-            createGameBoard(x, y);
-        //    StorageManagement.StorageManagement.initLevels();
         }
-        protected void createGameBoard(int rows, int columns)
+        protected void createGameBoard(int rows, int columns, bool isloaded)
         {
+            if (isloaded != true)
+            {
+                //creating Level
+                LevelDesigner.createLevel(rows, columns);
+                LevelDesigner.MyLevel.CreateCells();
+            }
 
-            //creating Level
-            LevelDesigner.createLevel(rows, columns);
-            LevelDesigner.MyLevel.CreateCells();
-            
             //Clear out the existing controls, we are generating a new table layout
             GameBoard.Controls.Clear();
             GameBoard.ColumnStyles.Clear();
@@ -197,7 +205,6 @@ namespace LevelDesign
                             //Set the type of the instance to CellType.Blank
                             //add correct flor tile
                             cell.Type = CellType.Ground;
-
                             break;
                         case "btn_TileLeftUp":
                             //Set the type of the instance to CellType.LeftUp
@@ -299,11 +306,55 @@ namespace LevelDesign
                 if (levelSelect.selectedLevelName != null)
                 {
                     if (StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName) != null){
-                    LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
+                        LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
+                        createGameBoard(LevelDesigner.MyLevel.Height, LevelDesigner.MyLevel.Width, true);
+                        loadGameBoard(LevelDesigner.MyLevel, sender);
                     }
                 }
             }
 
+        } 
+
+        private static void loadGameBoard(Level level, object sender)
+        {
+            int Theseus = level.TheseusLocation;
+            int Minotaur = level.MinotaurLocation;
+            int Exit = level.ExitLocation;
+            int count = 0;
+            Image newImage;
+
+            Button loadButton = sender as Button;
+            Form parentForm = loadButton.FindForm();
+            Button specificButton;
+
+            foreach (Cell cell in level.CellCollection)
+            {
+                specificButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as Button;
+                //speciicButton.DrawBackgroundImage(theButton.ChildCell.Type);
+
+                newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
+                specificButton.BackgroundImage = ((System.Drawing.Image)(newImage));
+
+
+              
+               
+                if (Theseus == count)
+                {
+
+             //       ContextMenu_OnClick_For_Theseus(Theseus, 
+
+                }
+                else if (Minotaur == count)
+                {
+
+
+                }
+                else if (Exit == count)
+                {
+
+                }
+                count++;
+            }
         }
 
         private void btn_Tile2_Click(object sender, EventArgs e)
@@ -404,12 +455,47 @@ namespace LevelDesign
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string test = comboBox1.SelectedItem.ToString();
+            string boardSize = comboBox1.SelectedItem.ToString();
 
-            if( test == "15 x 15")
+
+            switch (boardSize)
             {
-             //   createGameBoard(15, 15);
+                case "15 x 15":
+                    createGameBoard(15, 15, false);
+                    break;
+                case "14 x 14":
+                    createGameBoard(14, 14, false);
+                    break;
+                case "13 x 13":
+                    createGameBoard(13, 13, false);
+                    break;
+                case "12 x 12":
+                    createGameBoard(12, 12, false);
+                    break;
+                case "11 x 11":
+                    createGameBoard(11, 11, false);
+                    break;
+                case "10 x 10":
+                    createGameBoard(10, 10, false);
+                    break;
+                case "9 x 9":
+                    createGameBoard(9, 9, false);
+                    break;
+                case "8 x 8":
+                    createGameBoard(8, 8, false);
+                    break;
+                case "7 x 7":
+                    createGameBoard(7, 7, false);
+                    break;
+                case "6 x 6":
+                    createGameBoard(6, 6, false);
+                    break;
+                case "5 x 5":
+                    createGameBoard(5, 5, false);
+                    break;
             }
+            comboBox1.Visible = false;
+
         }
     }
 }
