@@ -22,13 +22,16 @@ namespace LevelDesign
         private int count = 0;
         private Button TheClickedButton;
         private CustomControl_Button OldButton;
-        bool theseusSet;
-        bool minotaurSet;
         public LevelDesign()
         {
             InitializeComponent();
-            createGameBoard(15, 15);
-           // StorageManagement.StorageManagement.initLevels();
+            comboBox1.Items.Add("15 x 15");
+            comboBox1.Items.Add("10 x 10");
+
+            int x = 15;
+            int y = 15;
+            createGameBoard(x, y);
+        //    StorageManagement.StorageManagement.initLevels();
         }
         protected void createGameBoard(int rows, int columns)
         {
@@ -92,9 +95,6 @@ namespace LevelDesign
             //AddBorders();
             theseus = new Theseus();
             minotaur = new Minotaur();
-
-            theseusSet = false;
-            minotaurSet = false;
         }
         protected void ContextMenu_OnClick_For_Theseus(object sender, object e)
         {
@@ -167,8 +167,8 @@ namespace LevelDesign
                 //initiating an instance of Cell class
                 if (this.TheClickedButton.Name == "btn_Theseus")
                 {
-                    if (theseusSet != true)
-                    {
+
+                    
                         if (OldButton != null)
                         {
                             OldButton.ClearCharacters();
@@ -176,13 +176,12 @@ namespace LevelDesign
                         }
                         OldButton = theButton;
                         theButton.ChildCharacter = theseus;
-                        theseusSet = true;
-                    }
+
+                    
                 }
                 else if (this.TheClickedButton.Name == "btn_Minotaur")
                 {
-                    if (minotaurSet == false)
-                    {
+
                         if (OldButton != null)
                         {
                             OldButton.ClearCharacters();
@@ -190,8 +189,7 @@ namespace LevelDesign
                         }
                         OldButton = theButton;
                         theButton.ChildCharacter = minotaur;
-                        minotaurSet = true;
-                    }
+
                 }
                 else
                 {
@@ -360,11 +358,13 @@ namespace LevelDesign
 
         private void btn_Theseus_Click(object sender, EventArgs e)
         {
-            //converting the clicked button in the menu
-            var b = sender as Button;
-            //nominating the clicked button
-            this.TheClickedButton = b;
-            theseusSet = true;
+
+                //converting the clicked button in the menu
+                var b = sender as Button;
+                //nominating the clicked button
+                this.TheClickedButton = b;
+                
+
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
@@ -383,6 +383,31 @@ namespace LevelDesign
         private void btn_Minotaur_Click(object sender, EventArgs e)
         {
 
+                //converting the clicked button in the menu
+                var b = sender as Button;
+                //nominating the clicked button
+                this.TheClickedButton = b;
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            string test = comboBox1.SelectedItem.ToString();
+
+            if( test == "15 x 15")
+            {
+             //   createGameBoard(15, 15);
+            }
         }
     }
 }

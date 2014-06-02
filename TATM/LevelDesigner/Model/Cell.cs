@@ -45,7 +45,7 @@ namespace LevelDesign.Model
         }
 
         //The 'has Theseus' status on the cell
-        private bool _IsTheseus =false;
+        private bool _IsTheseus = false;
 
         //Get/Set the value of 'has Theseus' from a cell
         public bool IsTheseus
