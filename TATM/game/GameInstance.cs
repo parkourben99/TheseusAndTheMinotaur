@@ -176,6 +176,10 @@ namespace GamePlayer.game
             // set theseus and minotaur location
             theseusLocation = myLevel.TheseusLocation;
             minotaurLocation = myLevel.MinotaurLocation;
+            theseusLast = myLevel.TheseusLocation;
+            minotaurLast[0] = myLevel.MinotaurLocation;
+            minotaurLast[1] = myLevel.MinotaurLocation;
+
             // build base game board
             buildCells();
             gameState = true;
