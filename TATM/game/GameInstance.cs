@@ -86,7 +86,7 @@ namespace GamePlayer.game
                 toRender.addSprite(myLevel.TileSet["Ground" + ((i % 2) + 1)], (i % myLevel.Width), (i / myLevel.Height));
             }
             // for every cell in the level
-            toRender.addSprite(myLevel.TileSet["Exit"], (myLevel.ExitLocation % myLevel.Width), (myLevel.ExitLocation / myLevel.Height));
+            
             foreach (Cell cell in myLevel.CellCollection)
             {
                 // the cell type as a string for finding textures in tileset dictionary
@@ -105,6 +105,7 @@ namespace GamePlayer.game
             // add theseus, minotaur and exit locations to the sprite batch
             toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height) );
             toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width), (minotaurLocation / myLevel.Height));
+            toRender.addSprite(myLevel.TileSet["Exit"], (myLevel.ExitLocation % myLevel.Width), (myLevel.ExitLocation / myLevel.Height));
 
             // draw all the sprites to the screen
             toRender.runBatch();

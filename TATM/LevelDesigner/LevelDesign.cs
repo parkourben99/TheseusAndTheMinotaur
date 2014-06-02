@@ -138,31 +138,13 @@ namespace LevelDesign
         // left
         protected void ContextMenu_OnClick_For_TileLeft(object sender, object e)
         {
-            //Converting the button object into menuitem
-            var mnu = sender as MenuItem;
-            //getting the right click menu(contextmenu) of the option that was clicked(MenuItem)
-            ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
-            //get the button of the context btton 
-            var theButton = MyContextMenu.SourceControl as CustomControl_Button;
-            //create a cell object with apporiate wall
-            Cell cell = new Cell() { Type = CellType.Left };
-            //assign the cell instance to the button
-            theButton.ChildCell = cell;
+            SetCellWallTile(sender, CellType.Left);
         }
         // this method puts an item into, and allows it to be selected, from the right click context menu
         // Up
         protected void ContextMenu_OnClick_For_TileUp(object sender, object e)
         {
-            //Converting the button object into menuitem
-            var mnu = sender as MenuItem;
-            //getting the right click menu(contextmenu) of the option that was clicked(MenuItem)
-            ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
-            //get the button of the context btton 
-            var theButton = MyContextMenu.SourceControl as CustomControl_Button;
-            //create a cell object with apporiate wall
-            Cell cell = new Cell() { Type = CellType.Up };
-            //assign the cell instance to the button
-            theButton.ChildCell = cell;
+            SetCellWallTile(sender, CellType.Up);
         }
 
         // OnClick function for Cell Buttons
@@ -235,20 +217,16 @@ namespace LevelDesign
         // Blank
         protected void ContextMenu_OnClick_For_TileBlank(object sender, object e)
         {
-            //Converting the button object into menuitem
-            var mnu = sender as MenuItem;
-            //getting the right click menu(contextmenu) of the option that was clicked(MenuItem)
-            ContextMenu MyContextMenu = (ContextMenu)mnu.Parent;
-            //get the button of the context btton 
-            var theButton = MyContextMenu.SourceControl as CustomControl_Button;
-            //create a cell object with apporiate wall
-            Cell cell = new Cell() { Type = CellType.Ground };
-            //assign the cell instance to the button
-            theButton.ChildCell = cell;
+            SetCellWallTile(sender, CellType.Ground);
         }
         // this method puts an item into, and allows it to be selected, from the right click context menu
         // Up-left
         protected void ContextMenu_OnClick_For_TileLeftUp(object sender, object e)
+        {
+            SetCellWallTile(sender, CellType.LeftUP);
+        }
+
+        private void SetCellWallTile(object sender, CellType type)
         {
             //Converting the button object into menuitem
             var mnu = sender as MenuItem;
@@ -257,9 +235,12 @@ namespace LevelDesign
             //get the button of the context btton 
             var theButton = MyContextMenu.SourceControl as CustomControl_Button;
             //create a cell object with apporiate wall
-            Cell cell = new Cell() { Type = CellType.LeftUP };
+            // Cell cell = new Cell() { Type = CellType.LeftUP };
             //assign the cell instance to the button
-            theButton.ChildCell = cell;
+            // theButton.ChildCell = cell;
+
+            theButton.ChildCell.Type = type;
+            theButton.DrawBackgroundImage(theButton.ChildCell.Type);
         }
 
         protected void ContextMenu_OnClick_For_TileExit(object sender, object e)
