@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ltbLevel = new System.Windows.Forms.ListBox();
+            this.ltbSaves = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.pnlGame = new System.Windows.Forms.Panel();
@@ -47,21 +47,23 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.lblMoves = new System.Windows.Forms.Label();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnLoadSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ltbLevel
+            // ltbSaves
             // 
-            this.ltbLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ltbLevel.FormattingEnabled = true;
-            this.ltbLevel.Location = new System.Drawing.Point(829, 32);
-            this.ltbLevel.Name = "ltbLevel";
-            this.ltbLevel.Size = new System.Drawing.Size(160, 212);
-            this.ltbLevel.TabIndex = 0;
+            this.ltbSaves.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ltbSaves.FormattingEnabled = true;
+            this.ltbSaves.Location = new System.Drawing.Point(829, 32);
+            this.ltbSaves.Name = "ltbSaves";
+            this.ltbSaves.Size = new System.Drawing.Size(160, 212);
+            this.ltbSaves.TabIndex = 0;
+            this.ltbSaves.SelectedIndexChanged += new System.EventHandler(this.ltbSaves_SelectedIndexChanged);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(829, 279);
+            this.btnSave.Location = new System.Drawing.Point(829, 308);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 23);
             this.btnSave.TabIndex = 1;
@@ -185,7 +187,7 @@
             // btnUndo
             // 
             this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUndo.Location = new System.Drawing.Point(828, 308);
+            this.btnUndo.Location = new System.Drawing.Point(829, 337);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(160, 23);
             this.btnUndo.TabIndex = 14;
@@ -227,11 +229,23 @@
             this.gameTimer.Interval = 1000;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // btnLoadSave
+            // 
+            this.btnLoadSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadSave.Location = new System.Drawing.Point(829, 279);
+            this.btnLoadSave.Name = "btnLoadSave";
+            this.btnLoadSave.Size = new System.Drawing.Size(160, 23);
+            this.btnLoadSave.TabIndex = 18;
+            this.btnLoadSave.Text = "Load Save";
+            this.btnLoadSave.UseVisualStyleBackColor = true;
+            this.btnLoadSave.Click += new System.EventHandler(this.btnLoadSave_Click);
+            // 
             // GamePlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 733);
+            this.Controls.Add(this.btnLoadSave);
             this.Controls.Add(this.lblMoves);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.bntMenu);
@@ -248,7 +262,7 @@
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.ltbLevel);
+            this.Controls.Add(this.ltbSaves);
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1020, 726);
@@ -264,7 +278,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox ltbLevel;
+        private System.Windows.Forms.ListBox ltbSaves;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Panel pnlGame;
@@ -282,6 +296,7 @@
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblMoves;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Button btnLoadSave;
 
     }
 }
