@@ -308,7 +308,10 @@ namespace LevelDesign
                     if (StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName) != null){
                         LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
                         createGameBoard(LevelDesigner.MyLevel.Height, LevelDesigner.MyLevel.Width, true);
-                        loadGameBoard(LevelDesigner.MyLevel, sender);
+                        comboBox1.Visible = false;
+
+                     //   LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(loadLeve
+                            //.IndexOf(ChildCell);
                     }
                 }
             }
@@ -332,8 +335,8 @@ namespace LevelDesign
                 specificButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as Button;
                 //speciicButton.DrawBackgroundImage(theButton.ChildCell.Type);
 
-                newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
-                specificButton.BackgroundImage = ((System.Drawing.Image)(newImage));
+              //  newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
+              //  specificButton.BackgroundImage = ((System.Drawing.Image)(newImage));
 
 
               
