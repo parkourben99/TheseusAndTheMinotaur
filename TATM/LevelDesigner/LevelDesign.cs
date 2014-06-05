@@ -464,37 +464,37 @@ namespace LevelDesign
             switch (boardSize)
             {
                 case "15 x 15":
-                    createGameBoard(15, 15, false);
+                    createGameBoard(16, 16, false);
                     break;
                 case "14 x 14":
-                    createGameBoard(14, 14, false);
+                    createGameBoard(15, 15, false);
                     break;
                 case "13 x 13":
-                    createGameBoard(13, 13, false);
+                    createGameBoard(14, 14, false);
                     break;
                 case "12 x 12":
-                    createGameBoard(12, 12, false);
+                    createGameBoard(13, 13, false);
                     break;
                 case "11 x 11":
-                    createGameBoard(11, 11, false);
+                    createGameBoard(12, 12, false);
                     break;
                 case "10 x 10":
-                    createGameBoard(10, 10, false);
+                    createGameBoard(11, 11, false);
                     break;
                 case "9 x 9":
-                    createGameBoard(9, 9, false);
+                    createGameBoard(10, 10, false);
                     break;
                 case "8 x 8":
-                    createGameBoard(8, 8, false);
+                    createGameBoard(9, 9, false);
                     break;
                 case "7 x 7":
-                    createGameBoard(7, 7, false);
+                    createGameBoard(8, 8, false);
                     break;
                 case "6 x 6":
-                    createGameBoard(6, 6, false);
+                    createGameBoard(7, 7, false);
                     break;
                 case "5 x 5":
-                    createGameBoard(5, 5, false);
+                    createGameBoard(6, 6, false);
                     break;
             }
             comboBox1.Visible = false;
