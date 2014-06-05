@@ -102,9 +102,12 @@ namespace LevelDesign
                     count += 1;
                 }
             }
+            if (isloaded != true)
+            {
             //AddBorders();
             theseus = new Theseus();
             minotaur = new Minotaur();
+            }
         }
         protected void ContextMenu_OnClick_For_Theseus(object sender, object e)
         {
@@ -309,30 +312,41 @@ namespace LevelDesign
                         LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
                         createGameBoard(LevelDesigner.MyLevel.Height, LevelDesigner.MyLevel.Width, true);
                         comboBox1.Visible = false;
+                        btn_Load.Visible = false;
 
-                     //   LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(loadLeve
+                        minotaur = new Minotaur();
+                        theseus = new Theseus();
+
+                        loadGameBoard(LevelDesigner.MyLevel, sender, theseus, minotaur);
+
+                        
                             //.IndexOf(ChildCell);
+
                     }
                 }
             }
 
         } 
 
-        private static void loadGameBoard(Level level, object sender)
+        private static void loadGameBoard(Level level, object sender, Theseus theseus, Minotaur minotaur)
         {
             int Theseus = level.TheseusLocation;
             int Minotaur = level.MinotaurLocation;
             int Exit = level.ExitLocation;
             int count = 0;
-            Image newImage;
+         //   Image newImage;
 
             Button loadButton = sender as Button;
+            var theButton = sender as CustomControl_Button;
             Form parentForm = loadButton.FindForm();
-            Button specificButton;
+        //    Button specificButton;
+
+            
+         
 
             foreach (Cell cell in level.CellCollection)
             {
-                specificButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as Button;
+                theButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as CustomControl_Button;
                 //speciicButton.DrawBackgroundImage(theButton.ChildCell.Type);
 
               //  newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
@@ -343,13 +357,17 @@ namespace LevelDesign
                
                 if (Theseus == count)
                 {
-
-             //       ContextMenu_OnClick_For_Theseus(Theseus, 
+               //     LevelDesigner.MyLevel.OldTheseusButton = theButton;
+                    theButton.ChildCharacter = theseus;
+                    LevelDesigner.MyLevel.TheseusLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+                        //.IndexOf(count);
+                       // IndexOf(specificButton);
 
                 }
                 else if (Minotaur == count)
                 {
-
+                    theButton.ChildCharacter = minotaur;
+                    LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
 
                 }
                 else if (Exit == count)
@@ -464,37 +482,37 @@ namespace LevelDesign
             switch (boardSize)
             {
                 case "15 x 15":
-                    createGameBoard(15, 15, false);
+                    createGameBoard(16, 16, false);
                     break;
                 case "14 x 14":
-                    createGameBoard(14, 14, false);
+                    createGameBoard(15, 15, false);
                     break;
                 case "13 x 13":
-                    createGameBoard(13, 13, false);
+                    createGameBoard(14, 14, false);
                     break;
                 case "12 x 12":
-                    createGameBoard(12, 12, false);
+                    createGameBoard(13, 13, false);
                     break;
                 case "11 x 11":
-                    createGameBoard(11, 11, false);
+                    createGameBoard(12, 12, false);
                     break;
                 case "10 x 10":
-                    createGameBoard(10, 10, false);
+                    createGameBoard(11, 11, false);
                     break;
                 case "9 x 9":
-                    createGameBoard(9, 9, false);
+                    createGameBoard(10, 10, false);
                     break;
                 case "8 x 8":
-                    createGameBoard(8, 8, false);
+                    createGameBoard(9, 9, false);
                     break;
                 case "7 x 7":
-                    createGameBoard(7, 7, false);
+                    createGameBoard(8, 8, false);
                     break;
                 case "6 x 6":
-                    createGameBoard(6, 6, false);
+                    createGameBoard(7, 7, false);
                     break;
                 case "5 x 5":
-                    createGameBoard(5, 5, false);
+                    createGameBoard(6, 6, false);
                     break;
             }
             comboBox1.Visible = false;
