@@ -19,7 +19,8 @@ namespace GamePlayer.Forms
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            StorageManagement.Filer.saveToFile(GamePlayer.game.GameController.CurrentGame.CurrentGameInstance.getInstance(), tbx_GameName.Text);
+            StorageManagement.Filer.saveToFile(GamePlayer.game.GameController.CurrentGame.CurrentGameInstance.getInstance(), "../../Resources/xml/Saves/" + tbx_GameName.Text);
+            Close();
         }
     }
 }

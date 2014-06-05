@@ -20,7 +20,7 @@ namespace GamePlayer.game
         private int minotaurLocation;
         // theseus and minotaurs last location
         private int theseusLast;
-        private int minotaurLast;
+        private int[] minotaurLast = new int[2];
         // score & moves
         private int currentScore = 10000;
         private int currentMoves;
@@ -124,10 +124,10 @@ namespace GamePlayer.game
             // place theseus at new location
             toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height));
             // replace minotaurs last location
-            toRender.addSprite(myLevel.TileSet["Ground" + ((minotaurLast % 2) + 1)], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height));
-            if (myLevel.CellCollection[minotaurLast].Type != CellType.Ground)
+            toRender.addSprite(myLevel.TileSet["Ground" + ((minotaurLast[0] % 2) + 1)], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
+            if (myLevel.CellCollection[minotaurLast[0]].Type != CellType.Ground)
             {
-                toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast].Type.ToString()], (minotaurLast % myLevel.Width), (minotaurLast / myLevel.Height));
+                toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast[0]].Type.ToString()], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
             }           
             // place minotaur at new location
             toRender.addSprite(myLevel.TileSet["Minotaur"], (minotaurLocation % myLevel.Width), (minotaurLocation / myLevel.Height));
@@ -290,6 +290,7 @@ namespace GamePlayer.game
         {
             // set the moved count to 0
             int count = 0;
+            minotaurLast[1] = minotaurLocation;
             // while the minotaur hasn't moved twice
             while (count < times)
             {
@@ -297,7 +298,7 @@ namespace GamePlayer.game
                 int[] theseusCoords = getCoords(myLevel.CellCollection[theseusLocation]);
                 int[] minotaurCoords = getCoords(myLevel.CellCollection[minotaurLocation]);
                 // set minotaurs last location to current location
-                minotaurLast = minotaurLocation;
+                minotaurLast[0] = minotaurLocation;
                 // if the minotaurs x location is less than theseus' x, and there is space
                 if ((minotaurCoords[0] < theseusCoords[0]) && (isSpace("right", false)))
                 {
