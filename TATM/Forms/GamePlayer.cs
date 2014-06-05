@@ -62,6 +62,7 @@ namespace GamePlayer
         {
             
         }
+
         // loads a new game
         private void btnLoad_Click(object sender, EventArgs e)
         {

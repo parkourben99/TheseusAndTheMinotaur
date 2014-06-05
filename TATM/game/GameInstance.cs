@@ -341,6 +341,7 @@ namespace GamePlayer.game
             minotaurLast[1] = minotaurLocation;
             // set the moved count to 0
             int count = 0;
+            minotaurLast[1] = minotaurLocation;
             // while the minotaur hasn't moved twice
             while (count < times)
             {

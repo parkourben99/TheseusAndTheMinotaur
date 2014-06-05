@@ -102,9 +102,12 @@ namespace LevelDesign
                     count += 1;
                 }
             }
+            if (isloaded != true)
+            {
             //AddBorders();
             theseus = new Theseus();
             minotaur = new Minotaur();
+            }
         }
         protected void ContextMenu_OnClick_For_Theseus(object sender, object e)
         {
@@ -309,30 +312,41 @@ namespace LevelDesign
                         LevelDesigner.MyLevel = StorageManagement.StorageManagement.loadLevel(levelSelect.selectedLevelName);
                         createGameBoard(LevelDesigner.MyLevel.Height, LevelDesigner.MyLevel.Width, true);
                         comboBox1.Visible = false;
+                        btn_Load.Visible = false;
 
-                     //   LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(loadLeve
+                        minotaur = new Minotaur();
+                        theseus = new Theseus();
+
+                        loadGameBoard(LevelDesigner.MyLevel, sender, theseus, minotaur);
+
+                        
                             //.IndexOf(ChildCell);
+
                     }
                 }
             }
 
         } 
 
-        private static void loadGameBoard(Level level, object sender)
+        private static void loadGameBoard(Level level, object sender, Theseus theseus, Minotaur minotaur)
         {
             int Theseus = level.TheseusLocation;
             int Minotaur = level.MinotaurLocation;
             int Exit = level.ExitLocation;
             int count = 0;
-            Image newImage;
+         //   Image newImage;
 
             Button loadButton = sender as Button;
+            var theButton = sender as CustomControl_Button;
             Form parentForm = loadButton.FindForm();
-            Button specificButton;
+        //    Button specificButton;
+
+            
+         
 
             foreach (Cell cell in level.CellCollection)
             {
-                specificButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as Button;
+                theButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as CustomControl_Button;
                 //speciicButton.DrawBackgroundImage(theButton.ChildCell.Type);
 
               //  newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
@@ -343,13 +357,17 @@ namespace LevelDesign
                
                 if (Theseus == count)
                 {
-
-             //       ContextMenu_OnClick_For_Theseus(Theseus, 
+               //     LevelDesigner.MyLevel.OldTheseusButton = theButton;
+                    theButton.ChildCharacter = theseus;
+                    LevelDesigner.MyLevel.TheseusLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+                        //.IndexOf(count);
+                       // IndexOf(specificButton);
 
                 }
                 else if (Minotaur == count)
                 {
-
+                    theButton.ChildCharacter = minotaur;
+                    LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
 
                 }
                 else if (Exit == count)
