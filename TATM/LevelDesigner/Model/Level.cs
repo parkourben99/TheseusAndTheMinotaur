@@ -129,6 +129,8 @@ namespace LevelDesign.Model
             LevelPublisher = "";
             SoundLocation = "";
             MusicLocation = "";
+            TheseusLocation = 0;
+            MinotaurLocation = width - 2;
             
             LocalHighScore = new SerialDict<string, int>();
         }

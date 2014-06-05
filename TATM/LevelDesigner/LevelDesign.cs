@@ -363,7 +363,7 @@ namespace LevelDesign
                 {
                     OldExitButton = theButton;
                     OldExitButton.ChildCell.Type = CellType.Exit;
-                    OldExitButton._PreviousCell = OldExitButton.ChildCell;
+                //    OldExitButton._PreviousCell.Type = CellType.Ground;
                     LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldExitButton.ChildCell);
                 }       
                     
