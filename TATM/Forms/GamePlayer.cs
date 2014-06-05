@@ -43,6 +43,7 @@ namespace GamePlayer
         // on load maximise the game screen
         private void Form2_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             updateSaves();
         }
         // exit the game player

@@ -98,6 +98,15 @@ namespace GamePlayer.game
             }
             canUndo = false;
         }
+
+        public int checkerGround(int index)
+        {
+            int x = index % myLevel.Width;
+            int y = index / myLevel.Height;
+
+            int ind = ((x + y) % 2) + 1;
+            return ind;
+        }
         public void buildCells()
         {
             // create a new sprite batch
@@ -108,7 +117,8 @@ namespace GamePlayer.game
             for (int i = 0; i < myLevel.LevelSize; i += 1)
             {
                 // add a blank(tiled) background to the sprite batch
-                toRender.addSprite(myLevel.TileSet["Ground" + ((i % 2) + 1)], (i % myLevel.Width), (i / myLevel.Height));
+
+                toRender.addSprite(myLevel.TileSet["Ground" + checkerGround(i)], (i % myLevel.Width), (i / myLevel.Height));
             }
             // for every cell in the level
             
@@ -124,7 +134,7 @@ namespace GamePlayer.game
                 }
                 else
                 {
-                    toRender.addSprite(myLevel.TileSet["Ground" + ((myLevel.CellCollection.IndexOf(cell) % 2) + 1)], getCoords(cell)[0], getCoords(cell)[1]);
+                    toRender.addSprite(myLevel.TileSet["Ground" + checkerGround(myLevel.CellCollection.IndexOf(cell))], getCoords(cell)[0], getCoords(cell)[1]);
                 }
             }
             // add theseus, minotaur and exit locations to the sprite batch
@@ -141,7 +151,7 @@ namespace GamePlayer.game
             // create new sprite batch
             toRender = new SpriteBatch();
             // add a blank tile at theseus' last location to wipe other image
-            toRender.addSprite(myLevel.TileSet["Ground" + ((theseusLast % 2) + 1)], (theseusLast % myLevel.Width), (theseusLast / myLevel.Height));
+            toRender.addSprite(myLevel.TileSet["Ground" + checkerGround(theseusLast)], (theseusLast % myLevel.Width), (theseusLast / myLevel.Height));
             // add the tile at theseus' last location over the blank tile i.e. return it to normal
             if (myLevel.CellCollection[theseusLast].Type != CellType.Ground)
             {
@@ -150,7 +160,7 @@ namespace GamePlayer.game
             // place theseus at new location
             toRender.addSprite(myLevel.TileSet["Theseus"], (theseusLocation % myLevel.Width), (theseusLocation / myLevel.Height));
             // replace minotaurs last location
-            toRender.addSprite(myLevel.TileSet["Ground" + ((minotaurLast[0] % 2) + 1)], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
+            toRender.addSprite(myLevel.TileSet["Ground" + checkerGround(minotaurLast[0])], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
             if (myLevel.CellCollection[minotaurLast[0]].Type != CellType.Ground)
             {
                 toRender.addSprite(myLevel.TileSet[myLevel.CellCollection[minotaurLast[0]].Type.ToString()], (minotaurLast[0] % myLevel.Width), (minotaurLast[0] / myLevel.Height));
