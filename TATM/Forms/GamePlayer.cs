@@ -20,6 +20,7 @@ namespace GamePlayer
         // instance of game used by the form
         GameInstance currentGameInstance;
         private string selectedSave;
+        private bool screenMaximized = true;
 
         // the game renderer
         Reigndear renderer = new Reigndear();
@@ -192,10 +193,33 @@ namespace GamePlayer
 
         }
 
+        private void checkIfMaximized()
+        {
+            if (screenMaximized == true && this.WindowState == FormWindowState.Maximized)
+            {
+
+            }
+            else if (screenMaximized == false && this.WindowState == FormWindowState.Normal)
+            {
+
+            }
+            else if (screenMaximized == true && this.WindowState == FormWindowState.Normal)
+            {
+                screenMaximized = false;
+                currentGameInstance.buildCells();
+            }
+            else
+            {
+                screenMaximized = true;
+                currentGameInstance.buildCells();
+            }
+        }
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // every tick update -- tick == 1000ms
             updatePlayer();
+            checkIfMaximized();
         }
         //sets the ratio for sprite sizing
         public void setRatio()
@@ -204,12 +228,12 @@ namespace GamePlayer
             pnlGame.Width = pnlGame.Height;
             int pnlHeight = pnlGame.Height;
             // ratio is panel height divided by the amount of cells high
-            int ratio = pnlHeight / (currentGameInstance.MyLevel.Height - 2);
-            ratio -= (ratio / 13);
+            int ratio = pnlHeight / (currentGameInstance.MyLevel.Height - 1);
+            //ratio -= (ratio / 13);
             // ratio for rendering is this ratio
             renderer.Ratio = ratio;
             // rebuild cells
-            currentGameInstance.buildCells();
+            //currentGameInstance.buildCells();
 
         }
 
@@ -217,6 +241,7 @@ namespace GamePlayer
         {
             // reset ratio
             setRatio();
+            currentGameInstance.buildCells();
         }
 
 

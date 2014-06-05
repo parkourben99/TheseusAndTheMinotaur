@@ -109,6 +109,7 @@ namespace GamePlayer.game
         }
         public void buildCells()
         {
+            GameController.CurrentGame.setRatio();
             // create a new sprite batch
             toRender = new SpriteBatch();
             // clear current game board
