@@ -38,8 +38,14 @@ namespace LevelDesign.CustomControl
                 if (value is Theseus)
                 {
                     string TheseusImg = LevelDesigner.MyLevel.TileSet["Theseus"];
-                    var TheseusImage = Image.FromFile(TheseusImg);//LD.MyLevel.TileSet["Theseus"];
+                    var TheseusImage = Image.FromFile(TheseusImg);
                     this.BackgroundImage = MergeImages(this.BackgroundImage, TheseusImage);
+                }
+                if (value is Minotaur)
+                {
+                    string MinotaurImg = LevelDesigner.MyLevel.TileSet["Minotaur"];
+                    var MinotaurImage = Image.FromFile(MinotaurImg);
+                    this.BackgroundImage = MergeImages(this.BackgroundImage, MinotaurImage);
                 }
                 _ChildCharacter = value; 
             }
@@ -50,28 +56,39 @@ namespace LevelDesign.CustomControl
             get { return _ChildCell; }
             set
             {
-                    switch (value.Type)
-                    {
-                        case CellType.Left:
-                            string LeftWallImg = LevelDesigner.MyLevel.TileSet["Left"];
-                            this.BackgroundImage = Image.FromFile(LeftWallImg);
-                            break;
-                        case CellType.Up:
-                            string UpWallImg = LevelDesigner.MyLevel.TileSet["Up"];
-                            this.BackgroundImage = Image.FromFile(UpWallImg);
-                            break;
-                        case CellType.Ground:
-                            string Ground1 = LevelDesigner.MyLevel.TileSet["Ground1"];
-                            this.BackgroundImage = Image.FromFile(Ground1);
-                            break;
-                        case CellType.LeftUP:
-                            string LeftUpWallImg = LevelDesigner.MyLevel.TileSet["LeftUP"];
-                            this.BackgroundImage = Image.FromFile(LeftUpWallImg);
-                            break;
-                    }
-                    _ChildCell = value;
+                DrawBackgroundImage(value.Type);
+
+                _ChildCell = value;
             }
         }
+
+        public void DrawBackgroundImage(CellType value)
+        {
+            switch (value)
+            {
+                case CellType.Left:
+                    string LeftWallImg = LevelDesigner.MyLevel.TileSet["Left"];
+                    this.BackgroundImage = Image.FromFile(LeftWallImg);
+                    break;
+                case CellType.Up:
+                    string UpWallImg = LevelDesigner.MyLevel.TileSet["Up"];
+                    this.BackgroundImage = Image.FromFile(UpWallImg);
+                    break;
+                case CellType.Ground:
+                    string Ground1 = LevelDesigner.MyLevel.TileSet["Ground1"];
+                    this.BackgroundImage = Image.FromFile(Ground1);
+                    break;
+                case CellType.LeftUP:
+                    string LeftUpWallImg = LevelDesigner.MyLevel.TileSet["LeftUP"];
+                    this.BackgroundImage = Image.FromFile(LeftUpWallImg);
+                    break;
+                case CellType.Exit:
+                    string Exit = LevelDesigner.MyLevel.TileSet["Exit"];
+                    this.BackgroundImage = Image.FromFile(Exit);
+                    break;
+            }
+        }
+
         public CustomControl_Button() { }
         private Image MergeImages(Image backgroundImage,
                          Image overlayImage)
@@ -109,16 +126,16 @@ namespace LevelDesign.CustomControl
         public void ClearCharacters()
         {
             _ChildCharacter = null;
+           
+
             this._ChildCell = this._PreviousCell;
+            DrawBackgroundImage(this._ChildCell.Type);
+            
+
+
+            //this.BackgroundImage = Image.FromFile(LevelDesigner.MyLevel.TileSet["Ground1"]);
+
         }
-        //public CustomControl_Button(Cell cell)
-        //{
-        //    if (cell.Type == CellType.Left)
-        //    {
-        //        string LeftWallImg = @"\\Adfsstud1\f-i\haw363\Documents\Visual Studio 2012\Projects\WindowsFormsApplication1\WindowsFormsApplication1\Img\Koala.jpg";
-        //        this.BackgroundImage = Image.FromFile(LeftWallImg);
-        //    }
-        //    this.ChildCell = cell;
-        //}
+
     }
 }

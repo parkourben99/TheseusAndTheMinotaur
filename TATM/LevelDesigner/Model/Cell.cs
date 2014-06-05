@@ -10,7 +10,7 @@ namespace LevelDesign.Model
     //The direction indictes where the wall is
     //Example: Left => wall on left
     public enum CellType {
-        Left = 1, LeftUP = 2, Up = 3, Ground = 4
+        Left = 1, LeftUP = 2, Up = 3, Ground = 4, Exit = 5
     }
     public class Cell
     {
@@ -45,7 +45,7 @@ namespace LevelDesign.Model
         }
 
         //The 'has Theseus' status on the cell
-        private bool _IsTheseus =false;
+        private bool _IsTheseus = false;
 
         //Get/Set the value of 'has Theseus' from a cell
         public bool IsTheseus

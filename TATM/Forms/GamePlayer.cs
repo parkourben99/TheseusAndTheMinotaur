@@ -19,6 +19,7 @@ namespace GamePlayer
     {
         // instance of game used by the form
         GameInstance currentGameInstance;
+        private string selectedSave;
 
         // the game renderer
         Reigndear renderer = new Reigndear();
@@ -42,7 +43,7 @@ namespace GamePlayer
         // on load maximise the game screen
         private void Form2_Load(object sender, EventArgs e)
         {
-         
+            updateSaves();
         }
         // exit the game player
         private void btnExit_Click(object sender, EventArgs e)
@@ -122,6 +123,11 @@ namespace GamePlayer
                     break;
 
             }
+
+            if ((Keys)e.KeyChar == Keys.Space)
+            {
+                this.currentGameInstance.moveMinotaur(2);
+            }
         }
 
         private void lblMoves_Click(object sender, EventArgs e)
@@ -131,7 +137,7 @@ namespace GamePlayer
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            
+            CurrentGameInstance.undo();
         }
 
         
@@ -171,7 +177,7 @@ namespace GamePlayer
             // add one to current time
             currentGameInstance.CurrentTime += 1;
             // calculate score
-            currentGameInstance.CurrentScore -= currentGameInstance.CurrentTime * currentGameInstance.CurrentMoves;
+            currentGameInstance.CurrentScore = 10000 - currentGameInstance.CurrentTime * currentGameInstance.CurrentMoves;
             // show score
             lblScore.Text = currentGameInstance.CurrentScore.ToString();
             // show moves
@@ -190,20 +196,25 @@ namespace GamePlayer
             // every tick update -- tick == 1000ms
             updatePlayer();
         }
-
+        //sets the ratio for sprite sizing
         public void setRatio()
         {
+            // width ad height are the same
             pnlGame.Width = pnlGame.Height;
             int pnlHeight = pnlGame.Height;
+            // ratio is panel height divided by the amount of cells high
             int ratio = pnlHeight / (currentGameInstance.MyLevel.Height - 2);
             ratio -= (ratio / 13);
+            // ratio for rendering is this ratio
             renderer.Ratio = ratio;
+            // rebuild cells
             currentGameInstance.buildCells();
 
         }
 
         private void GamePlayerForm_ResizeEnd(object sender, EventArgs e)
         {
+            // reset ratio
             setRatio();
         }
 
@@ -214,8 +225,55 @@ namespace GamePlayer
             {
                 SaveGameForm.ShowDialog(this);
             }
+            updateSaves();
         }
 
+        public void updateSaves()
+        {
+            ltbSaves.Items.Clear();
+            foreach (var file in System.IO.Directory.EnumerateFiles("../../Resources/XML/Saves/"))
+            {
+                string[] fileArray = file.Split('/');
+                string filename = (string)fileArray.GetValue(fileArray.Length - 1);
+                filename = filename.Remove(filename.Length - 4);
+                ltbSaves.Items.Add(filename);
+            }
+            
+        }
+
+        private void ltbSaves_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ltbSaves.Items.Count >= ltbSaves.SelectedIndex)
+            {
+                selectedSave = (string)ltbSaves.Items[ltbSaves.SelectedIndex];
+            }
+        }
+
+        private void btnLoadSave_Click(object sender, EventArgs e)
+        {
+            if (selectedSave != null)
+            {
+                List<string> instance = (List<string>)StorageManagement.Filer.loadFromFile(typeof(List<string>), "../../Resources/XML/saves/" + selectedSave);
+                // create a new game instance
+                currentGameInstance = new GameInstance();
+                // set the panel as graphics location
+                renderer.initialiseGraphics(getPanel().CreateGraphics());
+                currentGameInstance.MyLevel = StorageManagement.StorageManagement.loadLevel(instance[0]);
+                currentGameInstance.TheseusLocation = Convert.ToInt32(instance[1]);
+                currentGameInstance.MinotaurLocation = Convert.ToInt32(instance[2]);
+                currentGameInstance.CurrentMoves = Convert.ToInt32(instance[3]);
+                currentGameInstance.CurrentTime = Convert.ToInt32(instance[4]);
+                currentGameInstance.CanUndo = Convert.ToBoolean(instance[5]);
+                gameTimer.Start();
+                lblLevelName.Text = currentGameInstance.MyLevel.LevelName;
+                setRatio();
+                currentGameInstance.GameState = true;
+            }
+            else
+            { 
+                MessageBox.Show("Please select a level");
+            }
+        }
         
     }
 }

@@ -180,15 +180,15 @@ namespace LevelDesign.Model
         //}
 
         //// check if minotaur has been placed, move if it has or place it if it hasn't
-        //public void setMinotaur(int cell)
-        //{
+      //  public void setMinotaur(int cell)
+       // {
         //    if (this.MinotaurLocation == null)
-        //    {
-        //        this.cellCollection[this.MinotaurLocation].IsMinotaur = false;
-        //    }
-        //    this.cellCollection[cell].IsMinotaur = true;
-        //    this.MinotaurLocation = cell;
-        //}
+         //   {
+          //      this.cellCollection[this.MinotaurLocation].IsMinotaur = false;
+          //  }
+          //  this.cellCollection[cell].IsMinotaur = true;
+           // this.MinotaurLocation = cell;
+       // }
         public void CreateCells()
         {
             //creating columns
@@ -277,7 +277,7 @@ namespace LevelDesign.Model
         //Set Minotaur to (x,y)
         public void SetMinotaur(int x, int y)
         {
-
+            this.SetStart(x, y);
         }
 
         public void SetStart(int x, int y)

@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GameBoard = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.btn_Start = new System.Windows.Forms.Button();
             this.btn_Minotaur = new System.Windows.Forms.Button();
             this.btn_Theseus = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
@@ -58,16 +58,17 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 39F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(974, 74);
+            this.label1.Size = new System.Drawing.Size(974, 59);
             this.label1.TabIndex = 1;
             this.label1.Text = "Theseus and the Minotaur";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 77);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 62);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -76,8 +77,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Exit);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_Start);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Minotaur);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Theseus);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Save);
@@ -88,7 +89,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_TileUp);
             this.splitContainer1.Panel2.Controls.Add(this.btn_TileLeftUp);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(974, 708);
+            this.splitContainer1.Size = new System.Drawing.Size(974, 563);
             this.splitContainer1.SplitterDistance = 690;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -107,47 +108,52 @@
             this.GameBoard.Size = new System.Drawing.Size(0, 0);
             this.GameBoard.TabIndex = 2;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(75, 166);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            // 
             // btn_Exit
             // 
-            this.btn_Exit.Location = new System.Drawing.Point(75, 668);
+            this.btn_Exit.Location = new System.Drawing.Point(75, 497);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(139, 37);
             this.btn_Exit.TabIndex = 10;
-            this.btn_Exit.Text = "FinishTile";
+            this.btn_Exit.Text = "ExitTile";
             this.btn_Exit.UseVisualStyleBackColor = true;
-            // 
-            // btn_Start
-            // 
-            this.btn_Start.Location = new System.Drawing.Point(75, 607);
-            this.btn_Start.Name = "btn_Start";
-            this.btn_Start.Size = new System.Drawing.Size(139, 37);
-            this.btn_Start.TabIndex = 9;
-            this.btn_Start.Text = "StartTile";
-            this.btn_Start.UseVisualStyleBackColor = true;
+            this.btn_Exit.Visible = false;
+            this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
             // btn_Minotaur
             // 
-            this.btn_Minotaur.Location = new System.Drawing.Point(75, 538);
+            this.btn_Minotaur.Location = new System.Drawing.Point(75, 454);
             this.btn_Minotaur.Name = "btn_Minotaur";
             this.btn_Minotaur.Size = new System.Drawing.Size(139, 37);
             this.btn_Minotaur.TabIndex = 8;
             this.btn_Minotaur.Text = "Minotaur";
             this.btn_Minotaur.UseVisualStyleBackColor = true;
+            this.btn_Minotaur.Visible = false;
+            this.btn_Minotaur.Click += new System.EventHandler(this.btn_Minotaur_Click);
             // 
             // btn_Theseus
             // 
-            this.btn_Theseus.Location = new System.Drawing.Point(75, 476);
+            this.btn_Theseus.Location = new System.Drawing.Point(75, 411);
             this.btn_Theseus.Name = "btn_Theseus";
             this.btn_Theseus.Size = new System.Drawing.Size(139, 37);
             this.btn_Theseus.TabIndex = 7;
             this.btn_Theseus.Text = "Theseus";
             this.btn_Theseus.UseVisualStyleBackColor = true;
+            this.btn_Theseus.Visible = false;
             this.btn_Theseus.Click += new System.EventHandler(this.btn_Theseus_Click);
             // 
             // btn_Save
             // 
             this.btn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_Save.Location = new System.Drawing.Point(75, 15);
+            this.btn_Save.Location = new System.Drawing.Point(75, 101);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(139, 37);
             this.btn_Save.TabIndex = 0;
@@ -157,27 +163,29 @@
             // 
             // btn_TileBlank
             // 
-            this.btn_TileBlank.Location = new System.Drawing.Point(75, 342);
+            this.btn_TileBlank.Location = new System.Drawing.Point(75, 325);
             this.btn_TileBlank.Name = "btn_TileBlank";
             this.btn_TileBlank.Size = new System.Drawing.Size(139, 37);
             this.btn_TileBlank.TabIndex = 6;
             this.btn_TileBlank.Text = "TileBlank";
             this.btn_TileBlank.UseVisualStyleBackColor = true;
+            this.btn_TileBlank.Visible = false;
             this.btn_TileBlank.Click += new System.EventHandler(this.btn_Tile3_Click);
             // 
             // btn_TileLeft
             // 
-            this.btn_TileLeft.Location = new System.Drawing.Point(75, 212);
+            this.btn_TileLeft.Location = new System.Drawing.Point(75, 239);
             this.btn_TileLeft.Name = "btn_TileLeft";
             this.btn_TileLeft.Size = new System.Drawing.Size(139, 37);
             this.btn_TileLeft.TabIndex = 3;
             this.btn_TileLeft.Text = "TileLeft";
             this.btn_TileLeft.UseVisualStyleBackColor = true;
+            this.btn_TileLeft.Visible = false;
             this.btn_TileLeft.Click += new System.EventHandler(this.btn_Tile1_Click);
             // 
             // btn_Menu
             // 
-            this.btn_Menu.Location = new System.Drawing.Point(75, 144);
+            this.btn_Menu.Location = new System.Drawing.Point(75, 15);
             this.btn_Menu.Name = "btn_Menu";
             this.btn_Menu.Size = new System.Drawing.Size(139, 37);
             this.btn_Menu.TabIndex = 2;
@@ -187,7 +195,7 @@
             // 
             // btn_Load
             // 
-            this.btn_Load.Location = new System.Drawing.Point(75, 77);
+            this.btn_Load.Location = new System.Drawing.Point(75, 58);
             this.btn_Load.Name = "btn_Load";
             this.btn_Load.Size = new System.Drawing.Size(139, 37);
             this.btn_Load.TabIndex = 1;
@@ -197,22 +205,24 @@
             // 
             // btn_TileUp
             // 
-            this.btn_TileUp.Location = new System.Drawing.Point(75, 272);
+            this.btn_TileUp.Location = new System.Drawing.Point(75, 282);
             this.btn_TileUp.Name = "btn_TileUp";
             this.btn_TileUp.Size = new System.Drawing.Size(139, 37);
             this.btn_TileUp.TabIndex = 5;
             this.btn_TileUp.Text = "TileUp";
             this.btn_TileUp.UseVisualStyleBackColor = true;
+            this.btn_TileUp.Visible = false;
             this.btn_TileUp.Click += new System.EventHandler(this.btn_Tile2_Click);
             // 
             // btn_TileLeftUp
             // 
-            this.btn_TileLeftUp.Location = new System.Drawing.Point(75, 409);
+            this.btn_TileLeftUp.Location = new System.Drawing.Point(75, 368);
             this.btn_TileLeftUp.Name = "btn_TileLeftUp";
             this.btn_TileLeftUp.Size = new System.Drawing.Size(139, 37);
             this.btn_TileLeftUp.TabIndex = 4;
             this.btn_TileLeftUp.Text = "TileLeftUp";
             this.btn_TileLeftUp.UseVisualStyleBackColor = true;
+            this.btn_TileLeftUp.Visible = false;
             this.btn_TileLeftUp.Click += new System.EventHandler(this.btn_Tile4_Click);
             // 
             // tableLayoutPanel1
@@ -226,17 +236,21 @@
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.508197F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.49181F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 788);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 709);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // LevelDesign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 812);
+            this.ClientSize = new System.Drawing.Size(1004, 733);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "LevelDesign";
             this.Text = "Form1";
@@ -265,9 +279,9 @@
         private System.Windows.Forms.Button btn_TileLeft;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btn_Exit;
-        private System.Windows.Forms.Button btn_Start;
         private System.Windows.Forms.Button btn_Minotaur;
         private System.Windows.Forms.Button btn_Theseus;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
