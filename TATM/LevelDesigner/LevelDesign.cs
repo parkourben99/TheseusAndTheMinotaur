@@ -21,9 +21,9 @@ namespace LevelDesign
         private Minotaur minotaur;
         private int count = 0;
         private Button TheClickedButton;
-        public static CustomControl_Button OldTheseusButton;
-        private static CustomControl_Button OldMinotaurButton;
-        private static CustomControl_Button OldExitButton;
+        static CustomControl_Button OldTheseusButton;
+        static CustomControl_Button OldMinotaurButton;
+        static CustomControl_Button OldExitButton;
         public LevelDesign()
         {
             InitializeComponent();
@@ -363,10 +363,10 @@ namespace LevelDesign
                 {
                     OldExitButton = theButton;
                     OldExitButton.ChildCell.Type = CellType.Exit;
-                    OldExitButton._PreviousCell.Type = CellType.Ground;
-    
+                //    OldExitButton._PreviousCell.Type = CellType.Ground;
+                    LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldExitButton.ChildCell);
                 }       
-                    LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+                    
                 
                 count++;
             }
