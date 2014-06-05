@@ -21,7 +21,7 @@ namespace LevelDesign
         private Minotaur minotaur;
         private int count = 0;
         private Button TheClickedButton;
-        private CustomControl_Button OldTheseusButton;
+        public CustomControl_Button OldTheseusButton;
         private CustomControl_Button OldMinotaurButton;
         private CustomControl_Button OldExitButton;
         public LevelDesign()
@@ -319,9 +319,6 @@ namespace LevelDesign
 
                         loadGameBoard(LevelDesigner.MyLevel, sender, theseus, minotaur);
 
-                        
-                            //.IndexOf(ChildCell);
-
                     }
                 }
             }
@@ -334,47 +331,46 @@ namespace LevelDesign
             int Minotaur = level.MinotaurLocation;
             int Exit = level.ExitLocation;
             int count = 0;
-         //   Image newImage;
 
             Button loadButton = sender as Button;
             var theButton = sender as CustomControl_Button;
             Form parentForm = loadButton.FindForm();
-        //    Button specificButton;
 
-            
-         
 
             foreach (Cell cell in level.CellCollection)
             {
                 theButton = parentForm.Controls.Find(count.ToString(), true).FirstOrDefault() as CustomControl_Button;
-                //speciicButton.DrawBackgroundImage(theButton.ChildCell.Type);
-
-              //  newImage = Image.FromFile("../../Resources/Images/Tiles/Ground1.png");
-              //  specificButton.BackgroundImage = ((System.Drawing.Image)(newImage));
 
 
-              
-               
                 if (Theseus == count)
                 {
-               //     LevelDesigner.MyLevel.OldTheseusButton = theButton;
-                    theButton.ChildCharacter = theseus;
-                    LevelDesigner.MyLevel.TheseusLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
-                        //.IndexOf(count);
-                       // IndexOf(specificButton);
+                    
+                    OldTheseusButton = theButton;
+                    OldTheseusButton.ChildCharacter = theseus;
+
+                    LevelDesigner.MyLevel.TheseusLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldTheseusButton.ChildCell);
+
 
                 }
                 else if (Minotaur == count)
                 {
-                    theButton.ChildCharacter = minotaur;
-                    LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+                    OldMinotaurButton = theButton;
+                    OldMinotaurButton.ChildCharacter = minotaur;
+                    LevelDesigner.MyLevel.MinotaurLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldMinotaurButton.ChildCell);
 
                 }
                 else if (Exit == count)
                 {
-
-                }
+                    OldExitButton = theButton;
+                    OldExitButton.ChildCell.Type = CellType.Exit;
+                    OldExitButton._PreviousCell.Type = CellType.Ground;
+    
+                }       
+                    LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+                
                 count++;
+            }
+                {
             }
         }
 
