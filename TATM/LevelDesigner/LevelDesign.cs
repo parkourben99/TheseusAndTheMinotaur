@@ -362,9 +362,16 @@ namespace LevelDesign
                 else if (Exit == count)
                 {
                     OldExitButton = theButton;
-                    OldExitButton.ChildCell.Type = CellType.Exit;
-                //    OldExitButton._PreviousCell.Type = CellType.Ground;
-                    LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(OldExitButton.ChildCell);
+                    OldExitButton._PreviousCell = theButton.ChildCell;
+
+                    Cell cellll = new Cell() { Type = CellType.Exit };
+
+                    theButton.ChildCell = cellll;
+
+
+                    LevelDesigner.MyLevel.ExitLocation = LevelDesigner.MyLevel.CellCollection.IndexOf(theButton.ChildCell);
+
+
                 }       
                     
                 
