@@ -24,9 +24,11 @@ namespace LevelDesign
         static CustomControl_Button OldTheseusButton;
         static CustomControl_Button OldMinotaurButton;
         static CustomControl_Button OldExitButton;
+        static bool isloaded;
         public LevelDesign()
         {
             InitializeComponent();
+            isloaded = false;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.Add("15 x 15");
             comboBox1.Items.Add("14 x 14");
@@ -281,24 +283,38 @@ namespace LevelDesign
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            using (var levelSave = new LevelSave())
+            if (OldMinotaurButton == null && OldTheseusButton == null && OldExitButton == null)
             {
-                levelSave.ShowDialog();
-                LevelDesigner.MyLevel.LevelName = levelSave.levelName;
-                LevelDesigner.MyLevel.LevelPublisher = levelSave.publisherName;
-            }
-            if (!String.IsNullOrWhiteSpace(LevelDesigner.MyLevel.LevelName))
-            {
-                
-                StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
-                MessageBox.Show("Level is \"Saved\"");
+                MessageBox.Show("Please set 'Theseus' or 'Minotaur' or 'Exit' ");
             }
             else
             {
-                MessageBox.Show("Please give a name for the Level");
-            }
+                if(isloaded == true)
+                {
+                    StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
+                    MessageBox.Show("Level is \"Saved\"");
+                } else {
+                    using (var levelSave = new LevelSave())
+                    {
+                        levelSave.ShowDialog();
+                        LevelDesigner.MyLevel.LevelName = levelSave.levelName;
+                        LevelDesigner.MyLevel.LevelPublisher = levelSave.publisherName;
+                    }
+                    if (!String.IsNullOrWhiteSpace(LevelDesigner.MyLevel.LevelName))
+                    {
 
+                        StorageManagement.StorageManagement.saveLevel(LevelDesigner.MyLevel);
+                        MessageBox.Show("Level is \"Saved\"");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please give a name for the Level");
+                    }
+                }
+            }
         }
+
+        
 
         private void btn_Load_Click(object sender, EventArgs e)
         {
@@ -313,6 +329,7 @@ namespace LevelDesign
                         createGameBoard(LevelDesigner.MyLevel.Height, LevelDesigner.MyLevel.Width, true);
                         comboBox1.Visible = false;
                         btn_Load.Visible = false;
+                        isloaded = true;
 
                         minotaur = new Minotaur();
                         theseus = new Theseus();

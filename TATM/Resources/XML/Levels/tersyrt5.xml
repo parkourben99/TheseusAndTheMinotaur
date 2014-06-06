@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ExitLocation>97</ExitLocation>
+  <ExitLocation>64</ExitLocation>
   <LevelSize>225</LevelSize>
   <LevelPublisher>Anonymous</LevelPublisher>
   <Rating>0</Rating>
@@ -992,112 +992,7 @@
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
       <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Left</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Left</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Up</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Ground</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
-      <Type>Up</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
@@ -1153,13 +1048,6 @@
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
-      <IsExit>false</IsExit>
-      <IsStart>false</IsStart>
-      <IsTheseus>false</IsTheseus>
-      <IsMinotaur>false</IsMinotaur>
-    </Cell>
-    <Cell>
       <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
@@ -1195,7 +1083,14 @@
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
@@ -1265,35 +1160,140 @@
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
       <IsMinotaur>false</IsMinotaur>
     </Cell>
     <Cell>
-      <Type>Up</Type>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Left</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Left</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
+      <IsExit>false</IsExit>
+      <IsStart>false</IsStart>
+      <IsTheseus>false</IsTheseus>
+      <IsMinotaur>false</IsMinotaur>
+    </Cell>
+    <Cell>
+      <Type>Ground</Type>
       <IsExit>false</IsExit>
       <IsStart>false</IsStart>
       <IsTheseus>false</IsTheseus>
@@ -1653,7 +1653,7 @@
   <Width>15</Width>
   <Height>15</Height>
   <LocalHighScore />
-  <LevelName>winner winner chicken dinner</LevelName>
-  <TheseusLocation>33</TheseusLocation>
-  <MinotaurLocation>41</MinotaurLocation>
+  <LevelName>tersyrt5</LevelName>
+  <TheseusLocation>100</TheseusLocation>
+  <MinotaurLocation>110</MinotaurLocation>
 </Level>
